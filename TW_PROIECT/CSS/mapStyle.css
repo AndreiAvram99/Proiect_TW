@@ -1,0 +1,44 @@
+body{
+    background-color: whitesmoke;
+}
+
+.mapDiv{
+    width: 65%;
+    margin: auto;
+}
+
+path {
+    fill: lightgrey;
+    stroke:  cornflowerblue;
+    stroke-width:2px;
+    transition: fill 0.3s;
+    text-anchor: middle;
+}
+
+path:hover {
+    fill: lightslategray;
+}
+
+text{
+    fill: black;
+    font-weight: bold;
+    font-size: large;
+    font-family: "Segoe UI";
+}
+
+
+.textBoxObj{
+    fill: white;
+    stroke: lightslategray;
+    stroke-width:3px;
+    display: none;
+}
+
+.textBoxText{
+    fill: black;
+    font-weight: bold;
+    font-size: small;
+    font-family: "Segoe UI";
+    display: none;
+}
+
