@@ -1,0 +1,60 @@
+body{
+    background-color: whitesmoke;
+}
+
+nav{
+    height: 60px;
+    background-color: white;
+    margin-bottom: 3%;
+    /*position: sticky;*/
+    width: 100%;
+}
+
+.navBar{
+    width:100%;
+    height: 100%;
+}
+
+.navItem{
+    margin: 1px;
+    display: inline-block;
+    background-color: lightgrey;
+    height: 100%;
+    width: 10%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.itemText{
+    padding-top: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.mapDiv{
+    width: 65%;
+    margin: auto;
+}
+
+path {
+    fill: antiquewhite;
+    stroke:  coral;
+    stroke-width:2px;
+    transition: fill 0.3s;
+    text-anchor: middle;
+}
+
+path:hover {
+    fill: lightslategray;
+}
+
+text{
+    fill: black;
+    font-weight: bold;
+    font-size: large;
+    font-family: "Segoe UI";
+}
+
+
+
+
