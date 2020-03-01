@@ -1,0 +1,28 @@
+.ranking{
+    background: cornflowerblue;
+    margin: auto;
+    height: 20%;
+    width: 15%;
+    border-collapse: collapse;
+}
+
+.ranking th, .ranking td{
+    border:  1px solid #ddd;
+    padding: 8px;
+}
+
+.ranking tr:nth-child(even){
+    background-color: #e2f3ff;
+}
+
+.ranking tr:hover{
+    background-color: #264cff;
+}
+
+.ranking th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #264cff;
+    color: white;
+}

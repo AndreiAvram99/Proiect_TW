@@ -5,11 +5,12 @@
     <title>SVG Map</title>
     <link rel="stylesheet" href="../CSS/mapStyle.css">
     <link rel="stylesheet" href="../CSS/navBarStyle.css">
+    <link rel="stylesheet" href="../CSS/eventStyle.css">
+    <link rel="stylesheet" href="../CSS/firstPageRankingStyle.css">
 </head>
 <body>
 
     <nav>
-
         <div class="navBar">
             <div class="buttons">
                 <div class="button"><a href=""><b>Menu</b></a></div>
@@ -713,6 +714,32 @@
             </svg>
         </div>
 
+        <div class = "event">
+            <h1 class = "eventTitle">Title</h1>
+            <p class = "eventDescription">Text bla bla</p>
+            <button type="button" class = "eventSeeMoreButton">See more</button>
+        </div>
+
+        <div class = "event">
+            <h1 class = "eventTitle">Title</h1>
+            <p class = "eventDescription">Text bla bla</p>
+            <button type="button" class = "eventSeeMoreButton">See more</button>
+        </div>
+
+        <div class = "event">
+            <h1 class = "eventTitle">Title</h1>
+            <p class = "eventDescription">Text bla bla</p>
+            <button type="button" class = "eventSeeMoreButton">See more</button>
+        </div>
+
+        <table class = "ranking">
+            <tr><th>Name</th><th>Activity</th></tr>
+            <tr><td>Name 1</td><td>Value 1</td></tr>
+            <tr><td>Name 2</td><td>Value 2</td></tr>
+            <tr><td>Name 3</td><td>Value 3</td></tr>
+            <tr><td>Name 4</td><td>Value 4</td></tr>
+        </table>
+
     </main>
 
     <footer>
@@ -721,7 +748,6 @@
 
     <script>
         function showStateStatistics(id) {
-
             var numberOfFields = 5;
             var firstFieldId = "textBoxObj_";
             var lastFieldsIdArray = [];
