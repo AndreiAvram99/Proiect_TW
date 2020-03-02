@@ -1,26 +1,88 @@
 .event{
-    width: 58%;
-    background: #e2f3ff;
-    margin-left: 15%;
+    width: 50%;
     float: left;
+    height: auto;
+    background: white;
     margin-bottom: 2%;
+    margin-left: 15%;
+    border-radius: 10px;
+}
+
+.eventHeader{
+    width:100%;
+    float:left;
+    height:auto;
+    width: 100%;
+    background-color: darkslateblue;
+    border-radius: 6px 6px 0px 0px;
+}
+
+.eventBody{
+    width:100%;
+    float:left;
+    height:auto;
+    width: 100%;
+}
+
+.eventFooter{
+    width:100%;
+    float:left;
+    height:auto;
+}
+
+.eventFooterLeft{
+    width:70%;
+    float: left;
+    height: auto;
+    display:block;
+}
+
+.eventFooterRight{
+    width:30%;
+    float: left;
+    height: auto;
 }
 
 .eventTitle{
-    color: cornflowerblue;
+    color: whitesmoke;
+    font-size: larger;
+    font-weight: bold;
+    padding-left: 3%;
+
 }
 
 .eventDescription{
+    padding: 5px 3% 5px 3%;
+    text-indent: 20px;
+    font-family: "Segoe UI";
+}
 
+.linkColor{
+    color: darkslateblue;
+    text-decoration: none;
+}
+.linkColor:hover{
+    color: cornflowerblue;
 }
 
 .eventSeeMoreButton{
-    background: cornflowerblue;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    float: right;
-    height: 30px;
-    width: 10%;
+    background-color: darkslateblue;
+    border: none;
+    color: white;
+    padding: 10px 20px;
     text-align: center;
-    box-shadow: 2px 3px 4px darkslateblue;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    float: right;
+}
+
+.eventSeeMoreButton:hover{
+    background-color: cornflowerblue;
+}
+
+.author{
+    padding-left: 25px;
 }

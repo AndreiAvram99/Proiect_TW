@@ -2,7 +2,7 @@ nav{
     margin-bottom: 100px;
 }
 .navBar {
-    background-color: cornflowerblue;
+    background-color: darkslateblue;
     overflow: hidden;
     width: 100%;
     position: fixed;
@@ -22,7 +22,7 @@ nav{
 }
 
 .buttons {
-    background: cornflowerblue;
+    background: darkslateblue;
     width: 100%;
     float : left;
     height: 70px;
@@ -34,8 +34,6 @@ nav{
     float : left;
     height: 70px;
     text-align: center;
-    box-shadow: 5px 10px 18px darkslateblue;
-
 }
 
 .button a {
@@ -50,5 +48,5 @@ nav{
 }
 
 .button:hover {
-    box-shadow: 5px 10px 18px cornflowerblue;
+    box-shadow: 17px 2px 32px -4px rgba(0,0,0,0.75);
 }
