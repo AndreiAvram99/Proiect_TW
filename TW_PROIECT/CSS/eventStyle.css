@@ -1,11 +1,20 @@
 .event{
-    width: 50%;
+    /*width: 50%;*/
     float: left;
     height: auto;
     background: white;
-    margin-bottom: 2%;
-    margin-left: 15%;
+    margin-bottom: 30px;
+    /*margin-left: 15%;*/
     border-radius: 10px;
+}
+
+.eventsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.eventsContainer > div{
+    flex: 1;
 }
 
 .eventHeader{

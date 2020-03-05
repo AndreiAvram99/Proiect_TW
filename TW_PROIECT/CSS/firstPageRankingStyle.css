@@ -1,9 +1,18 @@
+.rankingsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.rankingsContainer > div{
+    flex: 1;
+}
+
 .ranking{
     background: cornflowerblue;
-    margin: auto;
+    margin-left: 10%;
     height: 20%;
-    width: 15%;
     border-collapse: collapse;
+    margin-bottom: 30px;
 }
 
 .ranking th, .ranking td{
