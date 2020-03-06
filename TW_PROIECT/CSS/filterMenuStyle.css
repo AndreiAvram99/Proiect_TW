@@ -44,6 +44,7 @@ label{
 .filterMenu{
     display: grid;
     grid-template-columns: auto auto auto auto;
+    margin-bottom: 40px;
 }
 
 .headerFilters{
