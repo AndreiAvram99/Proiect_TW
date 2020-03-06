@@ -8,7 +8,7 @@
 }
 
 .ranking{
-    background: cornflowerblue;
+    background: slateblue;
     margin-left: 10%;
     height: 20%;
     border-collapse: collapse;
@@ -16,22 +16,22 @@
 }
 
 .ranking th, .ranking td{
-    border:  1px solid #ddd;
+    border:  1px solid white;
     padding: 8px;
 }
 
 .ranking tr:nth-child(even){
-    background-color: #e2f3ff;
+    background-color: white;
 }
 
 .ranking tr:hover{
-    background-color: #264cff;
+    background-color: darkslateblue;
 }
 
 .ranking th{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #264cff;
+    background-color: darkslateblue;
     color: white;
 }

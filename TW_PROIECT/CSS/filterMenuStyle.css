@@ -1,0 +1,134 @@
+body{
+    background-color: ghostwhite;
+    font-family: "Segoe UI", serif;
+}
+
+.underline{
+    height: 1px;
+    background-color: grey;
+    box-shadow: 0 1px darkgrey;
+}
+
+
+select {
+    font-family: "Segoe UI", serif;
+    background-color: white;
+    color: darkslateblue;
+    padding: 5px;
+    width: auto;
+    border-color: darkslateblue;
+    border-radius: 5px;
+    font-size: medium;
+
+}
+main{
+    margin-left: 14%;
+    margin-right: 14%;
+}
+
+select option {
+    font-family: "Segoe UI", serif;
+    background-color: white;
+    color: darkslateblue;
+    padding: 3%;
+    font-size: medium;
+}
+
+label{
+    font-family: "Segoe UI", serif;
+    font-weight: bold;
+    font-size: small;
+
+}
+
+.filterMenu{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.headerFilters{
+    grid-column-start:1;
+    grid-column-end:5;
+}
+
+.leftFilters{
+    grid-column-start:1;
+    grid-column-end:3;
+}
+
+.rightFilters{
+    grid-column-start:3;
+    grid-column-end:5;
+}
+
+.footerFilters{
+    grid-column-start:1;
+    grid-column-end:5;
+}
+
+.sortFilter{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 30px;
+}
+
+.sortHeader{
+    grid-column-start:1;
+    grid-column-end:4;
+}
+
+
+.headerFilters{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+
+.filtersTitle{
+    font-size: 30px;
+    font-family: "Segoe UI", serif;
+}
+
+input[type=text] {
+    float: right;
+    padding: 6px;
+    margin-top: 40px;
+    font-size: 17px;
+    border:1px solid slateblue;
+}
+
+.search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 40px;
+    background: darkslateblue;
+    color: white;
+    border: 1px solid darkslateblue;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: slateblue;
+}
+
+.submitButton
+{
+    margin-top: 30px;
+    //margin-right: 14%;
+}
+
+input[type=submit] {
+    background-color: darkslateblue;
+    float: right;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: slateblue;
+}

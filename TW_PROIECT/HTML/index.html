@@ -16,8 +16,8 @@
     <nav>
         <div class="navBar">
             <div class="buttons">
-                <div class="button"><a href=""><b>Menu</b></a></div>
-                <div class="button"><a href=""><b>See all</b></a></div>
+                <div class="button"><a href="index.html"><b>Menu</b></a></div>
+                <div class="button"><a href="seeAll.html"><b>See all</b></a></div>
                 <div class="button"><a href=""><b>Statistics</b></a></div>
                 </div>
         </div>
@@ -26,7 +26,7 @@
 
     <main>
         <div class="mapDiv">
-            <svg version="1.1" viewbox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
+            <svg version="1.1" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
 
                 <!--FL-->
                 <path id="FL" onmouseover="showStateStatistics(this.id)" onmouseout="hideStateStatistics(this.id)"
@@ -235,7 +235,7 @@
                 <path id="CO" onmouseover="showStateStatistics(this.id)" onmouseout="hideStateStatistics(this.id)"
                       d="M 378.62078,256.79629 L 380.06066,235.51461 L 347.96558,232.45018 L 323.50262,229.75064 L 286.23746,225.63547 L 265.5471,223.12065 L 262.91791,245.29707 L 259.7172,267.70209 L 255.96454,295.68875 L 254.45888,306.79655 L 254.20828,309.55981 L 288.13455,313.35406 L 325.87526,317.62063 L 357.83587,320.7865 L 374.44407,321.63284">
                 </path>
-                </a>
+
                 <text id="CO" onmouseover="showStateStatistics(this.id)" onmouseout="hideStateStatistics(this.id)"
                       x="305" y="280">CO</text>
 
@@ -833,20 +833,21 @@
 
     <script>
         function showStateStatistics(id) {
-            var numberOfFields = 5;
-            var firstFieldId = "textBoxObj_";
-            var lastFieldsIdArray = [];
+            const NUMBER_OF_FIELDS = 5;
+            let firstFieldId = "textBoxObj_";
+            let lastFieldsIdArray = [];
+            let index;
 
             firstFieldId = firstFieldId + id;
-            for(var i = 0; i < numberOfFields - 1; i++){
-                lastFieldsIdArray.push("textBoxText_" + i.toString() + "_" + id);
+            for(index = 0; index < NUMBER_OF_FIELDS - 1; index++){
+                lastFieldsIdArray.push("textBoxText_" + index.toString() + "_" + id);
             }
 
-            var field = document.getElementById(firstFieldId);
+            let field = document.getElementById(firstFieldId);
             field.style.display = "block";
 
-            for(var i = 0; i < numberOfFields - 1; i++){
-                field  = document.getElementById(lastFieldsIdArray[i]);
+            for(index = 0; index < NUMBER_OF_FIELDS - 1; index++){
+                field  = document.getElementById(lastFieldsIdArray[index]);
                 field.style.display = "block";
             }
 
@@ -854,20 +855,21 @@
 
         function hideStateStatistics(id) {
 
-            var numberOfFields = 5;
-            var firstFieldId = "textBoxObj_";
-            var lastFieldsIdArray = [];
+            const NUMBER_OF_FIELDS = 5;
+            let firstFieldId = "textBoxObj_";
+            let lastFieldsIdArray = [];
+            let index;
 
             firstFieldId = firstFieldId + id;
-            for(var i = 0; i < numberOfFields - 1; i++){
-                lastFieldsIdArray.push("textBoxText_" + i.toString() + "_" + id);
+            for(index = 0; index < NUMBER_OF_FIELDS - 1; index++){
+                lastFieldsIdArray.push("textBoxText_" + index.toString() + "_" + id);
             }
 
-            var field = document.getElementById(firstFieldId);
+            let field = document.getElementById(firstFieldId);
             field.style.display = "none";
 
-            for(var i = 0; i < numberOfFields - 1; i++){
-                field  = document.getElementById(lastFieldsIdArray[i]);
+            for(index = 0; index < NUMBER_OF_FIELDS - 1; index++){
+                field  = document.getElementById(lastFieldsIdArray[index]);
                 field.style.display = "none";
             }
 

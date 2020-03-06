@@ -3,7 +3,7 @@ body{
 }
 
 .mapDiv{
-    /*width: 65%;*/
+    width: 90%;
     margin: auto;
 }
 
@@ -23,7 +23,7 @@ text{
     fill: black;
     font-weight: bold;
     font-size: large;
-    font-family: "Segoe UI";
+    font-family: "Segoe UI", serif;
 }
 
 
@@ -38,7 +38,7 @@ text{
     fill: black;
     font-weight: bold;
     font-size: small;
-    font-family: "Segoe UI";
+    font-family: "Segoe UI", serif;
     display: none;
 }
 
