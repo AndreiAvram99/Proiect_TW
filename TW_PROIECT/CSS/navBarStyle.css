@@ -3,6 +3,7 @@ nav{
 }
 .navBar {
     background-color: darkslateblue;
+    box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.75);
     overflow: hidden;
     width: 100%;
     position: fixed;

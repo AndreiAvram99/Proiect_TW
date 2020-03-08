@@ -1,0 +1,68 @@
+body{
+    background-color: whitesmoke;
+    font-family: "Segoe UI", serif ;
+}
+
+main{
+    margin-left: 14%;
+    margin-right: 14%;
+}
+
+.chartsContainer{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.chartsContainer > div{
+    margin-bottom: 20px;
+    margin-right: 15%;
+    margin-left: 15%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.chart{
+    grid-column: 1 / 3;
+    border: 1px solid darkslateblue;
+    width: 100%;
+    margin: auto;
+    height: auto;
+}
+
+.chartImg{
+    height: 300px;
+}
+
+.downloadChartMenu{
+    grid-column: 3 / 4;
+    background-color: darkslateblue;
+    border: 1px solid darkslateblue;
+    border-radius: 0 10px 10px 0;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.downloadChartMenu p{
+    font-size: x-large;
+    color: white;
+
+}
+
+.downloadChartMenu span{
+    font-size: medium;
+    color: white;
+}
+
+.downloadChartMenuHeader{
+    height: 65%;
+    width: 100%;
+}
+
+.downloadChartMenuFooter ul{
+    list-style-type:none;
+}
+
+.downloadChartMenuFooter a{
+    color: white;
+    text-decoration: none;
+}
