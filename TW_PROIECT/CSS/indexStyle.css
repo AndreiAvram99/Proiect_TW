@@ -1,9 +1,4 @@
-.contentContainer{
+.indexContentContainer{
     display: grid;
     grid-template-columns: 5fr 2fr;
-}
-
-main{
-    margin-left: 14%;
-    margin-right: 14%;
 }

@@ -1,10 +1,8 @@
 .event{
-    /*width: 50%;*/
     float: left;
     height: auto;
     background: white;
     margin-bottom: 30px;
-    /*margin-left: 15%;*/
     border-radius: 10px;
 }
 
@@ -15,22 +13,21 @@
 
 .eventsContainer > div{
     flex: 1;
+    box-shadow: 3px 1px 14px -3px rgba(0,0,0,0.75);
 }
 
 .eventHeader{
     width:100%;
     float:left;
     height:auto;
-    width: 100%;
     background-color: darkslateblue;
-    border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0 0;
 }
 
 .eventBody{
     width:100%;
     float:left;
     height:auto;
-    width: 100%;
 }
 
 .eventFooter{
@@ -57,21 +54,20 @@
     font-size: larger;
     font-weight: bold;
     padding-left: 3%;
-
 }
 
 .eventDescription{
     padding: 5px 3% 5px 3%;
     text-indent: 20px;
-    font-family: "Segoe UI";
 }
 
 .linkColor{
     color: darkslateblue;
     text-decoration: none;
 }
+
 .linkColor:hover{
-    color: cornflowerblue;
+    color: slateblue;
 }
 
 .eventSeeMoreButton{
@@ -82,20 +78,16 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px;
+    font-size: 10px;
     margin: 4px 2px;
     cursor: pointer;
     float: right;
 }
 
 .eventSeeMoreButton:hover{
-    background-color: cornflowerblue;
+    background-color: slateblue;
 }
 
 .author{
     padding-left: 25px;
-}
-
-#seeAllEventsContainer{
-
 }

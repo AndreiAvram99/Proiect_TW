@@ -1,81 +1,96 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
-
+<html lang="en">
 <head>
+    <title>AVI</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 
     <link rel="stylesheet" type="text/css" href="../CSS/chartsStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/navBarStyle.css">
-
-    <title>AVI</title>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/responsiveNavBarStyle.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/bodyStyle.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="../JS/chartsScript.js"></script>
+    <script type="text/javascript" src = "../JS/navBarScript.js"></script>
+    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
 
 </head>
 
 <body onResize="refresh()">
-    <nav>
-        <div class="navBar">
-            <div class="buttons">
-                <div class="button"><a href="index.html"><b>Menu</b></a></div>
-                <div class="button"><a href="seeAll.html"><b>See all</b></a></div>
-                <div class="button"><a href="statistics.html"><b>Statistics</b></a></div>
-            </div>
-        </div>
-    </nav>
 
-    <main>
-
-        <div class="chartsContainer">
-
-            <div class = "chartContainer">
-                <div class="chart">
-                    <div class="chartImg" id="chart_01"></div>
-                </div>
-
-                <div class="downloadChartMenu">
-
-                    <p> Chart description: </p>
-                    <span> Some text </span>
-
-                </div>
-            </div>
-
-            <div class = "chartContainer">
-                <div class="chart">
-                    <div class="chartImg" id="chart_02"></div>
-                </div>
-
-                <div class="downloadChartMenu">
-                    <p> Chart description: </p>
-                    <span> Some text </span>
-                </div>
-            </div>
-
-            <div class = "chartContainer">
-                <div class="chart">
-                    <div class="chartImg" id="chart_03"></div>
-                </div>
-
-                <div class="downloadChartMenu">
-                    <div class="downloadChartMenuHeader">
-                        <p> Chart description: </p>
-                        <span> Some text </span>
-                    </div>
-                    <div class="downloadChartMenuFooter">
-                        <ul>
-                            <li><a id="downloadSVG" href="#" download="graph.svg"> Download SVG </a></li>
-                            <li><a href="../RESOURCES/CSV/chart_03.csv" download="graph.csv"> Download CSV </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+<nav>
+    <div class="navBar" id="navBar">
+        <div class= "leftMenu">
+            <a href="index.html">Home</a>
+            <a href="seeAll.html">See all</a>
+            <a href="statistics.html">Statistics</a>
         </div>
 
-    </main>
+        <div class= "rightMenu">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+
+        <a class="icon" onclick="showHideFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</nav>
+
+<main>
+
+    <div class="chartsContainer">
+
+        <div class = "chartContainer">
+            <div class="chart">
+                <div class="chartImg" id="chart_01"></div>
+            </div>
+
+            <div class="downloadChartMenu">
+
+                <p> Chart description: </p>
+                <span> Some text </span>
+
+            </div>
+        </div>
+
+        <div class = "chartContainer">
+            <div class="chart">
+                <div class="chartImg" id="chart_02"></div>
+            </div>
+
+            <div class="downloadChartMenu">
+                <p> Chart description: </p>
+                <span> Some text </span>
+            </div>
+        </div>
+
+        <div class = "chartContainer">
+            <div class="chart">
+                <div class="chartImg" id="chart_03"></div>
+            </div>
+
+            <div class="downloadChartMenu">
+                <div class="downloadChartMenuHeader">
+                    <p> Chart description: </p>
+                    <span> Some text </span>
+                </div>
+                <div class="downloadChartMenuFooter">
+                    <ul>
+                        <li><a id="downloadSVG" href="#" download="graph.svg"> Download SVG </a></li>
+                        <li><a href="../RESOURCES/CSV/chart_03.csv" download="graph.csv"> Download CSV </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
 
 </body>
 

@@ -1,13 +1,3 @@
-body{
-    background-color: whitesmoke;
-    font-family: "Segoe UI", serif ;
-}
-
-main{
-    margin-left: 14%;
-    margin-right: 14%;
-}
-
 .chartsContainer{
     display: grid;
     grid-template-columns: auto;

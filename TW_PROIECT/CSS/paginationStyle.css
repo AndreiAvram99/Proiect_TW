@@ -19,5 +19,5 @@
 }
 
 .pagination > a:hover:not(.active) {
-    background-color: #ddd;
+    background-color: whitesmoke;
 }

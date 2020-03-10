@@ -2,378 +2,396 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <title>AVI</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
     <link rel="stylesheet" type="text/css" href="../CSS/filterMenuStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/navBarStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/eventStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/paginationStyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src = "../JS/seeAllPagination.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/responsiveNavBarStyle.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/bodyStyle.css">
+    <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src = "../JS/seeAllPagination.js"></script>
+    <script type="text/javascript" src = "../JS/navBarScript.js"></script>
+    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
 </head>
 
 
 <body>
 
-    <nav>
-        <div class="navBar">
-            <div class="buttons">
-                <div class="button"><a href="index.html"><b>Home</b></a></div>
-                <div class="button"><a href="seeAll.html"><b>See all</b></a></div>
-                <div class="button"><a href="statistics.html"><b>Statistics</b></a></div>
+<nav>
+    <div class="navBar" id="navBar">
+        <div class= "leftMenu">
+            <a href="index.html">Home</a>
+            <a href="seeAll.html">See all</a>
+            <a href="statistics.html">Statistics</a>
+        </div>
+
+        <div class= "rightMenu">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+
+        <a class="icon" onclick="showHideFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</nav>
+
+
+<main>
+
+    <div class = "filterMenu">
+
+        <div class="headerFilters">
+
+            <div class="filtersTitle">
+                <p>Filters</p>
+                <div class="underline"></div>
+            </div>
+
+            <div class="search-container">
+                <form action="">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <label>
+                        <input type="text" placeholder="Search.." name="search">
+                    </label>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="leftFilters">
+            <div class="periodAccidentFilter">
+
+                <h3>Period when the accidents happened:</h3>
+                <h5>From:</h5>
+
+                <label for="dayFrom">Day:</label>
+                <select id="dayFrom" autocomplete="on">
+
+                    <option value="default" selected disabled hidden></option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+
+                </select>
+
+                <label for="monthFrom">Month:</label>
+                <select id="monthFrom" autocomplete="on">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="Jan.">Jan.</option>
+                    <option value="Feb.">Feb.</option>
+                    <option value="Mar.">Mar.</option>
+                    <option value="Apr.">Apr.</option>
+                    <option value="May ">May </option>
+                    <option value="Jun.">Jun.</option>
+                    <option value="Jul.">Jul.</option>
+                    <option value="Aug.">Aug.</option>
+                    <option value="Sep.">Sep.</option>
+                    <option value="Oct.">Oct.</option>
+                    <option value="Nov.">Nov.</option>
+                    <option value="Dec.">Dec.</option>
+                </select>
+
+                <label for="yearFrom">Year:</label>
+                <select id="yearFrom">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                </select>
+
+
+                <h5>To:</h5>
+
+                <label for="dayTo">Day:</label>
+                <select id="dayTo" autocomplete="on" >
+
+                    <option value="default" selected disabled hidden></option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+
+                </select>
+
+                <label for="monthTo">Month:</label>
+                <select id="monthTo" autocomplete="on">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="Jan.">Jan.</option>
+                    <option value="Feb.">Feb.</option>
+                    <option value="Mar.">Mar.</option>
+                    <option value="Apr.">Apr.</option>
+                    <option value="May ">May </option>
+                    <option value="Jun.">Jun.</option>
+                    <option value="Jul.">Jul.</option>
+                    <option value="Aug.">Aug.</option>
+                    <option value="Sep.">Sep.</option>
+                    <option value="Oct.">Oct.</option>
+                    <option value="Nov.">Nov.</option>
+                    <option value="Dec.">Dec.</option>
+                </select>
+
+                <label for="yearTo">Year:</label>
+                <select id="yearTo">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                </select>
+
             </div>
         </div>
-    </nav>
 
+        <div class = "rightFilters">
+            <div class="locationAccidentFilter">
 
-    <main>
+                <h3>Place of accidents:</h3>
 
-        <div class = "filterMenu">
+                <label for="State">State:</label>
+                <select id="State">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="Ohio">Ohio</option>
+                    <option value="Texas">Texas</option>
+                    <option value="California">California</option>
+                </select>
 
-            <div class="headerFilters">
+                <label for="County">Country:</label>
+                <select id="County">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="Los_Angeles">Los Angeles</option>
+                    <option value="Harris">Harris</option>
+                    <option value="Montgomery">Montgomery</option>
+                    <option value="opel">Franklin</option>
+                </select>
 
-                <div class="filtersTitle">
-                    <p>Filters</p>
-                    <div class="underline"></div>
-                </div>
-
-                <div class="search-container">
-                    <form action="">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                        <label>
-                            <input type="text" placeholder="Search.." name="search">
-                        </label>
-                    </form>
-                </div>
+                <label for="city">City:</label>
+                <select id="city">
+                    <option value="default" selected disabled hidden></option>
+                    <option value="Houston">Houston</option>
+                    <option value="Charlotte">Charlotte</option>
+                    <option value="Dayton">Dayton</option>
+                    <option value="Columbus">Columbus</option>
+                    <option value="Dublin">Dublin</option>
+                </select>
 
             </div>
+            <div class="sortFilter">
 
-            <div class="leftFilters">
-                <div class="periodAccidentFilter">
-
-                    <h3>Period when the accidents happened:</h3>
-                        <h5>From:</h5>
-
-                    <label for="dayFrom">Day:</label>
-                    <select id="dayFrom" autocomplete="on">
-
-                        <option value="default" selected disabled hidden></option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-
-                    </select>
-
-                    <label for="monthFrom">Month:</label>
-                    <select id="monthFrom" autocomplete="on">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="Jan.">Jan.</option>
-                        <option value="Feb.">Feb.</option>
-                        <option value="Mar.">Mar.</option>
-                        <option value="Apr.">Apr.</option>
-                        <option value="May ">May </option>
-                        <option value="Jun.">Jun.</option>
-                        <option value="Jul.">Jul.</option>
-                        <option value="Aug.">Aug.</option>
-                        <option value="Sep.">Sep.</option>
-                        <option value="Oct.">Oct.</option>
-                        <option value="Nov.">Nov.</option>
-                        <option value="Dec.">Dec.</option>
-                    </select>
-
-                    <label for="yearFrom">Year:</label>
-                    <select id="yearFrom">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                        <option value="2018">2018</option>
-                        <option value="2017">2017</option>
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
-                        <option value="2014">2014</option>
-                        <option value="2013">2013</option>
-                        <option value="2012">2012</option>
-                        <option value="2011">2011</option>
-                        <option value="2010">2010</option>
-                    </select>
-
-
-                    <h5>To:</h5>
-
-                    <label for="dayTo">Day:</label>
-                    <select id="dayTo" autocomplete="on" >
-
-                        <option value="default" selected disabled hidden></option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-
-                    </select>
-
-                    <label for="monthTo">Month:</label>
-                    <select id="monthTo" autocomplete="on">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="Jan.">Jan.</option>
-                        <option value="Feb.">Feb.</option>
-                        <option value="Mar.">Mar.</option>
-                        <option value="Apr.">Apr.</option>
-                        <option value="May ">May </option>
-                        <option value="Jun.">Jun.</option>
-                        <option value="Jul.">Jul.</option>
-                        <option value="Aug.">Aug.</option>
-                        <option value="Sep.">Sep.</option>
-                        <option value="Oct.">Oct.</option>
-                        <option value="Nov.">Nov.</option>
-                        <option value="Dec.">Dec.</option>
-                    </select>
-
-                    <label for="yearTo">Year:</label>
-                    <select id="yearTo">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                        <option value="2018">2018</option>
-                        <option value="2017">2017</option>
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
-                        <option value="2014">2014</option>
-                        <option value="2013">2013</option>
-                        <option value="2012">2012</option>
-                        <option value="2011">2011</option>
-                        <option value="2010">2010</option>
-                    </select>
-
-                </div>
-            </div>
-
-            <div class = "rightFilters">
-                <div class="locationAccidentFilter">
-
-                    <h3>Place of accidents:</h3>
-
-                    <label for="State">State:</label>
-                    <select id="State">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="Ohio">Ohio</option>
-                        <option value="Texas">Texas</option>
-                        <option value="California">California</option>
-                    </select>
-
-                    <label for="County">Country:</label>
-                    <select id="County">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="Los_Angeles">Los Angeles</option>
-                        <option value="Harris">Harris</option>
-                        <option value="Montgomery">Montgomery</option>
-                        <option value="opel">Franklin</option>
-                    </select>
-
-                    <label for="city">City:</label>
-                    <select id="city">
-                        <option value="default" selected disabled hidden></option>
-                        <option value="Houston">Houston</option>
-                        <option value="Charlotte">Charlotte</option>
-                        <option value="Dayton">Dayton</option>
-                        <option value="Columbus">Columbus</option>
-                        <option value="Dublin">Dublin</option>
-                    </select>
-
-                </div>
-                <div class="sortFilter">
-
-                    <div class="sortHeader">
+                <div class="sortHeader">
                     <h3>Sort:</h3>
-                    </div>
-
-                    <div class="sortByDate">
-                        <input type="checkbox" id="ascByDate" name="descByDate" value="0">
-                        <label for="ascByDate"> Sort asc by date</label><br>
-                        <input type="checkbox" id="descByDate" name="descByDate" value="1">
-                        <label for="descByDate"> Sort desc by date</label><br>
-                    </div>
-
-                    <div class="sortByState">
-                        <input type="checkbox" id="ascByState" name="ascByState" value="0">
-                        <label for="ascByState"> Sort asc by state</label><br>
-                        <input type="checkbox" id="descByState" name="vehicle2" value="1">
-                        <label for="descByState"> Sort desc by state</label><br>
-                    </div>
-
                 </div>
+
+                <div class="sortByDate">
+                    <input type="checkbox" id="ascByDate" name="descByDate" value="0">
+                    <label for="ascByDate"> Sort asc by date</label><br>
+                    <input type="checkbox" id="descByDate" name="descByDate" value="1">
+                    <label for="descByDate"> Sort desc by date</label><br>
+                </div>
+
+                <div class="sortByState">
+                    <input type="checkbox" id="ascByState" name="ascByState" value="0">
+                    <label for="ascByState"> Sort asc by state</label><br>
+                    <input type="checkbox" id="descByState" name="vehicle2" value="1">
+                    <label for="descByState"> Sort desc by state</label><br>
+                </div>
+
             </div>
+        </div>
 
-            <div class="footerFilters">
+        <div class="footerFilters">
 
-                <div class="submitButton">
-                    <form>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
-
+            <div class="submitButton">
+                <form>
+                    <input type="submit" value="Submit">
+                </form>
             </div>
 
         </div>
 
-        <div class = "dataContainer">
-            <div class = "eventsContainer" id = "seeAllEventsContainer">
-                <div  class = "event">
-                    <div class = "eventHeader">
-                        <p class = "eventTitle">Title</p>
-                    </div>
+    </div>
 
-                    <div class = "eventBody">
-                        <p class = "eventDescription">
-                            So perhaps, you've generated some fancy text, and you're content that you can now copy
-                            and paste your fancy text in the comments section of funny cat videos, but perhaps you're
-                            wondering how it's even possible to change the font of your text? Is it some sort of hack?
-                            Are you copying and pasting an actual font?
-                        </p>
-                    </div>
-
-                    <div class = "eventFooter">
-                        <div class = "eventFooterLeft">
-                                <span class="author">
-                                    <span class="fas fa-user"></span>
-                                    <span>
-                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
-                                    </span>
-                                </span>
-                        </div>
-                        <div class = "eventFooterRight">
-                            <button type="button" class = "eventSeeMoreButton">See more</button>
-                        </div>
-                    </div>
+    <div class = "dataContainer">
+        <div class = "eventsContainer" id = "seeAllEventsContainer">
+            <div  class = "event">
+                <div class = "eventHeader">
+                    <p class = "eventTitle">Title</p>
                 </div>
 
-                <div  class = "event">
-                    <div class = "eventHeader">
-                        <p class = "eventTitle">Title</p>
-                    </div>
-
-                    <div class = "eventBody">
-                        <p class = "eventDescription">
-                            So perhaps, you've generated some fancy text, and you're content that you can now copy
-                            and paste your fancy text in the comments section of funny cat videos, but perhaps you're
-                            wondering how it's even possible to change the font of your text? Is it some sort of hack?
-                            Are you copying and pasting an actual font?
-                        </p>
-                    </div>
-
-                    <div class = "eventFooter">
-                        <div class = "eventFooterLeft">
-                                <span class="author">
-                                    <span class="fas fa-user"></span>
-                                    <span>
-                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
-                                    </span>
-                                </span>
-                        </div>
-                        <div class = "eventFooterRight">
-                            <button type="button" class = "eventSeeMoreButton">See more</button>
-                        </div>
-                    </div>
+                <div class = "eventBody">
+                    <p class = "eventDescription">
+                        So perhaps, you've generated some fancy text, and you're content that you can now copy
+                        and paste your fancy text in the comments section of funny cat videos, but perhaps you're
+                        wondering how it's even possible to change the font of your text? Is it some sort of hack?
+                        Are you copying and pasting an actual font?
+                    </p>
                 </div>
 
-                <div  class = "event">
-                    <div class = "eventHeader">
-                        <p class = "eventTitle">Title</p>
-                    </div>
-
-                    <div class = "eventBody">
-                        <p class = "eventDescription">
-                            So perhaps, you've generated some fancy text, and you're content that you can now copy
-                            and paste your fancy text in the comments section of funny cat videos, but perhaps you're
-                            wondering how it's even possible to change the font of your text? Is it some sort of hack?
-                            Are you copying and pasting an actual font?
-                        </p>
-                    </div>
-
-                    <div class = "eventFooter">
-                        <div class = "eventFooterLeft">
+                <div class = "eventFooter">
+                    <div class = "eventFooterLeft">
                                 <span class="author">
                                     <span class="fas fa-user"></span>
                                     <span>
                                         <a class="linkColor" title="Post author" href="#">Denis Banu</a>
                                     </span>
                                 </span>
-                        </div>
-                        <div class = "eventFooterRight">
-                            <button type="button" class = "eventSeeMoreButton">See more</button>
-                        </div>
+                    </div>
+                    <div class = "eventFooterRight">
+                        <button type="button" class = "eventSeeMoreButton">See more</button>
                     </div>
                 </div>
             </div>
-            <div class="center">
-                <div class = "pagination" id = "seeAllPagination">
-                    <a href="#">&laquo;</a>
-                    <a class="active" href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">&raquo;</a>
+
+            <div  class = "event">
+                <div class = "eventHeader">
+                    <p class = "eventTitle">Title</p>
+                </div>
+
+                <div class = "eventBody">
+                    <p class = "eventDescription">
+                        So perhaps, you've generated some fancy text, and you're content that you can now copy
+                        and paste your fancy text in the comments section of funny cat videos, but perhaps you're
+                        wondering how it's even possible to change the font of your text? Is it some sort of hack?
+                        Are you copying and pasting an actual font?
+                    </p>
+                </div>
+
+                <div class = "eventFooter">
+                    <div class = "eventFooterLeft">
+                                <span class="author">
+                                    <span class="fas fa-user"></span>
+                                    <span>
+                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
+                                    </span>
+                                </span>
+                    </div>
+                    <div class = "eventFooterRight">
+                        <button type="button" class = "eventSeeMoreButton">See more</button>
+                    </div>
+                </div>
+            </div>
+
+            <div  class = "event">
+                <div class = "eventHeader">
+                    <p class = "eventTitle">Title</p>
+                </div>
+
+                <div class = "eventBody">
+                    <p class = "eventDescription">
+                        So perhaps, you've generated some fancy text, and you're content that you can now copy
+                        and paste your fancy text in the comments section of funny cat videos, but perhaps you're
+                        wondering how it's even possible to change the font of your text? Is it some sort of hack?
+                        Are you copying and pasting an actual font?
+                    </p>
+                </div>
+
+                <div class = "eventFooter">
+                    <div class = "eventFooterLeft">
+                                <span class="author">
+                                    <span class="fas fa-user"></span>
+                                    <span>
+                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
+                                    </span>
+                                </span>
+                    </div>
+                    <div class = "eventFooterRight">
+                        <button type="button" class = "eventSeeMoreButton">See more</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+        <div class="center">
+            <div class = "pagination" id = "seeAllPagination">
+                <a href="#">&laquo;</a>
+                <a class="active" href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>
 

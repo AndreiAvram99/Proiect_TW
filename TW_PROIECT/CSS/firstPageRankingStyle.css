@@ -9,9 +9,11 @@
 
 .ranking{
     background: slateblue;
+    box-shadow: 0 1px 14px -3px rgba(0,0,0,0.75);
     margin-left: 10%;
     height: 20%;
     border-collapse: collapse;
+    border: none;
     margin-bottom: 30px;
 }
 
@@ -38,4 +40,3 @@
     background-color: darkslateblue;
     color: white;
 }
-

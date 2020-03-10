@@ -1,53 +1,41 @@
 nav{
     margin-bottom: 100px;
 }
+
 .navBar {
-    background-color: darkslateblue;
-    box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.75);
-    overflow: hidden;
-    width: 100%;
+    padding-left:14%;
+    padding-right:14%;
+
     position: fixed;
-    top: 0;
-    z-index:5;
-    left: 0;
+    top:0;
+    left:0;
+    width:100%;
+    z-index: 2;
+
+    overflow: hidden;
+    background-color: darkslateblue;
+    box-shadow: 3px 5px 14px -3px rgba(0,0,0,0.75);
 }
 
-.navBar a.icon{
-    display:none;
-}
-
-.navBar:after{
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.buttons {
-    background: darkslateblue;
-    width: 100%;
-    float : left;
-    height: 70px;
-    padding-right: 10px;
-}
-
-.button{
-    width: auto;
-    float : left;
-    height: 70px;
-    text-align: center;
-}
-
-.button a {
-    color: whitesmoke;
-    padding: 23px 28px;
-    float:left;
+.navBar a {
+    float: left;
     display: block;
-    font-size: 18px;
+    color: white;
     text-align: center;
+    padding: 16px 18px;
     text-decoration: none;
-    font-family: "Segoe UI";
+    font-size: large;
 }
 
-.button:hover {
-    box-shadow: 17px 2px 32px -4px rgba(0,0,0,0.75);
+.navBar a:hover {
+    background-color: slateblue;
 }
+
+.navBar .icon {
+    display: none;
+}
+
+.rightMenu{
+    padding-left: 60%;
+}
+
