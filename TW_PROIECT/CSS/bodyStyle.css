@@ -8,4 +8,10 @@ main{
     margin-right: 14%;
 }
 
+@media screen and (max-width: 820px) {
+    main {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+}
 
