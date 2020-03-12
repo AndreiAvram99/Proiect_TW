@@ -12,12 +12,13 @@
     <link rel="stylesheet" type="text/css" href="../CSS/eventStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/paginationStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/responsiveNavBarStyle.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/responsiveEvent.css">
     <link rel="stylesheet" type="text/css" href="../CSS/bodyStyle.css">
-    <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" SameSite="None" src = href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src = "../JS/seeAllPagination.js"></script>
     <script type="text/javascript" src = "../JS/navBarScript.js"></script>
-    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" SameSite="None"  src = "https://kit.fontawesome.com/a076d05399.js"></script>
 
 
 </head>
@@ -51,11 +52,6 @@
 
         <div class="headerFilters">
 
-            <div class="filtersTitle">
-                <p>Filters</p>
-                <div class="underline"></div>
-            </div>
-
             <div class="search-container">
                 <form action="">
                     <button type="submit"><i class="fa fa-search"></i></button>
@@ -65,163 +61,14 @@
                 </form>
             </div>
 
+            <div class="filtersTitle">
+                <p>Filters</p>
+                <div class="underline"></div>
+            </div>
+
         </div>
 
         <div class="leftFilters">
-            <div class="periodAccidentFilter">
-
-                <h3>Period when the accidents happened:</h3>
-                <h5>From:</h5>
-
-                <label for="dayFrom">Day:</label>
-                <select id="dayFrom" autocomplete="on">
-
-                    <option value="default" selected disabled hidden></option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-
-                </select>
-
-                <label for="monthFrom">Month:</label>
-                <select id="monthFrom" autocomplete="on">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="Jan.">Jan.</option>
-                    <option value="Feb.">Feb.</option>
-                    <option value="Mar.">Mar.</option>
-                    <option value="Apr.">Apr.</option>
-                    <option value="May ">May </option>
-                    <option value="Jun.">Jun.</option>
-                    <option value="Jul.">Jul.</option>
-                    <option value="Aug.">Aug.</option>
-                    <option value="Sep.">Sep.</option>
-                    <option value="Oct.">Oct.</option>
-                    <option value="Nov.">Nov.</option>
-                    <option value="Dec.">Dec.</option>
-                </select>
-
-                <label for="yearFrom">Year:</label>
-                <select id="yearFrom">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
-                    <option value="2013">2013</option>
-                    <option value="2012">2012</option>
-                    <option value="2011">2011</option>
-                    <option value="2010">2010</option>
-                </select>
-
-
-                <h5>To:</h5>
-
-                <label for="dayTo">Day:</label>
-                <select id="dayTo" autocomplete="on" >
-
-                    <option value="default" selected disabled hidden></option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-
-                </select>
-
-                <label for="monthTo">Month:</label>
-                <select id="monthTo" autocomplete="on">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="Jan.">Jan.</option>
-                    <option value="Feb.">Feb.</option>
-                    <option value="Mar.">Mar.</option>
-                    <option value="Apr.">Apr.</option>
-                    <option value="May ">May </option>
-                    <option value="Jun.">Jun.</option>
-                    <option value="Jul.">Jul.</option>
-                    <option value="Aug.">Aug.</option>
-                    <option value="Sep.">Sep.</option>
-                    <option value="Oct.">Oct.</option>
-                    <option value="Nov.">Nov.</option>
-                    <option value="Dec.">Dec.</option>
-                </select>
-
-                <label for="yearTo">Year:</label>
-                <select id="yearTo">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
-                    <option value="2013">2013</option>
-                    <option value="2012">2012</option>
-                    <option value="2011">2011</option>
-                    <option value="2010">2010</option>
-                </select>
-
-            </div>
-        </div>
-
-        <div class = "rightFilters">
             <div class="locationAccidentFilter">
 
                 <h3>Place of accidents:</h3>
@@ -277,6 +124,74 @@
             </div>
         </div>
 
+        <div class = "rightFilters">
+            <div class="periodAccidentFilter">
+
+                <h3>Period when the accidents happened:</h3>
+
+                <div class="dateFrom">
+                    <h4>From:</h4>
+
+                    <label for="dayFrom">Day:</label>
+                    <select id="dayFrom" autocomplete="on">
+
+                        <option value="default" selected disabled hidden></option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+
+                    </select>
+
+                    <label for="monthFrom">Month:</label>
+                    <select id="monthFrom" autocomplete="on">
+                        <option value="default" selected disabled hidden></option>
+                        <option value="Jan.">Jan.</option>
+                        <option value="Feb.">Feb.</option>
+                        <option value="Mar.">Mar.</option>
+                    </select>
+
+                    <label for="yearFrom">Year:</label>
+                    <select id="yearFrom">
+                        <option value="default" selected disabled hidden></option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </div>
+
+                <div class="dateTo">
+                    <h4>To:</h4>
+
+                    <label for="dayTo">Day:</label>
+                    <select id="dayTo" autocomplete="on" >
+                        <option value="default" selected disabled hidden></option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                    </select>
+
+                    <label for="monthTo">Month:</label>
+                    <select id="monthTo" autocomplete="on">
+                        <option value="default" selected disabled hidden></option>
+                        <option value="Jan.">Jan.</option>
+                        <option value="Feb.">Feb.</option>
+                        <option value="Mar.">Mar.</option>
+                    </select>
+
+                    <label for="yearTo">Year:</label>
+                    <select id="yearTo">
+                        <option value="default" selected disabled hidden></option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
         <div class="footerFilters">
 
             <div class="submitButton">
@@ -290,6 +205,12 @@
     </div>
 
     <div class = "dataContainer">
+
+        <div class="eventsTitle">
+            <p>Events</p>
+            <div class="underline"></div>
+        </div>
+
         <div class = "eventsContainer" id = "seeAllEventsContainer">
             <div  class = "event">
                 <div class = "eventHeader">
@@ -391,6 +312,7 @@
             </div>
         </div>
     </div>
+
 </main>
 </body>
 </html>
