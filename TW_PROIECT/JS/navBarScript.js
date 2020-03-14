@@ -5,4 +5,4 @@ function showHideFunction() {
     } else {
         x.className = "navBar";
     }
-}
+};

@@ -6,6 +6,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <base href="seeAll.html">
 
     <link rel="stylesheet" type="text/css" href="../CSS/filterMenuStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/navBarStyle.css">
@@ -16,8 +17,11 @@
     <link rel="stylesheet" type="text/css" href="../CSS/bodyStyle.css">
     <link rel="stylesheet" type="text/css" SameSite="None" src = href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src = "../JS/getElements.js"></script>
     <script type="text/javascript" src = "../JS/seeAllPagination.js"></script>
     <script type="text/javascript" src = "../JS/navBarScript.js"></script>
+    <script type="text/javascript" src = "../JS/seeAllController.js"></script>
     <script type="text/javascript" SameSite="None"  src = "https://kit.fontawesome.com/a076d05399.js"></script>
 
 
@@ -26,28 +30,10 @@
 
 <body>
 
-<nav>
-    <div class="navBar" id="navBar">
-        <div class= "leftMenu">
-            <a href="index.html">Home</a>
-            <a href="seeAll.html">See all</a>
-            <a href="statistics.html">Statistics</a>
-        </div>
-
-        <div class= "rightMenu">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
-        </div>
-
-        <a class="icon" onclick="showHideFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
-</nav>
+<nav id = "navBarContainer"></nav>
 
 
 <main>
-
     <div class = "filterMenu">
 
         <div class="headerFilters">
@@ -212,103 +198,11 @@
         </div>
 
         <div class = "eventsContainer" id = "seeAllEventsContainer">
-            <div  class = "event">
-                <div class = "eventHeader">
-                    <p class = "eventTitle">Title</p>
-                </div>
-
-                <div class = "eventBody">
-                    <p class = "eventDescription">
-                        So perhaps, you've generated some fancy text, and you're content that you can now copy
-                        and paste your fancy text in the comments section of funny cat videos, but perhaps you're
-                        wondering how it's even possible to change the font of your text? Is it some sort of hack?
-                        Are you copying and pasting an actual font?
-                    </p>
-                </div>
-
-                <div class = "eventFooter">
-                    <div class = "eventFooterLeft">
-                                <span class="author">
-                                    <span class="fas fa-user"></span>
-                                    <span>
-                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
-                                    </span>
-                                </span>
-                    </div>
-                    <div class = "eventFooterRight">
-                        <button type="button" class = "eventSeeMoreButton">See more</button>
-                    </div>
-                </div>
-            </div>
-
-            <div  class = "event">
-                <div class = "eventHeader">
-                    <p class = "eventTitle">Title</p>
-                </div>
-
-                <div class = "eventBody">
-                    <p class = "eventDescription">
-                        So perhaps, you've generated some fancy text, and you're content that you can now copy
-                        and paste your fancy text in the comments section of funny cat videos, but perhaps you're
-                        wondering how it's even possible to change the font of your text? Is it some sort of hack?
-                        Are you copying and pasting an actual font?
-                    </p>
-                </div>
-
-                <div class = "eventFooter">
-                    <div class = "eventFooterLeft">
-                                <span class="author">
-                                    <span class="fas fa-user"></span>
-                                    <span>
-                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
-                                    </span>
-                                </span>
-                    </div>
-                    <div class = "eventFooterRight">
-                        <button type="button" class = "eventSeeMoreButton">See more</button>
-                    </div>
-                </div>
-            </div>
-
-            <div  class = "event">
-                <div class = "eventHeader">
-                    <p class = "eventTitle">Title</p>
-                </div>
-
-                <div class = "eventBody">
-                    <p class = "eventDescription">
-                        So perhaps, you've generated some fancy text, and you're content that you can now copy
-                        and paste your fancy text in the comments section of funny cat videos, but perhaps you're
-                        wondering how it's even possible to change the font of your text? Is it some sort of hack?
-                        Are you copying and pasting an actual font?
-                    </p>
-                </div>
-
-                <div class = "eventFooter">
-                    <div class = "eventFooterLeft">
-                                <span class="author">
-                                    <span class="fas fa-user"></span>
-                                    <span>
-                                        <a class="linkColor" title="Post author" href="#">Denis Banu</a>
-                                    </span>
-                                </span>
-                    </div>
-                    <div class = "eventFooterRight">
-                        <button type="button" class = "eventSeeMoreButton">See more</button>
-                    </div>
-                </div>
-            </div>
+<!--            here events will be inserted-->
         </div>
         <div class="center">
             <div class = "pagination" id = "seeAllPagination">
-                <a href="#">&laquo;</a>
-                <a class="active" href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+<!--            here pages will be inserted-->
             </div>
         </div>
     </div>
