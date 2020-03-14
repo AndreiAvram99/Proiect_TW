@@ -4,21 +4,22 @@ var pagination;
 const NUM_OF_ELEMENTS_PER_PAGE = 10;
 var events;
 
-window.onload = function(){
+window.onload = async function(){
     activePage = 1;
     eventContainer = document.getElementById("seeAllEventsContainer");
     pagination = document.getElementById("seeAllPagination");
 
-    makeEventList();
+    await makeEventList();
 
     showActivePage();
 };
 
-function makeEventList() {
+async function makeEventList() {
     events = new Array();
 
-    for (var i=0;i<=1005;i++){
-        events.push(createEvent(i.toString(),"dsadsa", "Denis Nume2", "#"));
+    for (var i=0;i<=305;i++){
+        events.push(await createEvent(i.toString(),"dsadsa", "Denis Nume2", "#"));
+
     }
 }
 
