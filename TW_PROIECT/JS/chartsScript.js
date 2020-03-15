@@ -2,173 +2,226 @@ window.onload = function (){
     drawChart1();
     drawChart2();
     drawChart3();
-}
+};
 
 function drawChart1() {
-    var chart = new CanvasJS.Chart("chart_01", {
 
-        theme: "light2",
+    // set the dimensions and margins of the graph
+    let width = document.getElementsByClassName("chart").item(0).clientWidth ,
+        height = document.getElementsByClassName("chart").item(0).clientHeight,
+        margin = 10;
 
-        title: {
-            text: "Accidents rate until today"
-        },
+    let radius;
+    // the radius of the piePlot is half the width or half the height (smallest one).
+    if(width < 350)
+        radius = Math.min(width, height) / 2 - margin - 25;
+    else
+        radius = Math.min(width, height) / 2 - margin;
 
-        exportEnabled: true,
 
-        data: [
-            {
-                type: "pie",
-                startAngle: 25,
-                toolTipContent: "<b>{label}</b>: {y}%",
-                indexLabelFontSize: 16,
-                indexLabel: "{label} - {y}%",
-                dataPoints: [
-                    {y: 51.08, label: "OH"},
-                    {y: 27.34, label: "TX"},
-                    {y: 10.62, label: "CA"},
-                    {y: 5.02, label: "DC"},
-                    {y: 4.07, label: "WA"},
-                    {y: 1.22, label: "LA"},
-                    {y: 0.44, label: "ME"}
-                ]
-            }
-        ]
+    // append the svg object to the div called 'chart_01'
+    let svg = d3.select("#chart_01")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    // Read the data
+    // Insert csv file!!
+    // Parse the Data
+    d3.csv("../RESOURCES/CSV/chart_01.csv", function(data) {
+        // set the color scale
+        let color = d3.scaleOrdinal()
+            .domain(["slateblue", "lightgoldenrodyellow", "chartreuse", "lightskyblue", "lightsalmon", "lightslategray", "lightcoral", "lightgreen", "lightseagreen", "skyblue" ])
+            .range([ "slateblue", "lightgoldenrodyellow", "chartreuse", "lightskyblue", "lightsalmon", "lightslategray", "lightcoral", "lightgreen", "lightseagreen", "skyblue"]);
+
+        // Compute the position of each group on the pie:
+        let pie = d3.pie()
+            .sort(null) // Do not sort group by size
+            .value(function (d) {
+                return d.Value;
+            });
+
+        // The arc generator
+        let arc = d3.arc()
+            .innerRadius(radius * 0.5)         // This is the size of the donut hole
+            .outerRadius(radius * 0.8);
+
+        // Another arc that won't be drawn. Just for labels positioning
+        let outerArc = d3.arc()
+            .innerRadius(radius * 0.9)
+            .outerRadius(radius * 0.9);
+
+        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+        svg.selectAll('allSlices')
+            .data(pie(data))
+            .enter()
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', function (d) { return color(d.data.Color); })
+            .attr("stroke", "white")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7);
+
+        // Add the polylines between chart and labels:
+        svg.selectAll('allPolylines')
+            .data(pie(data))
+            .enter()
+            .append('polyline')
+            .attr("stroke", "black")
+            .style("fill", "none")
+            .attr("stroke-width", 1)
+            .attr('points', function(d) {
+
+                var posA = arc.centroid(d); // line insertion in the slice
+                var posB = outerArc.centroid(d); // line break: we use the other arc generator that has been built only for that
+                var posC = outerArc.centroid(d); // Label position = almost the same as posB
+                var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2; // we need the angle to see if the X position will be at the extreme right or extreme left
+                posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+                return [posA, posB, posC];
+            });
+
+        // Add the polylines between chart and labels:
+        svg.selectAll('allLabels')
+            .data(pie(data))
+            .enter()
+            .append('text')
+            .text( function(d) { console.log(d.data.State) ; return d.data.State} )
+            .attr('transform', function(d) {
+                let pos = outerArc.centroid(d);
+                let midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+                pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+                return 'translate(' + pos + ')';
+            })
+            .style('text-anchor', function(d) {
+                let midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+                return (midangle < Math.PI ? 'start' : 'end')
+            });
     });
-    chart.render();
 
-    var toolBar = document.getElementsByClassName("canvasjs-chart-toolbar")[0];
-    if (chart.get("exportEnabled")) {
-        var exportCSV = document.createElement('div');
-        var text = document.createTextNode("Save as CSV");
-        exportCSV.setAttribute("style", "padding: 12px 8px; background-color: white; color: black")
-        exportCSV.appendChild(text);
+    d3.select("#downloadSVG_01").on("click", function() {
+        d3.select(this)
+            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#chart_01").html()))
+    });
 
-        exportCSV.addEventListener("mouseover", function () {
-            exportCSV.setAttribute("style", "padding: 12px 8px; background-color: #2196F3; color: white")
-        });
-        exportCSV.addEventListener("mouseout", function () {
-            exportCSV.setAttribute("style", "padding: 12px 8px; background-color: white; color: black")
-        });
-        exportCSV.addEventListener("click", function () {
-            downloadCSV({filename: "chart-data.csv", chart: chart})
-        });
-        toolBar.lastChild.appendChild(exportCSV);
-    } else {
-        var exportCSV = document.createElement('button');
-        var text = document.createTextNode("Save as CSV");
-        exportCSV.appendChild(text);
-        exportCSV.addEventListener("click", function () {
-            downloadCSV({filename: "chart-data.csv", chart: chart})
-        });
-        document.body.appendChild(exportCSV)
-
-    }
 }
 
 function drawChart2() {
-    var chart = new CanvasJS.Chart("chart_02",
-        {
-            theme: "light2",
 
-            title: {
-                text: "Most dangerous states"
-            },
+    const CONTAINER_HEIGHT = document.getElementsByClassName("chart").item(0).clientHeight;
+    const CONTAINER_WIDTH = document.getElementsByClassName("chart").item(0).clientWidth;
 
-            exportEnabled: true,
+    // Set the dimensions and margins of the graph
+    let margin = {top: 10, right: 10, bottom: 45, left: 80},
+        width = CONTAINER_WIDTH - 100,
+        height = CONTAINER_HEIGHT - 65;
 
-            data: [
-                {
-                    type: "column",
-                    dataPoints: [
-                        {y: 51.08, label: "OH"},
-                        {y: 27.34, label: "TX"},
-                        {y: 10.62, label: "CA"},
-                        {y: 5.02, label: "DC"},
-                        {y: 4.07, label: "WA"},
-                        {y: 1.22, label: "LA"},
-                        {y: 40.44, label: "ME"}
-                    ]
-                }
-            ]
-        });
+    // Append the svg object to the body of the page
+    let svg = d3.select("#chart_02")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
-    chart.render();
+    // Read the data
+    // Insert csv file!!
+    // Parse the Data
+    d3.csv("../RESOURCES/CSV/chart_02.csv", function(data) {
 
-    var toolBar = document.getElementsByClassName("canvasjs-chart-toolbar")[1];
-    if(chart.get("exportEnabled")){
-        var exportCSV = document.createElement('div');
-        var text = document.createTextNode("Save as CSV");
-        exportCSV.setAttribute("style", "padding: 12px 8px; background-color: white; color: black")
-        exportCSV.appendChild(text);
+        // set the color scale
+        let color = d3.scaleOrdinal()
+            .domain(["slateblue", "lightgoldenrodyellow", "chartreuse", "lightskyblue", "lightsalmon", "lightslategray", "lightcoral", "lightgreen", "lightseagreen", "skyblue" ])
+            .range([ "slateblue", "lightgoldenrodyellow", "chartreuse", "lightskyblue", "lightsalmon", "lightslategray", "lightcoral", "lightgreen", "lightseagreen", "skyblue"]);
 
-        exportCSV.addEventListener("mouseover", function(){
-            exportCSV.setAttribute("style", "padding: 12px 8px; background-color: #2196F3; color: white")
-        });
-        exportCSV.addEventListener("mouseout", function(){
-            exportCSV.setAttribute("style", "padding: 12px 8px; background-color: white; color: black")
-        });
-        exportCSV.addEventListener("click", function(){
-            downloadCSV({ filename: "chart-data.csv", chart: chart })
-        });
-        toolBar.lastChild.appendChild(exportCSV);
-    } else {
-        var exportCSV = document.createElement('button');
-        var text = document.createTextNode("Save as CSV");
-        exportCSV.appendChild(text);
-        exportCSV.addEventListener("click", function () {
-            downloadCSV({filename: "chart-data.csv", chart: chart})
-        });
-        document.body.appendChild(exportCSV)
-    }
+        // Add X axis
+        let x = d3.scaleLinear()
+            .domain([0, 1000000])
+            .range([ 0, width]);
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "translate(-10,0) rotate(-45)")
+            .style("text-anchor", "end");
+
+        // Y axis
+        let y = d3.scaleBand()
+            .range([ 0, height ])
+            .domain(data.map(function(d) { return d.State; }))
+            .padding(.1);
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        //Bars
+        svg.selectAll("myRect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", x(0) )
+            .attr("y", function(d) { return y(d.State); })
+            .attr("width", function(d) { return x(d.Value); })
+            .attr("height", y.bandwidth() )
+            .attr("fill", function (d) { return color(d.Color) })
+    });
+
+    d3.select("#downloadSVG_02").on("click", function() {
+        d3.select(this)
+            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#chart_02").html()))
+    });
+
 }
 
 function drawChart3(){
 
-    var  heightDim = document.getElementsByClassName("chart").item(0).clientHeight;
-    var  widthDim = document.getElementsByClassName("chart").item(0).clientWidth;
+    const CONTAINER_HEIGHT = document.getElementsByClassName("chart").item(0).clientHeight;
+    const CONTAINER_WIDTH = document.getElementsByClassName("chart").item(0).clientWidth;
 
-    //document.getElementById("ceva").innerHTML = widthDim;
-    //document.getElementById("ceva").innerHTML = heightDim;
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 10, bottom: 30, left: 60},
-        width = widthDim - 100,
-        height = heightDim - 30;
+    let margin = {top: 10, right: 10, bottom: 30, left: 50},
+        width = CONTAINER_WIDTH - 80,
+        height = CONTAINER_HEIGHT - 40;
 
     // append the svg object to the body of the page
-    var svg = d3.select("#chart_03")
+    let svg = d3.select("#chart_03")
         .append("svg")
         .attr("width", width + margin.left)
         .attr("height", height + margin.bottom)
         .append("g")
         .attr("id", "visualization")
         .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")")
+            "translate(" + margin.left + "," + margin.top + ")");
 
 
     //Read the data
     //Insert csv file!!
-    d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data){
+    d3.csv("../RESOURCES/CSV/chart_03.csv", function(data){
 
         // Add X axis
-        var x = d3.scaleLinear()
-            .domain([4, 8])
+        let x = d3.scaleLinear()
+            .domain([1, 8])
             .range([ 0, width ]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "translate(-10,0) rotate(-45)")
+            .style("text-anchor", "end");
 
         // Add Y axis
         var y = d3.scaleLinear()
-            .domain([0, 9])
+            .domain([12, 55])
             .range([ height, 0]);
         svg.append("g")
             .call(d3.axisLeft(y));
 
         // Color scale: give me a specie name, I return a color
         var color = d3.scaleOrdinal()
-            .domain(["setosa", "versicolor", "virginica" ])
-            .range([ "#440154ff", "#21908dff", "#fde725ff"])
+            .domain(["color1", "color2", "color3" ])
+            .range([ "#440154ff", "#21908dff", "#fde725ff"]);
 
         // Add dots
         svg.append('g')
@@ -176,77 +229,16 @@ function drawChart3(){
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", function (d) { return x(d.Sepal_Length); } )
-            .attr("cy", function (d) { return y(d.Petal_Length); } )
-            .attr("r", 5)
-            .style("fill", function (d) { return color(d.Species) } )
+            .attr("cx", function (d) { return x(d.label1); } )
+            .attr("cy", function (d) { return y(d.label2); } )
+            .attr("r", 3)
+            .style("fill", function (d) { return color(d.label3) } )
+    });
 
-    })
-
-    d3.select('#downloadPNG').on('click', function(){
-        d3.select(this)
-            .attr("href", 'data:application/octet-stream;base64')
-    })
-
-    d3.select("#downloadSVG").on("click", function() {
+    d3.select("#downloadSVG_03").on("click", function() {
         d3.select(this)
             .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#chart_03").html()))
-    })
-
-}
-
-function convertChartDataToCSV(args) {
-    var result, ctr, keys, columnDelimiter, lineDelimiter, data;
-
-    data = args.data || null;
-    if (data == null || !data.length) {
-        return null;
-    }
-
-    columnDelimiter = args.columnDelimiter || ',';
-    lineDelimiter = args.lineDelimiter || '\n';
-
-    keys = Object.keys(data[0]);
-
-    result = '';
-    result += keys.join(columnDelimiter);
-    result += lineDelimiter;
-
-    data.forEach(function(item) {
-        ctr = 0;
-        keys.forEach(function(key) {
-            if (ctr > 0) result += columnDelimiter;
-            result += item[key];
-            ctr++;
-        });
-        result += lineDelimiter;
     });
-    return result;
 }
 
-function downloadCSV(args) {
-        var data, filename, link;
-        var csv = "";
-        for(var i = 0; i < args.chart.options.data.length; i++){
-            csv += convertChartDataToCSV({
-                data: args.chart.options.data[i].dataPoints
-            });
-        }
-        if (csv == null) return;
-
-        filename = args.filename || 'chart-data.csv';
-
-        if (!csv.match(/^data:text\/csv/i)) {
-            csv = 'data:text/csv;charset=utf-8,' + csv;
-        }
-
-        data = encodeURI(csv);
-        link = document.createElement('a');
-        link.setAttribute('href', data);
-        link.setAttribute('download', filename);
-        document.body.appendChild(link); // Required for FF
-        link.click();
-        document.body.removeChild(link);
-    }
-
-function refresh() { location.reload(); }
+function refresh() { location.reload();}

@@ -1,0 +1,93 @@
+@media screen and (max-width: 820px) {
+
+    .filterMenu {
+        width: 100%;
+        display: block;
+        margin-bottom: 40px;
+    }
+
+    .headerFilters {
+        width: 100%;
+        grid-column-start: unset;
+        grid-column-end: unset;
+        display: inline-block;
+    }
+
+    .search-container { display: inline-block;}
+
+    .search-container button { float: left; }
+
+    input[type=text]{ float: left; }
+
+    .filtersTitle { width: 100%; }
+
+    .leftFilters { width: 100%; }
+
+    .rightFilters {
+        padding-top: 5%;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .footerFilters {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .dataContainer{
+        width: 100%;
+        display: inline-block;
+    }
+
+    .locationAccidentFilter select{ width: 70%; }
+
+    .periodAccidentFilter select{ width: 60%; }
+
+    .locationAccidentFilter label , .periodAccidentFilter label {
+        display: block;
+    }
+
+    .periodAccidentFilter{
+        width: 100%;
+        display: inline-block;
+        float: left;
+    }
+
+    .dateFrom, .dateTo{
+        width: 50%;
+        float: left;
+    }
+
+    .pagination{
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .locationAccidentFilter label {
+        display: block;
+    }
+
+    .locationAccidentFilter select{
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 2000px){
+    .filtersTitle p, h3{
+        font-size: xx-large;
+    }
+
+    .eventsTitle p, .filtersTitle p{
+        font-size: 50px;
+    }
+
+    h4{
+        font-size: x-large;
+    }
+
+    .filterMenu label{
+        font-size: x-large;
+    }
+}

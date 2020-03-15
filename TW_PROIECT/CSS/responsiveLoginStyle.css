@@ -1,0 +1,32 @@
+@media screen and (max-width: 1150px) {
+    .dataContainer{
+        margin: 10% 20% 0 20%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .dataContainer{
+        margin: 10% 10% 0 10%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .dataContainer{
+        margin: unset;
+    }
+}
+
+@media screen and (min-width: 2200px) {
+    .dataContainer{
+        margin: 10% 35% 0 35%;
+    }
+    .containerHeader p{
+        font-size: xx-large;
+    }
+    .inputField label{
+        font-size: x-large;
+    }
+    .inputField label{
+
+    }
+}
