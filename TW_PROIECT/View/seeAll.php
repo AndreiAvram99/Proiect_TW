@@ -31,8 +31,9 @@
 
 <body>
 
-<nav id = "navBarContainer"></nav>
-
+<nav id = "navBarContainer">
+    <?php include("navBar.html")?>
+</nav>
 
 <main>
     <div class = "filterMenu">
@@ -200,6 +201,7 @@
 
         <div class = "eventsContainer" id = "seeAllEventsContainer">
 <!--            here events will be inserted-->
+            <?php load_events?>
         </div>
         <div class="center">
             <div class = "pagination" id = "seeAllPagination">

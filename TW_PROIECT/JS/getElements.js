@@ -8,7 +8,7 @@ async function getNavBar(){
 
 async function createEvent(title, description, author, seeMoreLink){
     var event;
-    await $.get('Elements/event.html #event', function(data) {
+    await $.get('Elements/event.php #event', function(data) {
         event = stringToElement(data);
     }, 'html');
     event.querySelector("#title").innerText = title;
