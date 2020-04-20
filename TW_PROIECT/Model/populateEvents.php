@@ -1,5 +1,5 @@
 <?php
-include("eventModel.php");
+include("event_model.php");
 
 class PopulateEvents{
     private $event;

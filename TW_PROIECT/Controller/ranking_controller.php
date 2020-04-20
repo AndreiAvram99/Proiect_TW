@@ -9,6 +9,6 @@ class Ranking{
 //    to do: functiile de get nu stiu ce valori
 
     public function show(){
-        include("./../View/ranking.php");
+        include("./../View/ranking_view.php");
     }
 }

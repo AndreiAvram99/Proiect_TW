@@ -8,37 +8,24 @@
     <meta charset="UTF-8">
     <base href="seeAll.html">
 
-    <link rel="stylesheet" type="text/css" href="../CSS/filterMenuStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/navBarStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/eventStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/paginationStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/responsiveNavBarStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/responsiveEventStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/responsiveSeeAllStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/bodyStyle.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/pages_style/see_all_style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/body_style.css">
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script type="text/javascript" src = "../JS/getElements.js"></script>
-    <script type="text/javascript" src = "../JS/seeAllPagination.js"></script>
-    <script type="text/javascript" src = "../JS/navBarScript.js"></script>
-    <script type="text/javascript" src = "../JS/seeAllController.js"></script>
-    <script type="text/javascript" src = "https://kit.fontawesome.com/a076d05399.js"></script>
-
+    <!-- to do: mai trebuie scos filter_menu, pagination -->
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/filter_menu_style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/pagination_style.css">    
 
 </head>
 
 
 <body>
 
-<nav id = "navBarContainer">
-    <?php include("navBar.html")?>
-</nav>
+    <?php include("navbar.html")?>
 
 <main>
-    <div class = "filterMenu">
+    <div class = "filter-menu">
 
-        <div class="headerFilters">
+        <div class="header-filters">
 
             <div class="search-container">
                 <form action="">
@@ -49,15 +36,15 @@
                 </form>
             </div>
 
-            <div class="filtersTitle">
+            <div class="filters-title">
                 <p>Filters</p>
                 <div class="underline"></div>
             </div>
 
         </div>
 
-        <div class="leftFilters">
-            <div class="locationAccidentFilter">
+        <div class="left-filters">
+            <div class="location-accident-filter">
 
                 <h3>Place of accidents:</h3>
 
@@ -69,7 +56,7 @@
                     <option value="California">California</option>
                 </select>
 
-                <label for="County">Country:</label>
+                <label for="County">County:</label>
                 <select id="County">
                     <option value="default" selected disabled hidden></option>
                     <option value="Los_Angeles">Los Angeles</option>
@@ -78,8 +65,8 @@
                     <option value="opel">Franklin</option>
                 </select>
 
-                <label for="city">City:</label>
-                <select id="city">
+                <label for="City">City:</label>
+                <select id="City">
                     <option value="default" selected disabled hidden></option>
                     <option value="Houston">Houston</option>
                     <option value="Charlotte">Charlotte</option>
@@ -89,20 +76,20 @@
                 </select>
 
             </div>
-            <div class="sortFilter">
+            <div class="sort-filter">
 
-                <div class="sortHeader">
+                <div class="sort-header">
                     <h3>Sort:</h3>
                 </div>
 
-                <div class="sortByDate">
+                <div class="sort-by-date">
                     <input type="checkbox" id="ascByDate" name="descByDate" value="0">
                     <label for="ascByDate"> Sort asc by date</label><br>
                     <input type="checkbox" id="descByDate" name="descByDate" value="1">
                     <label for="descByDate"> Sort desc by date</label><br>
                 </div>
 
-                <div class="sortByState">
+                <div class="sort-by-state">
                     <input type="checkbox" id="ascByState" name="ascByState" value="0">
                     <label for="ascByState"> Sort asc by state</label><br>
                     <input type="checkbox" id="descByState" name="vehicle2" value="1">
@@ -112,12 +99,12 @@
             </div>
         </div>
 
-        <div class = "rightFilters">
-            <div class="periodAccidentFilter">
+        <div class = "right-filters">
+            <div class="period-accident-filter">
 
                 <h3>Period when the accidents happened:</h3>
 
-                <div class="dateFrom">
+                <div class="date-from">
                     <h4>From:</h4>
 
                     <label for="dayFrom">Day:</label>
@@ -148,7 +135,7 @@
                     </select>
                 </div>
 
-                <div class="dateTo">
+                <div class="date-to">
                     <h4>To:</h4>
 
                     <label for="dayTo">Day:</label>
@@ -180,9 +167,9 @@
             </div>
         </div>
 
-        <div class="footerFilters">
+        <div class="footer-filters">
 
-            <div class="submitButton">
+            <div class="submit-button">
                 <form>
                     <input type="submit" value="Submit">
                 </form>
@@ -192,14 +179,14 @@
 
     </div>
 
-    <div class = "dataContainer">
+    <div class = "data-container">
 
-        <div class="eventsTitle">
+        <div class="events-title">
             <p>Events</p>
             <div class="underline"></div>
         </div>
 
-        <div class = "eventsContainer" id = "seeAllEventsContainer">
+        <div class = "events-container" id = "seeAllEventsContainer">
 <!--            here events will be inserted-->
             <?php load_events();?>
         </div>

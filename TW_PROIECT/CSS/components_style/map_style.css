@@ -1,11 +1,11 @@
-.mapDiv{
+.map-container{
     width: 90%;
     margin: auto;
 }
 
 path {
     fill: white;
-    stroke:  darkslateblue;
+    stroke: var(--pallete-color-1);
     stroke-width:2px;
     transition: fill 0.3s;
     text-anchor: middle;
@@ -22,17 +22,26 @@ text{
 }
 
 
-.textBoxObj{
+.text-box-obj{
     fill: white;
     stroke: lightslategray;
     stroke-width:3px;
     display: none;
 }
 
-.textBoxText{
+.text-box-text{
     fill: black;
     font-weight: bold;
     font-size: small;
     display: none;
 }
 
+/* Responsive */
+
+@media screen and (max-width: 820px) {
+
+    .map-container {
+        width: 100%;
+    }
+
+}

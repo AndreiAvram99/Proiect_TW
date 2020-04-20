@@ -1,4 +1,4 @@
-.dataContainer{
+.data-container{
     margin: 10% 30% 0 30%;
     height: auto;
     background: white;
@@ -8,11 +8,11 @@
     box-shadow: 3px 1px 14px -3px rgba(0,0,0,0.75);
 }
 
-.dataContainer > div{
+.data-container > div{
     flex: 1;
 }
 
-.containerHeader{
+.container-header{
     width:100%;
     float:left;
     height:auto;
@@ -20,26 +20,26 @@
     border-radius: 6px 6px 0 0;
 }
 
-.containerBody{
+.container-body{
     width:100%;
     float:left;
     height:auto;
     font-weight: bold;
 }
 
-.inputField{
+.input-field{
     margin-left: 20%;
     margin-bottom: 3px;
     margin-top: 3px;
 }
 
-.containerFooter{
+.container-footer{
     width:100%;
     float:left;
     height:auto;
 }
 
-.containerTitle{
+.container-title{
     color: whitesmoke;
     font-size: larger;
     font-weight: bold;
@@ -64,3 +64,34 @@
     background-color: slateblue;
 }
 
+/* Responsive */
+
+@media screen and (max-width: 1150px) {
+    .data-container{
+        margin: 10% 20% 0 20%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .data-container{
+        margin: 10% 10% 0 10%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .data-container{
+        margin: unset;
+    }
+}
+
+@media screen and (min-width: 2200px) {
+    .data-container{
+        margin: 10% 35% 0 35%;
+    }
+    .container-header p{
+        font-size: xx-large;
+    }
+    .input-field label{
+        font-size: x-large;
+    }
+}

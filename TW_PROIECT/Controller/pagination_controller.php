@@ -25,6 +25,6 @@ class pageButtonController
     }
 
     public function show(){
-        include("../View/pageButtonView.html");
+        include("../View/pagination_view.html");
     }
 }

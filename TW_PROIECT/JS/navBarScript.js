@@ -1,8 +1,8 @@
 function showHideFunction() {
-    var x = document.getElementById("navBar");
-    if (x.className === "navBar") {
+    var x = document.getElementById("navbar");
+    if (x.className === "navbar") {
         x.className += " responsive";
     } else {
-        x.className = "navBar";
+        x.className = "navbar";
     }
 };

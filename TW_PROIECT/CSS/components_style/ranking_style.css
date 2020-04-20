@@ -1,0 +1,115 @@
+.rankings-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.rankings-container > div{
+    flex: 1;
+}
+
+.ranking{
+    background:  var(--ranking-table-row-color-1);
+    box-shadow: 0 1px 14px -3px rgba(0,0,0,0.75);
+    margin-left: 10%;
+    height: 20%;
+    border-collapse: collapse;
+    border: none;
+    margin-bottom: 30px;
+}
+
+.ranking th, .ranking td{
+    border:  1px solid  var(--ranking-table-row-color-2);
+    padding: 8px;
+}
+
+.ranking tr:nth-child(even){
+    background-color: var(--ranking-table-row-color-2);
+}
+
+.ranking th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--ranking-table-header);
+    color: var(--text-light-color);
+}
+
+.ranking-title{
+    width: 80%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    display: inline-block;
+}
+
+.side-panel{
+    background-color: var(--background-color);
+    box-shadow: 5px -2px 5px 0 rgba(0,0,0,0.60);
+
+    overflow: hidden;
+    overflow-y: scroll;
+
+    width : 0;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.panel-content{
+    width: 90%;
+    height: auto;
+}
+
+.panel-close-btn{
+    float: right;
+
+    background-color: var(--background-color);
+    height: 1000px;
+    width: 10%;
+    border: none;
+}
+
+.panel-open-btn {
+    background-color: var(--background-color);
+    border: none;
+    height: 1000px;
+    width: 4%;
+
+    position: fixed;
+    top: 70px;
+    left: 0;
+
+    display: none;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 820px) {
+
+    /*Set display rankings container to none*/
+    .rankings-container {
+        display: none;
+    }
+    .ranking {
+        margin-top: 5%;
+        margin-left: 5%;
+        width: 90%;
+        height: 20%;
+    }
+
+    /*Set panelOpenBtn to visible*/
+    .panel-open-btn {
+        display: block;
+    }
+
+}
+
+@media screen and (min-width: 2200px) {
+    .ranking th {
+        font-size: x-large;
+    }
+    .ranking td {
+        font-size: x-large;
+    }
+}

@@ -1,5 +1,5 @@
 <?php
-include("database.php");
+include("database_model.php");
 
 class eventModel
 {
@@ -45,6 +45,7 @@ class eventModel
     }
 
     public function create_event($author_id, $severity, $description, $start_time, $city, $county, $state){
+
         $sql_command = "INSERT INTO events (
                                                 author_id,
                                                 severity,
@@ -54,6 +55,7 @@ class eventModel
                                                 county,
                                                 state)
                                             VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         $stmt = $this->conn->prepare($sql_command);
         $stmt->bind_param("iisssss", $author_id,
             $severity,

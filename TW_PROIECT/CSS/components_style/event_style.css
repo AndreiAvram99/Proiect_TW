@@ -1,0 +1,143 @@
+.events-title{
+    font-size: 30px;
+    width: 100%;
+    padding-bottom: 4%;
+}
+
+.event{
+    float: left;
+    height: auto;
+    background: var(--event-container-body-color);
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+.events-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.events-container > div{
+    flex: 1;
+    box-shadow: 3px 1px 14px -3px rgba(0,0,0,0.75);
+}
+
+.event-header{
+    width:100%;
+    float:left;
+    height:auto;
+    background-color: var(--event-container-header-color);
+    border-radius: 6px 6px 0 0;
+}
+
+.event-body{
+    width:100%;
+    float:left;
+    height:auto;
+}
+
+.event-footer{
+    width:100%;
+    float:left;
+    height:auto;
+}
+
+.event-footer-left{
+    width:70%;
+    float: left;
+    height: auto;
+    display:block;
+}
+
+.event-footer-right{
+    width:30%;
+    float: left;
+    height: auto;
+}
+
+.event-title{
+    color: var(--text-light-color);
+    font-size: larger;
+    font-weight: bold;
+    padding-left: 3%;
+}
+
+.event-description{
+    padding: 5px 3% 5px 3%;
+    text-indent: 20px;
+}
+
+.link-color{
+    color: var(--text-pallete-color-1);
+    text-decoration: none;
+}
+
+.link-color:hover{
+    color: var(--text-pallete-light-color-1);
+}
+
+.event-see-more-button{
+    background-color: var(--event-container-button-color);
+    border: none;
+    color: var(--text-light-color);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    float: right;
+}
+
+.event-see-more-button:hover{
+    background-color: var(--event-container-button-color-hover);
+}
+
+.author{
+    padding-left: 25px;
+}
+
+/*Responsive*/
+
+@media screen and (max-width: 700px) {
+
+    /*Set event style*/
+    .eventTitle{
+        font-size: small;
+    }
+    .eventDescription{
+        font-size: x-small;
+    }
+    .eventFooterLeft{
+        padding-top: 5%;
+        font-size: x-small;
+    }
+
+}
+
+
+@media screen and (min-width: 2200px) {
+    
+    .events-title p{
+        font-size: 50px;
+    }
+    
+    .eventTitle {
+        font-size: xx-large;
+    }
+
+    .eventDescription {
+        font-size: xx-large;
+    }
+
+    .eventFooterLeft {
+        font-size: x-large;
+    }
+
+    .eventSeeMoreButton {
+        font-size: x-large;
+    }
+}
+
+   

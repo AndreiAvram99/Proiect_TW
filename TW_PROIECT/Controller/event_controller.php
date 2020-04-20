@@ -25,6 +25,6 @@ class eventController{
     }
 
     public function show(){
-        include("./../View/event.php");
+        include("./../View/event_view.php");
     }
 }

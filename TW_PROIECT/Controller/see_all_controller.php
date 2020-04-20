@@ -1,7 +1,7 @@
 <?php
-include("eventController.php");
-include("pageButtonController.php");
-include("../Model/eventModel.php");
+include("event_controller.php");
+include("pagination_controller.php");
+include("../Model/event_model.php");
 
 $current_page = 0;
 if (isset($_GET["page_number"])){
@@ -40,4 +40,4 @@ function load_pagination(){
     }
 }
 
-include("./../View/seeAll.php");
+include("./../View/see_all_view.php");

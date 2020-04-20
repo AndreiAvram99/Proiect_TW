@@ -7,49 +7,43 @@
     <meta charset="UTF-8">
     <base href="statistics.html">
 
-    <link rel="stylesheet" type="text/css" href="../CSS/chartsStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/navBarStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/responsiveNavBarStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/responsiveChartsStyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/bodyStyle.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/charts_style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/body_style.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script type="text/javascript" src = "../JS/getElements.js"></script>
-    <script type="text/javascript" src = "../JS/chartsScript.js"></script>
-    <script type="text/javascript" src = "../JS/navBarScript.js"></script>
-    <script type="text/javascript" src = "../JS/statisticsController.js"></script>
     <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
-
+    <script type="text/javascript" src = "../JS/chartsScript.js"></script>
+    
 
 </head>
 
 <body onResize="refresh()">
 
-<nav id = "navBarContainer"></nav>
+<nav id = "navbar-container"></nav>
 
 <main>
 
-    <div class="statisticsTitle">
+    <div class="statistics-title">
         <p>Charts</p>
         <div class="underline"></div>
     </div>
 
-    <div class="chartsContainer">
+    <div class="charts-container">
 
-        <div class = "chartContainer">
+        <div class = "chart-container">
             <div class="chart">
-                <div class="chartImg" id="chart_01"></div>
+                <div class="chart-img" id="chart_01"></div>
             </div>
 
-            <div class="downloadChartMenu">
-                <div class="downloadChartMenuHeader">
+            <div class="download-chart-menu">
+                <div class="download-chart-menu-header">
                     <h2> Chart description: </h2>
                     <p> Some text </p>
                 </div>
-                <div class="downloadChartMenuFooter">
+                <div class="download-chart-menu-footer">
                     <ul>
                         <li><a id="downloadSVG_01" href="#" download="graph.svg"> Download SVG </a></li>
                         <li><a href="../RESOURCES/CSV/chart_01.csv" download="graph.csv"> Download CSV </a></li>
@@ -58,17 +52,17 @@
             </div>
         </div>
 
-        <div class = "chartContainer">
+        <div class = "chart-container">
             <div class="chart">
-                <div class="chartImg" id="chart_02"></div>
+                <div class="chart-img" id="chart_02"></div>
             </div>
 
-            <div class="downloadChartMenu">
-                <div class="downloadChartMenuHeader">
+            <div class="download-chart-menu">
+                <div class="download-chart-menu-header">
                     <h2> Chart description: </h2>
                     <p> Some text </p>
                 </div>
-                <div class="downloadChartMenuFooter">
+                <div class="download-chart-menu-footer">
                     <ul>
                         <li><a id="downloadSVG_02" href="#" download="graph.svg"> Download SVG </a></li>
                         <li><a href="../RESOURCES/CSV/chart_02.csv" download="graph.csv"> Download CSV </a></li>
@@ -77,17 +71,17 @@
             </div>
         </div>
 
-        <div class = "chartContainer">
+        <div class = "chart-container">
             <div class="chart">
-                <div class="chartImg" id="chart_03"></div>
+                <div class="chart-img" id="chart_03"></div>
             </div>
 
-            <div class="downloadChartMenu">
-                <div class="downloadChartMenuHeader">
+            <div class="download-chart-menu">
+                <div class="download-chart-menu-header">
                     <h2> Chart description: </h2>
                     <p> Some text </p>
                 </div>
-                <div class="downloadChartMenuFooter">
+                <div class="download-chart-menu-footer">
                     <ul>
                         <li><a id="downloadSVG_03" href="#" download="graph.svg"> Download SVG </a></li>
                         <li><a href="../RESOURCES/CSV/chart_03.csv" download="graph.csv"> Download CSV </a></li>
