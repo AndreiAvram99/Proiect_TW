@@ -1,18 +1,18 @@
 <?php
-include("database.php");
+include("eventModel.php");
 
 class PopulateEvents{
-    private $dbi;
+    private $event;
 
     public function __constructor(){
-        $this->dbi = database::get_dbi();
+        $this->event = new eventModel();
     }
 
     public function populate(){
         $file = $this->getFile();
         fgetcsv($file);
         while ($data = fgetcsv($file)){
-            $this->dbi->create_event(1, $data[3], $data[11], $data[4], $data[15], $data[15], $data[17]);
+            $this->event->create_event(1, $data[3], $data[11], $data[4], $data[15], $data[15], $data[17]);
         }
     }
 

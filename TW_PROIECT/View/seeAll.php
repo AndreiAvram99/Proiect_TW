@@ -201,10 +201,13 @@
 
         <div class = "eventsContainer" id = "seeAllEventsContainer">
 <!--            here events will be inserted-->
-            <?php load_events?>
+            <?php load_events();?>
         </div>
         <div class="center">
             <div class = "pagination" id = "seeAllPagination">
+                <form action = "seeAll.php" method="get">
+                    <?php load_pagination();?>
+                </form>
 <!--            here pages will be inserted-->
             </div>
         </div>

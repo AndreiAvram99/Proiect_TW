@@ -1,6 +1,6 @@
 <?php
 
-class Event{
+class eventController{
     private $title;
     private $author;
     private $description;

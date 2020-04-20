@@ -1,8 +1,8 @@
 <?php
 
-include("event.php");
+include("eventController.php");
 function create_event(){
-    $event = new Event("titlu", "autor", "ceva descriere");
+    $event = new eventController("titlu", "autor", "ceva descriere");
 
     $event->show();
 }
