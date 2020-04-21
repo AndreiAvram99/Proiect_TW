@@ -5,7 +5,7 @@ class PopulateEvents{
     private $event;
 
     public function __constructor(){
-        $this->event = new eventModel();
+        $this->event = new EventModel();
     }
 
     public function populate(){

@@ -9,10 +9,30 @@ if (isset($_GET["page_number"])){
 }
 $events_per_page = 10;
 
+$current_state = null;
+if (isset($_GET["state"])){
+    $current_state = $_GET["state"];
+}
+echo $current_state;
+
+$current_county = null;
+if (isset($_GET["county"])){
+    $current_county = $_GET["county"];
+}
+
+$current_city = null;
+if (isset($_GET["city"])){
+    $current_city = $_GET["city"];
+}
+
+function get_self(){
+    return "see_all_controller.php";
+}
+
 function load_events(){
     // to do: extrage numele autorului
     // to do: compune un titlu pentru eveniment
-    $event_model = new eventModel();
+    $event_model = new EventModel();
 
     $from = $GLOBALS['current_page'] * $GLOBALS['events_per_page'];
     $count = $GLOBALS['events_per_page'];
@@ -25,7 +45,7 @@ function load_events(){
 
 function load_pagination(){
     // to do: daca sunt multe butoane afiseaza doar primele, ultimele si mijloc.
-    $event_model = new eventModel();
+    $event_model = new EventModel();
 
     $events_number = $event_model->get_number_of_events();
     $number_of_pages = ceil($events_number / $GLOBALS["events_per_page"]);

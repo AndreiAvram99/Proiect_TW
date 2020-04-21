@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <?php include("navbar.html")?>
+    <?php include("navBar.html")?>
 
 <main>
 
