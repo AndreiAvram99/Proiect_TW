@@ -3,27 +3,47 @@ include("event_controller.php");
 include("pagination_controller.php");
 include("../Model/event_model.php");
 
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+
+//Globals
 $current_page = 0;
+$events_per_page = 10;
+$filters_array = array();
+
 if (isset($_GET["page_number"])){
     $current_page = $_GET["page_number"] - 1;
 }
-$events_per_page = 10;
+
 
 $current_state = null;
 if (isset($_GET["state"])){
     $current_state = $_GET["state"];
+    $filters_array["state"] = $current_state;
 }
-echo $current_state;
+//debug_to_console($filters_array["state"]);
+
 
 $current_county = null;
 if (isset($_GET["county"])){
     $current_county = $_GET["county"];
+    $filters_array["county"] = $current_county;
 }
+//debug_to_console($filters_array["county"]);
+
 
 $current_city = null;
 if (isset($_GET["city"])){
     $current_city = $_GET["city"];
+    $filters_array["city"] = $current_city;
 }
+//debug_to_console($filters_array["city"]);
+
 
 function get_self(){
     return "see_all_controller.php";
@@ -36,7 +56,13 @@ function load_events(){
 
     $from = $GLOBALS['current_page'] * $GLOBALS['events_per_page'];
     $count = $GLOBALS['events_per_page'];
-    $events = $event_model->get_event($from, $count);
+    $filters = $GLOBALS['filters_array'];
+    
+    //if($check_filter == FALSE)
+        $events = $event_model->get_event($from, $count, $filters);
+    //else 
+      //  $events = $event_model->get_event($from, $count, $current_state, $current_county, $current_city);
+
     foreach ($events as $event){
         $event_controller = new eventController($event["id"], $event["author_id"], $event["description"]);
         $event_controller->show();
