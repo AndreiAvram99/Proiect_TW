@@ -9,14 +9,7 @@ class EventModel
         $this->conn = database::get_dbi()->get_conn();
     }
 
-    function debug_to_console($data) {
-        $output = $data;
-        if (is_array($output))
-            $output = implode(',', $output);
     
-        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-    }
-
     // to do: add filters on get_event
     // return an array with "count" events starting index "from"
 
@@ -37,7 +30,11 @@ class EventModel
         else{ 
             
             $keys_array = array_keys($filters);
+            $values_array = array_values($filters);
             $results_array = array();
+
+            //in new_array se afla str cu tipurile din bind si valorile pt bind
+            $new_array = array();
             $index = 0;
 
             $sql_types = "";
@@ -55,17 +52,20 @@ class EventModel
             }
             $sql_command = $sql_command . "LIMIT ? OFFSET ?";
             $sql_types = $sql_types . "ii";
+            array_push($new_array, $sql_types);
+            foreach ($values_array as $value){
+                array_push($new_array, $value);
+            }
+            array_push($new_array, $count);
+            array_push($new_array, $from);
 
+            debug_to_console($new_array);
             debug_to_console($sql_command);
             debug_to_console($sql_types); 
             
             $stmt = $this->conn->prepare($sql_command);
-            if($number_of_filters == 1)
-                $stmt->bind_param($sql_types, $filters[$keys_array[0]], $count, $from);
-            if($number_of_filters == 2)
-                $stmt->bind_param($sql_types, $filters[$keys_array[0]], $filters[$keys_array[1]], $count, $from);
-            if($number_of_filters == 3)
-                $stmt->bind_param($sql_types, $filters[$keys_array[0]], $filters[$keys_array[1]], $filters[$keys_array[2]], $count, $from);
+            
+            call_user_func_array(array($stmt, 'bind_param'), refValues($new_array));
                 
             $stmt->execute();
             $result = $stmt->get_result();
