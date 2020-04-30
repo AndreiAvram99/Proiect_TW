@@ -11,16 +11,6 @@ function debug_to_console($data) {
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
-function refValues($arr){
-    if (strnatcmp(phpversion(),'5.3') >= 0) //Reference is required for PHP 5.3+
-    {
-        $refs = array();
-        foreach($arr as $key => $value)
-            $refs[$key] = &$arr[$key];
-        return $refs;
-    }
-    return $arr;
-}
 
 //Globals
 $current_page = 0;
@@ -35,7 +25,7 @@ if (isset($_GET["page_number"])){
 $current_state = null;
 if (isset($_GET["state"])){
     $current_state = $_GET["state"];
-    $filters_array["state"] = $current_state;
+    if ($current_state != "all") $filters_array["state"] = $current_state;
 }
 //debug_to_console($filters_array["state"]);
 
@@ -43,7 +33,7 @@ if (isset($_GET["state"])){
 $current_county = null;
 if (isset($_GET["county"])){
     $current_county = $_GET["county"];
-    $filters_array["county"] = $current_county;
+    if ($current_county != "all") $filters_array["county"] = $current_county;
 }
 //debug_to_console($filters_array["county"]);
 
@@ -51,7 +41,7 @@ if (isset($_GET["county"])){
 $current_city = null;
 if (isset($_GET["city"])){
     $current_city = $_GET["city"];
-    $filters_array["city"] = $current_city;
+    if ($current_city != "all") $filters_array["city"] = $current_city;
 }
 //debug_to_console($filters_array["city"]);
 
@@ -84,7 +74,7 @@ function load_pagination(){
     // to do: daca sunt multe butoane afiseaza doar primele, ultimele si mijloc.
     $event_model = new EventModel();
 
-    $events_number = $event_model->get_number_of_events();
+    $events_number = $event_model->get_number_of_events($GLOBALS['filters_array']);
     $number_of_pages = ceil($events_number / $GLOBALS["events_per_page"]);
 
     for ($i = 0; $i < $number_of_pages; $i++){

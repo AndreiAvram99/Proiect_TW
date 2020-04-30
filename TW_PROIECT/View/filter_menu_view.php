@@ -21,7 +21,7 @@
 
             <label for="State">State:</label>
             <select id="State" name = 'state'>
-                <option value="default" selected disabled hidden></option>
+                <option value="all">All</option>
                 <?php
                     init_states();
 
@@ -32,7 +32,7 @@
 
             <label for="County">County:</label>
             <select id="County" name = 'county'>
-                <option value="default" selected disabled hidden></option>
+                <option value="all">All</option>
                 <?php
                     init_counties();
 
@@ -43,7 +43,7 @@
 
             <label for="City">City:</label>
             <select id="City" name = 'city'>
-                <option value="default" selected disabled hidden></option>
+                <option value="all">All</option>
                 <?php
                     init_cities();
 

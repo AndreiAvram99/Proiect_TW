@@ -9,71 +9,56 @@ class EventModel
         $this->conn = database::get_dbi()->get_conn();
     }
 
+    function ref_values($arr){
+        $refs = array();
+        foreach($arr as $key => $value)
+            $refs[$key] = &$arr[$key];
+        return $refs;
+    }
+
+    // add filters to a sql command
+    private function add_filters(&$sql_command, &$sql_types,  $filters){
+        $number_of_filters = count($filters);
+
+        $keys_array = array_keys($filters);
+
+        for($index=0;$index < $number_of_filters; $index++){
+            $sql_command = $sql_command . " AND " . $keys_array[$index] . "=? ";
+            $sql_types = $sql_types . "s";
+        }
+    }
     
     // to do: add filters on get_event
     // return an array with "count" events starting index "from"
-
     public function get_event($from, $count, $filters){
+        $values_array = array_values($filters);
 
-        $number_of_filters = count($filters); 
+        $sql_command = "SELECT * FROM events WHERE 1";
+        $sql_types = "";
+        $this->add_filters($sql_command,  $sql_types, $filters);
+        $sql_command = $sql_command . " LIMIT ? OFFSET ?";
+        $sql_types = $sql_types . "ii";
 
 
-        if( $number_of_filters == 0 ){
-            $sql_command = "SELECT * FROM events ORDER BY id LIMIT ? OFFSET ?";
-            $stmt = $this->conn->prepare($sql_command);
-            $stmt->bind_param("ii", $count, $from);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $stmt->close();
+        $new_array = array();
+        array_push($new_array, $sql_types);
+        foreach ($values_array as $value){
+            array_push($new_array, $value);
         }
 
-        else{ 
-            
-            $keys_array = array_keys($filters);
-            $values_array = array_values($filters);
-            $results_array = array();
+        array_push($new_array, $count);
+        array_push($new_array, $from);
 
-            //in new_array se afla str cu tipurile din bind si valorile pt bind
-            $new_array = array();
-            $index = 0;
+        $stmt = $this->conn->prepare($sql_command);
 
-            $sql_types = "";
-            $sql_command = "SELECT * FROM events WHERE ";
-            
-            while($index != $number_of_filters){
-                
-                if($index == 0)
-                    $sql_command = $sql_command . $keys_array[$index] . "=? ";
-                else 
-                    $sql_command = $sql_command . "AND " . $keys_array[$index] . "=? ";
-                
-                $sql_types = $sql_types . "s";
-                $index ++; 
-            }
-            $sql_command = $sql_command . "LIMIT ? OFFSET ?";
-            $sql_types = $sql_types . "ii";
-            array_push($new_array, $sql_types);
-            foreach ($values_array as $value){
-                array_push($new_array, $value);
-            }
-            array_push($new_array, $count);
-            array_push($new_array, $from);
+        if (count($new_array) > 1)
+            call_user_func_array(array($stmt, 'bind_param'), $this->ref_values($new_array));
 
-            debug_to_console($new_array);
-            debug_to_console($sql_command);
-            debug_to_console($sql_types); 
-            
-            $stmt = $this->conn->prepare($sql_command);
-            
-            call_user_func_array(array($stmt, 'bind_param'), refValues($new_array));
-                
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $stmt->close();
 
-        }
-        
-        
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
 
         $events = array();
         if ($result->num_rows > 0){
@@ -95,9 +80,29 @@ class EventModel
         return $events;
     }
 
-    public function get_number_of_events(){
-        $sql_command = "SELECT COUNT('a') 'count' FROM events";
-        return $this->conn->query($sql_command)->fetch_assoc()["count"];
+    public function get_number_of_events($filters){
+        $values_array = array_values($filters);
+
+        $sql_command = "SELECT COUNT('a') 'count' FROM events WHERE 1";
+        $sql_types = "";
+        $this->add_filters($sql_command,  $sql_types, $filters);
+
+        $new_array = array();
+        array_push($new_array, $sql_types);
+        foreach ($values_array as $value){
+            array_push($new_array, $value);
+        }
+
+        $stmt = $this->conn->prepare($sql_command);
+
+        if (count($new_array) > 1)
+            call_user_func_array(array($stmt, 'bind_param'), $this->ref_values($new_array));
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result->fetch_assoc()["count"];
     }
 
     public function get_states_list(){

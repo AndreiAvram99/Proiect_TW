@@ -4,7 +4,6 @@ $states = [];
 $counties = [];
 $cities = [];
 
-// to do: verifica daca butonul de submit a fost apasat
 
 function init_states(){
     $event_model = new EventModel();
