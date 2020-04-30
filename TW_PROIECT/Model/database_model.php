@@ -1,15 +1,15 @@
 <?php
 include('./../../config.php');
 
-class database{
+class Database{
     private static $dbi_instance = null;
     private $mysql = null;
 
     public static function get_dbi(){
-        if (database::$dbi_instance == null){
-            database::$dbi_instance = new database();
+        if (Database::$dbi_instance == null){
+            Database::$dbi_instance = new Database();
         }
-        return database::$dbi_instance;
+        return Database::$dbi_instance;
     }
 
     public function get_conn(){

@@ -6,7 +6,7 @@ class EventModel
     private $conn = null;
 
     public function __construct(){
-        $this->conn = database::get_dbi()->get_conn();
+        $this->conn = Database::get_dbi()->get_conn();
     }
 
     function ref_values($arr){

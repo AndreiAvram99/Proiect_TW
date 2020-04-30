@@ -1,6 +1,6 @@
 <?php
 
-include("eventModel.php");
+include("event_model.php");
 
 $event_model = new EventModel();
 
