@@ -1,0 +1,117 @@
+  
+  [type="date"] {
+    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+  }
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
+  .date {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    height: 30px;
+  }
+
+  .date-container{
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .date-container>div{
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .filter-container {
+    display: grid;
+    grid-template-rows: 27% 73%;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0px 2px 15px -3px rgba(0,0,0,0.75);
+  }
+
+  .filter-container:nth-child(5){
+    grid-template-rows: 41% 59%;
+    height: 90%;
+  }
+
+  .filter-container:nth-child(-n+3){
+    grid-template-rows: 25% 75%;
+    height: 90%;
+  }
+  .filter-container:nth-last-child(-n+3){
+    grid-template-rows: 37% 63%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: darkslateblue; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: slateblue; 
+  }
+
+  .all-filters-container{
+    height: 450px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 43% 26% 31%;
+  }
+
+  .submit-button{
+    display: grid;
+    grid-template-columns: 27% 43% 27%;
+    grid-template-rows: 33% 33% 33%;
+  }
+
+  #filter-menu-submit-button{
+    margin-top: 10px;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    color: white;
+    background-color: darkslateblue;
+    border: none;
+    border-radius: 5px;
+  }
+
+  #filter-menu-submit-button:hover{
+    background-color: slateblue;
+  }
+
+  .filter-container-title{
+    background-color: darkslateblue;
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+  }
+
+  .filter-container-title>p{
+    padding-left: 15px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .filter-container-rows{
+    padding-top: 6px;
+    background-color: white;
+    border-radius: 0px 0px 5px 5px;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+  }

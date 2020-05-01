@@ -4,9 +4,11 @@ include("filter_container_row_controller.php");
 class FilterContainer{
     private $rows = array();
     private $id = "";
+    private $title;
     
-    public function __construct($id){
-        $this->$id = $id;
+    public function __construct($id, $title){
+        $this->id = $id;
+        $this->title = $title;
     }
     
     public function add_row($value){
@@ -20,6 +22,10 @@ class FilterContainer{
 
     public function get_id(){
         return $this->id;
+    }
+
+    public function get_title(){  
+        return $this->title;
     }
  
 } 
