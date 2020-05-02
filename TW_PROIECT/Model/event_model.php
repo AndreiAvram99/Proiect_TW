@@ -1,9 +1,11 @@
 <?php
 include("database_model.php");
+include("filtered_query.php");
 
 class EventModel
 {
     private $conn = null;
+    private $event_filtered_query;
 
     public function __construct(){
         $this->conn = Database::get_dbi()->get_conn();
@@ -14,6 +16,35 @@ class EventModel
         foreach($arr as $key => $value)
             $refs[$key] = &$arr[$key];
         return $refs;
+    }
+
+    public function instantiate_query_with_filters($columns){
+        $this->event_filtered_query = new FilteredQuery($columns, "events");
+    }
+
+    public function add_in_filter($column, $list){
+        $this->event_filtered_query->add_in_filter($column, $list);
+    }
+
+    public function add_between_filter($column, $first, $last){
+        $this->event_filtered_query->add_between_filter($column, $first, $last);
+    }
+
+    public function add_order_criteria($list, $type){
+        $this->event_filtered_query->add_order_criteria($list, $type);
+    }
+
+    public function execute_query_with_filters(){
+        $sql = $this->event_filtered_query->get_sql_query();
+        $result = $this->conn->query($sql);
+
+        $events = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($events, $row);
+            }
+        }
+        return $events;
     }
 
     // add filters to a sql command
@@ -144,7 +175,7 @@ class EventModel
         return $cities;
     }
 
-    public function create_event($author_id, $severity, $description, $start_time, $city, $county, $state){
+    public function create_event($author_id, $severity, $description, $start_time, $city, $county, $state, $distance, $side){
 
         $sql_command = "INSERT INTO events (
                                                 author_id,
@@ -153,17 +184,21 @@ class EventModel
                                                 start_time,
                                                 city,
                                                 county,
-                                                state)
-                                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+                                                state,
+                                                distance,
+                                                side)
+                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql_command);
-        $stmt->bind_param("iisssss", $author_id,
+        $stmt->bind_param("iisssssds", $author_id,
             $severity,
             $description,
             $start_time,
             $city,
             $county,
-            $state);
+            $state,
+            $distance,
+            $side);
         $stmt->execute();
         $stmt->close();
     }

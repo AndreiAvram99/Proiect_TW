@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="date-container-right">
-                    <labe> Accidents until:</label>
+                    <label> Accidents until:</label>
                     <input type="date" 
                         id="end" 
                         class="date"
@@ -63,7 +63,7 @@
                 load_chart_types_container();
             ?>        
             <div class="submit-button">
-                <input id="filter-menu-submit-button" type="submit" value="Submit">
+                <input id="filter-menu-submit-button" type="submit" name="submit" value="Submit">
             </div>
         </div>
     </form>

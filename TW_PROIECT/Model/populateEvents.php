@@ -12,7 +12,7 @@ class PopulateEvents{
         $file = $this->getFile();
         fgetcsv($file);
         while ($data = fgetcsv($file)){
-            $this->event->create_event(1, $data[3], $data[11], $data[4], $data[15], $data[15], $data[17]);
+            $this->event->create_event(1, $data[3], $data[11], $data[4], $data[15], $data[16], $data[17], $data[10], $data[14]);
         }
     }
 
