@@ -52,20 +52,18 @@ function get_self(){
 
 function load_events(){
     // to do: extrage numele autorului
-    // to do: compune un titlu pentru eveniment
+    // to do: compune un titlu pentru eveniment - cred ca l-am facut :)
     $event_model = new EventModel();
 
     $from = $GLOBALS['current_page'] * $GLOBALS['events_per_page'];
     $count = $GLOBALS['events_per_page'];
     $filters = $GLOBALS['filters_array'];
     
-    //if($check_filter == FALSE)
-        $events = $event_model->get_event($from, $count, $filters);
-    //else 
-      //  $events = $event_model->get_event($from, $count, $current_state, $current_county, $current_city);
-
+    $events = $event_model->get_event($from, $count, $filters);
+ 
     foreach ($events as $event){
-        $event_controller = new eventController($event["id"], $event["author_id"], $event["description"]);
+        $event_title = "Accdinent happen in ".$event["state"].", city: ".$event["city"].", date: ".$event["start_time"];
+        $event_controller = new eventController($event_title, $event["author_id"], $event["description"]);
         $event_controller->show();
     }
 }
