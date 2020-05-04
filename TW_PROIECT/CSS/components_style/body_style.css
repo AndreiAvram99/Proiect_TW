@@ -65,6 +65,35 @@ main{
 
 }
 
+.title{
+    font-size: 30px;
+    display: grid;
+    grid-template-columns: auto;
+    padding-bottom: 4%;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: darkslateblue; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: slateblue; 
+  }
+
+
+
 /* Responsive */
 
 @media screen and (max-width: 820px) {
@@ -83,5 +112,9 @@ main{
     main {
         margin-left: 8%;
         margin-right: 8%;
+    }
+
+    .title {
+        font-size: xx-large;
     }
 }

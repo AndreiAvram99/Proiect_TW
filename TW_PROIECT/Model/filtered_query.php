@@ -15,7 +15,7 @@ class FilteredQuery{
     }
 
     public function add_between_filter($column, $first, $last){
-        $this->where .= " AND " . $column . " BETWEEN " . $first . " AND " . $last;
+        $this->where .= " AND " . $column . " BETWEEN " . "'" . $first . "'" . " AND " . "'" . $last . "'" ;
     }
 
     // type = asc, desc

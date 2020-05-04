@@ -1,10 +1,19 @@
-window.onload = function (){
-    drawChart1();
-    drawChart2();
-    drawChart3();
+window.onload = function (){   
+        
+    var pie_chart_id = document.getElementById("Pie_chart");
+        if(pie_chart_id != null)
+            pieChartDraw();
+    
+    var barplot_chart_id = this.document.getElementById("Bar_plot_chart");
+        if(barplot_chart_id != null)
+            barPlotChartDraw();
+    
+    var lollipop_chart_id = this.document.getElementById("Lollipop_chart");
+        if(lollipop_chart_id != null)
+            lollipopChartDraw(); 
 };
 
-function drawChart1() {
+function pieChartDraw() {
 
     // set the dimensions and margins of the graph
     let width = document.getElementsByClassName("chart").item(0).clientWidth ,
@@ -20,7 +29,7 @@ function drawChart1() {
 
 
     // append the svg object to the div called 'chart_01'
-    let svg = d3.select("#chart_01")
+    let svg = d3.select("#Pie_chart")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -30,8 +39,9 @@ function drawChart1() {
     // Read the data
     // Insert csv file!!
     // Parse the Data
-    d3.csv("../RESOURCES/CSV/chart_01.csv", function(data) {
+    d3.csv("../RESOURCES/CSV/chart_data.csv", function(data) {
         // set the color scale
+
         let color = d3.scaleOrdinal()
             .domain(["slateblue", "lightgoldenrodyellow", "chartreuse", "lightskyblue", "lightsalmon", "lightslategray", "lightcoral", "lightgreen", "lightseagreen", "skyblue" ])
             .range([ "slateblue", "lightgoldenrodyellow", "chartreuse", "lightskyblue", "lightsalmon", "lightslategray", "lightcoral", "lightgreen", "lightseagreen", "skyblue"]);
@@ -87,7 +97,7 @@ function drawChart1() {
             .data(pie(data))
             .enter()
             .append('text')
-            .text( function(d) { console.log(d.data.State) ; return d.data.State} )
+            .text( function(d) { console.log(d.data.Name) ; return d.data.Name} )
             .attr('transform', function(d) {
                 let pos = outerArc.centroid(d);
                 let midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
@@ -100,25 +110,29 @@ function drawChart1() {
             });
     });
 
-    d3.select("#downloadSVG_01").on("click", function() {
+    d3.select("#downloadSVG").on("click", function() {
         d3.select(this)
-            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#chart_01").html()))
+            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#Pie_chart").html()))
     });
 
 }
 
-function drawChart2() {
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function barPlotChartDraw() {
 
     const CONTAINER_HEIGHT = document.getElementsByClassName("chart").item(0).clientHeight;
     const CONTAINER_WIDTH = document.getElementsByClassName("chart").item(0).clientWidth;
 
     // Set the dimensions and margins of the graph
-    let margin = {top: 10, right: 10, bottom: 45, left: 80},
-        width = CONTAINER_WIDTH - 100,
+    let margin = {top: 10, right: 10, bottom: 45, left: 60},
+        width = CONTAINER_WIDTH - 80,
         height = CONTAINER_HEIGHT - 65;
 
     // Append the svg object to the body of the page
-    let svg = d3.select("#chart_02")
+    let svg = d3.select("#Bar_plot_chart")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -129,7 +143,13 @@ function drawChart2() {
     // Read the data
     // Insert csv file!!
     // Parse the Data
-    d3.csv("../RESOURCES/CSV/chart_02.csv", function(data) {
+    d3.csv("../RESOURCES/CSV/chart_data.csv", function(data) {
+
+        data.forEach(function(d) {
+            d.Value = +d.Value;
+         });
+        
+        var max = d3.max(data, function(d) { return d.Value; });
 
         // set the color scale
         let color = d3.scaleOrdinal()
@@ -138,7 +158,7 @@ function drawChart2() {
 
         // Add X axis
         let x = d3.scaleLinear()
-            .domain([0, 1000000])
+            .domain([0,max])
             .range([ 0, width]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -150,7 +170,7 @@ function drawChart2() {
         // Y axis
         let y = d3.scaleBand()
             .range([ 0, height ])
-            .domain(data.map(function(d) { return d.State; }))
+            .domain(data.map(function(d) { return d.Name; }))
             .padding(.1);
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -161,84 +181,95 @@ function drawChart2() {
             .enter()
             .append("rect")
             .attr("x", x(0) )
-            .attr("y", function(d) { return y(d.State); })
+            .attr("y", function(d) { return y(d.Name); })
             .attr("width", function(d) { return x(d.Value); })
             .attr("height", y.bandwidth() )
             .attr("fill", function (d) { return color(d.Color) })
     });
 
-    d3.select("#downloadSVG_02").on("click", function() {
+    d3.select("#downloadSVG").on("click", function() {
         d3.select(this)
-            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#chart_02").html()))
+            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#Bar_plot_chart").html()))
     });
 
 }
 
-function drawChart3(){
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function lollipopChartDraw(){
 
     const CONTAINER_HEIGHT = document.getElementsByClassName("chart").item(0).clientHeight;
     const CONTAINER_WIDTH = document.getElementsByClassName("chart").item(0).clientWidth;
 
+    var margin = {top: 20, right: 0, bottom: 30, left: 60},
+                width = CONTAINER_WIDTH - 80,
+                height = CONTAINER_HEIGHT - 55;
 
-    // set the dimensions and margins of the graph
-    let margin = {top: 10, right: 10, bottom: 30, left: 50},
-        width = CONTAINER_WIDTH - 80,
-        height = CONTAINER_HEIGHT - 40;
-
-    // append the svg object to the body of the page
-    let svg = d3.select("#chart_03")
-        .append("svg")
-        .attr("width", width + margin.left)
-        .attr("height", height + margin.bottom)
-        .append("g")
-        .attr("id", "visualization")
+    var svg = d3.select("#Lollipop_chart")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
+    d3.csv("../RESOURCES/CSV/chart_data.csv", function(data) {
 
-    //Read the data
-    //Insert csv file!!
-    d3.csv("../RESOURCES/CSV/chart_03.csv", function(data){
+    data.forEach(function(d) {
+        d.Value = +d.Value;
+        });
+    
+    var max = d3.max(data, function(d) { return d.Value; });
 
-        // Add X axis
-        let x = d3.scaleLinear()
-            .domain([1, 8])
-            .range([ 0, width ]);
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x))
-            .selectAll("text")
-            .attr("transform", "translate(-10,0) rotate(-45)")
-            .style("text-anchor", "end");
+    // X axis
+    var x = d3.scaleBand()
+    .range([ 0, width ])
+    .domain(data.map(function(d) { return d.Name; }))
+    .padding(1);
+    svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+        .attr("transform", "translate(-10,0)rotate(-45)")
+        .style("text-anchor", "end");
 
-        // Add Y axis
-        var y = d3.scaleLinear()
-            .domain([12, 55])
-            .range([ height, 0]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
+    // Add Y axis
+    var y = d3.scaleLinear()
+    .domain([0, max])
+    .range([ height, 0]);
+    svg.append("g")
+    .call(d3.axisLeft(y));
 
-        // Color scale: give me a specie name, I return a color
-        var color = d3.scaleOrdinal()
-            .domain(["color1", "color2", "color3" ])
-            .range([ "#440154ff", "#21908dff", "#fde725ff"]);
+    // Lines
+    svg.selectAll("myline")
+    .data(data)
+    .enter()
+    .append("line")
+        .attr("x1", function(d) { return x(d.Name); })
+        .attr("x2", function(d) { return x(d.Name); })
+        .attr("y1", function(d) { return y(d.Value); })
+        .attr("y2", y(0))
+        .attr("stroke", "grey")
 
-        // Add dots
-        svg.append('g')
-            .selectAll("dot")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d) { return x(d.label1); } )
-            .attr("cy", function (d) { return y(d.label2); } )
-            .attr("r", 3)
-            .style("fill", function (d) { return color(d.label3) } )
+    // Circles
+    svg.selectAll("mycircle")
+    .data(data)
+    .enter()
+    .append("circle")
+        .attr("cx", function(d) { return x(d.Name); })
+        .attr("cy", function(d) { return y(d.Value); })
+        .attr("r", "4")
+        .style("fill", "#69b3a2")
+        .attr("stroke", "black")
     });
-
-    d3.select("#downloadSVG_03").on("click", function() {
+    
+    d3.select("#downloadSVG").on("click", function() {
         d3.select(this)
-            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#chart_03").html()))
+            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#Lollipop_chart").html()))
     });
+
 }
+
 
 function refresh() { location.reload();}

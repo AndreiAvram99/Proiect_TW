@@ -18,6 +18,9 @@ class FilterContainerRow{
     }
 
     public function show(){
-        include("./../View/filter_container_row_view.php");
+        if($this->name == "chart_types_container[]")
+            include("./../View/filter_container_row_radio_view.php");
+        else 
+            include("./../View/filter_container_row_checkbox_view.php");
     }
 }

@@ -28,7 +28,7 @@
 
     <div class = "data-container">
 
-        <div class="events-title">
+        <div class="title">
             <p>Events</p>
             <div class="underline"></div>
         </div>

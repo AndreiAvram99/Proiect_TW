@@ -9,7 +9,7 @@
 <!--            </form>-->
 <!--        </div>-->
 
-        <div class="filters-title">
+        <div class="title">
             <p>Filters</p>
             <div class="underline"></div>
         </div>

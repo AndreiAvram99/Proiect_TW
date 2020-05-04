@@ -1,4 +1,3 @@
-  
   [type="date"] {
     background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
   }
@@ -50,27 +49,12 @@
     grid-template-rows: 37% 63%;
   }
 
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: darkslateblue; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: slateblue; 
+  .container-row{
+    margin-left: 10px;
   }
 
   .all-filters-container{
-    height: 450px;
+    height: 550px;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 43% 26% 31%;
@@ -104,6 +88,7 @@
 
   .filter-container-title>p{
     padding-left: 15px;
+    padding-right: 15px;
     color: white;
     font-weight: bold;
   }
@@ -115,4 +100,160 @@
     width: 100%;
     height: auto;
     overflow: auto;
+  }
+
+  .container{
+    display: grid;
+    grid-template-columns: auto;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1300px) {
+    
+    .all-filters-container{
+      height: 1200px;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-rows: 24% 23% 13% 20% 20%;
+
+    }
+
+    .date-container{
+      display: grid;
+      grid-template-columns: 100%;
+    }
+  } 
+
+
+
+  .check-box-style {
+    display: block;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .check-box-style input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .box-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .check-box-style:hover input ~ .box-checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .check-box-style input:checked ~ .box-checkmark {
+    background-color: slateblue;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .box-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .check-box-style input:checked ~ .box-checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .check-box-style .box-checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
+
+
+  .radio-style {
+    display: block;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .radio-style input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .radio-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .radio-style input ~ .radio-checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .radio-style input:checked ~ .radio-checkmark {
+    background-color: slateblue;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .radio-style input:checked ~ .radio-checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .radio-style .radio-checkmark:after {
+     top: 5px;
+    left: 5px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
   }

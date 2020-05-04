@@ -61,11 +61,6 @@ label{
     grid-column-end:4;
 }
 
-.filters-title{
-    font-size: 30px;
-    width: 100%;
-}
-
 input[type=text] {
     float: right;
     padding: 6px;
@@ -135,8 +130,6 @@ input[type=text] {
 
     .filter-menu input[type=text]{ float: left; }
 
-    .filters-title { width: 100%; }
-
     .left-filters { width: 100%; }
 
     .right-filters {
@@ -182,10 +175,6 @@ input[type=text] {
 }
 
 @media screen and (min-width: 2000px){
-    .filters-title p, h3{
-        font-size: xx-large;
-    }
-
     .filters-title p{
         font-size: 50px;
     }
