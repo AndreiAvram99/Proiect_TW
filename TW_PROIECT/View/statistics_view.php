@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <title>AVI</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <base href="statistics.html">
 
@@ -18,6 +17,7 @@
     <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
     
     <script type="text/javascript" src = "../JS/chartsScript.js"></script>
+    <script type="text/javascript" src = "../JS/validateChartsForm.js"></script>
     
 
 </head>
@@ -33,8 +33,7 @@
         <div class="underline"></div>
     </div>
     
-    <div class="container">
-    <form action="../Controller/statistics_controller.php">
+    <form name="all_filters_form" action="../Controller/statistics_controller.php" onsubmit="return validateForm()">
         <div class = "all-filters-container">
             <?php
                 load_states_container();
@@ -49,9 +48,9 @@
                         id="start" 
                         class="date"
                         name="start_date"
-                        value="1970-01-01"
+                        value = "<?php echo date('Y-m-d'); ?>"
                         min="1970-01-01" 
-                        max="2020-12-31">
+                        max="<?php echo date('Y-m-d'); ?>">
                 </div>
 
                 <div class="date-container-right">
@@ -60,9 +59,9 @@
                         id="end" 
                         class="date"
                         name="end_date"
-                        value="2018-07-22"
+                        value="<?php echo date('Y-m-d'); ?>"
                         min="2018-01-02" 
-                        max="2020-12-31">
+                        max="<?php echo date('Y-m-d'); ?>">
                 </div>
             </div>
 
@@ -70,20 +69,36 @@
                 load_sides_container();
                 load_severities_container();
                 load_chart_types_container();
-            ?>        
+            ?>  
+
+        </div>
+
+        <div class="title">
+            <p>Choose chart axis</p>
+            <div class="underline"></div>
+        </div>
+        
+        <div class = "chart_filters_container">
+            <?php
+                    load_xaxis_container();
+                    load_yaxis_container();
+            ?>
+
             <div class="submit-button">
                 <input id="filter-menu-submit-button" type="submit" name="submit" value="Submit">
             </div>
         </div>
     </form>
-</div>
+
     <div class="title">
         <p>Charts</p>
         <div class="underline"></div>
     </div>
 
     <div class="charts-container">
-        <?php load_chart_container();?>
+        <?php 
+            load_chart_container();
+        ?>
     </div>
 
 
