@@ -79,65 +79,31 @@
 
             <h3>Period when the accidents happened:</h3>
 
-            <div class="date-from">
-                <h4>From:</h4>
+            <div class="date-container">
+                <div class="date-from">
+                    <label>Accidents from:</label>
+                    <input type="date"
+                           id="start"
+                           class="date"
+                           name="start_date"
+                           value="1970-01-01"
+                           min="1970-01-01"
+                           max="2020-12-31">
+                </div>
 
-                <label for="dayFrom">Day:</label>
-                <select id="dayFrom" autocomplete="on">
-
-                    <option value="default" selected disabled hidden></option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-
-                </select>
-
-                <label for="monthFrom">Month:</label>
-                <select id="monthFrom" autocomplete="on">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="Jan.">Jan.</option>
-                    <option value="Feb.">Feb.</option>
-                    <option value="Mar.">Mar.</option>
-                </select>
-
-                <label for="yearFrom">Year:</label>
-                <select id="yearFrom">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                </select>
+                <div class="date-until">
+                    <label> Accidents until:</label>
+                    <input type="date"
+                           id="end"
+                           class="date"
+                           name="end_date"
+                           value="2018-07-22"
+                           min="1970-01-01"
+                           max="2020-12-31">
+                </div>
             </div>
 
-            <div class="date-to">
-                <h4>To:</h4>
 
-                <label for="dayTo">Day:</label>
-                <select id="dayTo" autocomplete="on" >
-                    <option value="default" selected disabled hidden></option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                </select>
-
-                <label for="monthTo">Month:</label>
-                <select id="monthTo" autocomplete="on">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="Jan.">Jan.</option>
-                    <option value="Feb.">Feb.</option>
-                    <option value="Mar.">Mar.</option>
-                </select>
-
-                <label for="yearTo">Year:</label>
-                <select id="yearTo">
-                    <option value="default" selected disabled hidden></option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                </select>
-            </div>
         </div>
     </div>
 
