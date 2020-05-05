@@ -21,6 +21,21 @@ label{
 
 }
 
+.date-container input{
+    background-color: white;
+    color: var(--search-bar-eyeglass-background-color);
+    padding: 5px;
+    width: auto;
+    border-color: var(--search-bar-eyeglass-background-color);
+    border-radius: 5px;
+    font-size: medium;
+}
+
+.date-until{
+    padding-top: 3px;
+}
+
+
 .filter-menu{
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -59,14 +74,6 @@ label{
 .sort-header{
     grid-column-start:1;
     grid-column-end:4;
-}
-
-input[type=text] {
-    float: right;
-    padding: 6px;
-    margin-top: 40px;
-    font-size: 17px;
-    border:1px solid var(--submit-button-background-color-hover);
 }
 
 .search-container{

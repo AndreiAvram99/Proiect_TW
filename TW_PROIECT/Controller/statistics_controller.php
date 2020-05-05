@@ -89,7 +89,7 @@ function create_chart($chart_param){
 
     foreach($events as $event){
         if (!array_key_exists($event[$chart_param], $csv_manager)) 
-            $csv_manager[$event[$chart_param]] = 0;
+            $csv_manager[$event[$chart_param]] = 1;
         else 
             $csv_manager[$event[$chart_param]] += 1;
     }

@@ -34,6 +34,10 @@ class EventModel
         $this->event_filtered_query->add_order_criteria($list, $type);
     }
 
+    public function add_limits($from, $count){
+        $this->event_filtered_query->add_limits($from, $count);
+    }
+
     public function execute_query_with_filters(){
         $sql = $this->event_filtered_query->get_sql_query();
         $result = $this->conn->query($sql);

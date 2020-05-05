@@ -4,13 +4,21 @@ class FilteredQuery{
     private $query = "";
     private $where = " WHERE true";
     private $order = " ORDER BY NULL asc";
+    private $from = 0;
+    private $count = 10000;
 
 
     public function __construct($columns, $table){
+        if (gettype($columns) != "array"){
+            echo "First parameter of method __construct from class FilteredQuery has to be array!";
+        }
         $this->query = "SELECT " . $this->get_string_list($columns, false) . " FROM " . $table;
     }
 
     public function add_in_filter($column, $list){
+        if (gettype($list) != "array"){
+            echo "Second parameter of method add_in_filter from class FilteredQuery has to be array!";
+        }
         $this->where .= " AND " . $column . " IN " . "(" . $this->get_string_list($list, true) . ")";
     }
 
@@ -24,8 +32,14 @@ class FilteredQuery{
         $this->order .= ", " . $this->get_string_list($list, true) . " " . $type;
     }
 
+    public function add_limits($from, $count){
+        $this->from = $from;
+        $this->count = $count;
+    }
+
     public function get_sql_query(){
-        return $this->query . $this->where . $this->order;
+        return $this->query . $this->where . $this->order .
+            " LIMIT " . $this->count . " OFFSET " . $this->from;
     }
 
     private function get_string_list($list, $asChar){
