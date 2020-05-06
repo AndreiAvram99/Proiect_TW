@@ -8,8 +8,9 @@ class FilterContainer{
 
     public function __construct($id, $title){
         
-        if($id != "chart_types_container")
+        if( !in_array($id, array("chart_types_container", "xaxis_container", "yaxis_container"))){
             $this->add_all_filter_button();
+        }
         
         $this->id = $id;
         $this->title = $title;

@@ -86,9 +86,9 @@
                            id="start"
                            class="date"
                            name="start_date"
-                           value="1970-01-01"
+                           value="<?php echo date('Y-m-d'); ?>"
                            min="1970-01-01"
-                           max="2020-12-31">
+                           max="<?php echo date('Y-m-d'); ?>">
                 </div>
 
                 <div class="date-until">
@@ -97,9 +97,9 @@
                            id="end"
                            class="date"
                            name="end_date"
-                           value="2018-07-22"
+                           value="<?php echo date('Y-m-d'); ?>"
                            min="1970-01-01"
-                           max="2020-12-31">
+                           max="<?php echo date('Y-m-d'); ?>">
                 </div>
             </div>
 

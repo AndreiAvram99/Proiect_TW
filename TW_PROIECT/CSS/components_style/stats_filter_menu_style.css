@@ -53,6 +53,13 @@
     margin-left: 10px;
   }
 
+
+  .chart_filters_container{
+    height: 300px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+
   .all-filters-container{
     height: 550px;
     display: grid;

@@ -4,6 +4,7 @@ include("filter_container_controller.php");
 include("chart_container_controller.php");
 
 $event_model = new EventModel();
+$events = get_events();
 
 function add_container($name, $title, $content_list){
    
@@ -47,8 +48,20 @@ function load_chart_types_container(){
     add_container("chart_types_container", "Choose chart type", $chart_types_list);
 }
 
+function load_xaxis_container(){
+    $xaxis_list = [ "State", "County", "City", "Side", "Severity"];
+    add_container("xaxis_container", "Choose x-axis", $xaxis_list);
+}
+
+function load_yaxis_container(){
+    $yaxis_list = [ "Nb-of-accidents", "Mean" ];
+    add_container("yaxis_container", "Choose y-axis", $yaxis_list);
+}
+
+
 function get_events(){
     $event_model = new EventModel();
+    
     $event_model->instantiate_query_with_filters(["*"]);
     if (isset($_REQUEST['states_container']) && !in_array('all', $_REQUEST['states_container']))
         $event_model->add_in_filter("state", $_REQUEST['states_container']);
@@ -70,28 +83,23 @@ function get_events(){
                                         $_REQUEST['start_date'],
                                         $_REQUEST['end_date']);
 
-
     return $event_model->execute_query_with_filters();
 }
 
-function create_chart($chart_param){
-    // aici trebuie creat chartul pe baza la events :D
-    //to do de luat coloanele din meniul 2
+
+function create_by_noa($xaxis){
 
     $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
     fputcsv($fp, array('Name', 'Value', 'Color'));
     
-    $chart_param = 'state'; //o sa trebuiasca scoasa !!!!
-
-    $events = get_events(); //events map
     $csv_manager = []; //pair name(x)-value(y)
     $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
 
-    foreach($events as $event){
-        if (!array_key_exists($event[$chart_param], $csv_manager)) 
-            $csv_manager[$event[$chart_param]] = 1;
+    foreach($GLOBALS['events'] as $event){
+        if (!array_key_exists($event[$xaxis], $csv_manager)) 
+            $csv_manager[$event[$xaxis]] = 1;
         else 
-            $csv_manager[$event[$chart_param]] += 1;
+            $csv_manager[$event[$xaxis]] += 1;
     }
 
     $color_index = 0;
@@ -103,9 +111,18 @@ function create_chart($chart_param){
 
 }
 
+function create_chart($chart_params){
+    // aici trebuie creat chartul pe baza la events :D
+    $xaxis = $chart_params[0];
+    $yaxis = $chart_params[1];
+
+    if($yaxis == "nb-of-accidents")
+        create_by_noa($xaxis);
+
+}
+
 function load_chart_container(){
-    
-    if(isset($_REQUEST['chart_types_container'])){
+    if(isset($_REQUEST['chart_types_container']) && sizeof($GLOBALS['events'])!=0 ){
         
         if(in_array('Pie-chart', $_REQUEST['chart_types_container']))
         { 
@@ -125,15 +142,27 @@ function load_chart_container(){
             $chart->show();
         }
     }
+    else 
+        echo "<p style='font-size:35px; text-align: center; margin-bottom: 90px;'> We can't find any result !!</p>"; 
 }
 
 
 include("./../View/statistics_view.php");
 
-if (isset($_REQUEST['submit'])){
-    $chart_param = ''; // trebuie extras din meniul 2
+function get_chart_params(){
+    $params = array();
 
-    create_chart($chart_param);
+    if (isset($_REQUEST['xaxis_container']) && isset($_REQUEST['yaxis_container'])){
+        debug_to_console($_REQUEST['xaxis_container']);
+        array_push($params, strtolower($_REQUEST['xaxis_container'][0]));
+        array_push($params, strtolower($_REQUEST['yaxis_container'][0]));
+        return $params;
+    }
+}
+
+if (isset($_REQUEST['submit'])){
+    $chart_params = get_chart_params();
+    create_chart($chart_params);
 }
 
 function debug_to_console($data) {

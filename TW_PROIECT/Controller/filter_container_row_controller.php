@@ -18,7 +18,7 @@ class FilterContainerRow{
     }
 
     public function show(){
-        if($this->name == "chart_types_container[]")
+        if(in_array($this->name, array("chart_types_container[]", "xaxis_container[]", "yaxis_container[]")))
             include("./../View/filter_container_row_radio_view.php");
         else 
             include("./../View/filter_container_row_checkbox_view.php");
