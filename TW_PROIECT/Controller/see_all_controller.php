@@ -60,6 +60,10 @@ function add_filters($event_model){
     }
 }
 
+function add_orders($event_model){
+
+}
+
 function load_events(){
     // to do: extrage numele autorului
     $event_model = new EventModel();
