@@ -1,3 +1,33 @@
 Name,Value,Color
-L,1420,slateblue
-R,8580,lightsalmon
+Solano,473,slateblue
+Alameda,1725,lightsalmon
+"Contra Costa",784,lightskyblue
+"Santa Clara",1272,lightgreen
+"San Francisco",291,slateblue
+Sonoma,434,lightsalmon
+Sacramento,1837,lightskyblue
+"San Mateo",552,lightgreen
+Yolo,182,slateblue
+Placer,300,lightsalmon
+Nevada,110,lightskyblue
+"El Dorado",188,lightgreen
+Marin,231,slateblue
+"San Joaquin",638,lightsalmon
+Mendocino,38,lightskyblue
+Lake,41,lightgreen
+Napa,102,slateblue
+"Santa Cruz",193,lightsalmon
+Monterey,140,lightskyblue
+Stanislaus,194,lightgreen
+Calaveras,58,slateblue
+Amador,42,lightsalmon
+"San Benito",39,lightskyblue
+Merced,70,lightgreen
+Sutter,7,slateblue
+Fresno,14,lightsalmon
+Butte,23,lightskyblue
+Colusa,7,lightgreen
+Yuba,5,slateblue
+Glenn,6,lightsalmon
+Sierra,3,lightskyblue
+Tuolumne,1,lightgreen
