@@ -53,6 +53,7 @@ body{
 }
 
 main{
+    display: block;
     margin-left: 14%;
     margin-right: 14%;
 }
@@ -100,6 +101,7 @@ main{
 
     /*Reset limits*/
     main {
+        width: 95%;
         margin-left: 2%;
         margin-right: 2%;
     }

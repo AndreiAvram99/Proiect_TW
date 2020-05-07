@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/charts_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/body_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/stats_filter_menu_style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/check_box_style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/components_style/input_date_style.css">
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -34,13 +37,16 @@
     </div>
     
     <form name="all_filters_form" action="../Controller/statistics_controller.php" onsubmit="return validateForm()">
-        <div class = "all-filters-container">
+        <div class = "all-filters-container" onchange="apearDisapearChartMenu()">
             <?php
                 load_states_container();
                 load_counties_container();
                 load_cities_container();
+                load_sides_container();
+                load_severities_container();
+                load_chart_types_container();
             ?>   
-            
+
             <div class="date-container">
                 <div class="date-container-left">     
                     <label>Accidents from:</label>
@@ -48,7 +54,7 @@
                         id="start" 
                         class="date"
                         name="start_date"
-                        value = "<?php echo date('Y-m-d'); ?>"
+                        value = "1970-01-01"
                         min="1970-01-01" 
                         max="<?php echo date('Y-m-d'); ?>">
                 </div>
@@ -65,29 +71,29 @@
                 </div>
             </div>
 
-            <?php
-                load_sides_container();
-                load_severities_container();
-                load_chart_types_container();
-            ?>  
-
         </div>
 
-        <div class="title">
-            <p>Choose chart axis</p>
-            <div class="underline"></div>
-        </div>
-        
-        <div class = "chart_filters_container">
-            <?php
-                    load_xaxis_container();
-                    load_yaxis_container();
-            ?>
-
-            <div class="submit-button">
-                <input id="filter-menu-submit-button" type="submit" name="submit" value="Submit">
+        <div class = "second-filter-menu" id = "second_filter_menu">
+            <div class="title"  id="chart_filters_title">
+                <p>Choose chart axis</p>
+                <div class="underline"></div>
             </div>
+            
+            <div class = "chart-filters-container" id="chart_filters_container">
+                <?php
+                        load_xaxis_container();
+                        load_yaxis_container();
+                ?>
+            
+                <div class="submit-button">
+                    <input id="filter-menu-submit-button" type="submit" name="submit" value="Submit">
+                </div>
+            
+            </div>
+
+            
         </div>
+
     </form>
 
     <div class="title">

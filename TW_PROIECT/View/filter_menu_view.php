@@ -86,7 +86,7 @@
                            id="start"
                            class="date"
                            name="start_date"
-                           value="<?php echo date('Y-m-d'); ?>"
+                           value="1970-01-01"
                            min="1970-01-01"
                            max="<?php echo date('Y-m-d'); ?>">
                 </div>
