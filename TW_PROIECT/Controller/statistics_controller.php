@@ -33,6 +33,11 @@ function load_cities_container(){
     add_container("cities_container", "Choose city", $cities_list);
 }
 
+function load_streets_name_container(){
+    $streets_name_list = $GLOBALS['event_model']->get_streets_name_list();
+    add_container("streets_name_container", "Choose street name", $streets_list);
+}
+
 function load_sides_container(){
     $sides_list = ["L", "R"];
     add_container("sides_container", "Choose side of accident", $sides_list);

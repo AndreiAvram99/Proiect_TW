@@ -179,6 +179,19 @@ class EventModel
         return $cities;
     }
 
+    public function get_streets_name_list(){
+        $sql_command = "SELECT DISTINCT street_name FROM events ORDER BY street_name ASC";
+        $result = $this->conn->query($sql_command);
+
+        $street_name = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($street_name, $row["street_name"]);
+            }
+        }
+        return $street_name;
+    }
+
     public function create_event($author_id, 
                                  $source, 
                                  $severity, 
