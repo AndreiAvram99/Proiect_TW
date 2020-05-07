@@ -54,7 +54,7 @@ function load_xaxis_container(){
 }
 
 function load_yaxis_container(){
-    $yaxis_list = [ "Nb-of-accidents", "Mean" ];
+    $yaxis_list = [ "Number-of-accidents", "Mean-of-severity", "Mean-of-distance" ];
     add_container("yaxis_container", "Choose y-axis", $yaxis_list);
 }
 
@@ -63,19 +63,19 @@ function get_events(){
     $event_model = new EventModel();
     
     $event_model->instantiate_query_with_filters(["*"]);
-    if (isset($_REQUEST['states_container']) && !in_array('all', $_REQUEST['states_container']))
+    if (isset($_REQUEST['states_container']) && !in_array('All', $_REQUEST['states_container']))
         $event_model->add_in_filter("state", $_REQUEST['states_container']);
 
-    if (isset($_REQUEST['counties_container']) && !in_array('all', $_REQUEST['counties_container']))
+    if (isset($_REQUEST['counties_container']) && !in_array('All', $_REQUEST['counties_container']))
         $event_model->add_in_filter("county", $_REQUEST['counties_container']);
 
-    if (isset($_REQUEST['cities_container']) && !in_array('all', $_REQUEST['cities_container']))
+    if (isset($_REQUEST['cities_container']) && !in_array('All', $_REQUEST['cities_container']))
         $event_model->add_in_filter("city", $_REQUEST['cities_container']);
 
-    if (isset($_REQUEST['sides_container']) && !in_array('all', $_REQUEST['sides_container']))
+    if (isset($_REQUEST['sides_container']) && !in_array('All', $_REQUEST['sides_container']))
         $event_model->add_in_filter("side", $_REQUEST['sides_container']);
 
-    if (isset($_REQUEST['severities_container']) && !in_array('all', $_REQUEST['severities_container']))
+    if (isset($_REQUEST['severities_container']) && !in_array('All', $_REQUEST['severities_container']))
         $event_model->add_in_filter("severity", $_REQUEST['severities_container']);
 
     if (isset($_REQUEST['start_date']) && isset($_REQUEST['end_date']))
@@ -115,8 +115,8 @@ function create_chart($chart_params){
     // aici trebuie creat chartul pe baza la events :D
     $xaxis = $chart_params[0];
     $yaxis = $chart_params[1];
-
-    if($yaxis == "nb-of-accidents")
+    debug_to_console($yaxis);
+    if($yaxis == "Number-of-accidents")
         create_by_noa($xaxis);
 
 }
@@ -153,9 +153,9 @@ function get_chart_params(){
     $params = array();
 
     if (isset($_REQUEST['xaxis_container']) && isset($_REQUEST['yaxis_container'])){
-        debug_to_console($_REQUEST['xaxis_container']);
+        debug_to_console($_REQUEST['xaxis_container'][0]);
         array_push($params, strtolower($_REQUEST['xaxis_container'][0]));
-        array_push($params, strtolower($_REQUEST['yaxis_container'][0]));
+        array_push($params, $_REQUEST['yaxis_container'][0]);
         return $params;
     }
 }

@@ -6,14 +6,12 @@ class FilterContainer{
     private $id = "";
     private $title;
 
-    public function __construct($id, $title){
-        
+    public function __construct($id, $title){ 
+        $this->id = $id;
+        $this->title = $title;
         if( !in_array($id, array("chart_types_container", "xaxis_container", "yaxis_container"))){
             $this->add_all_filter_button();
         }
-        
-        $this->id = $id;
-        $this->title = $title;
     }
     
     public function add_all_filter_button()
