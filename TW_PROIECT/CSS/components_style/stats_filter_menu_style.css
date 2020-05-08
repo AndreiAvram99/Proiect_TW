@@ -1,8 +1,8 @@
   .all-filters-container{
-    height: 550px;
+    height: 3750px;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 40% 40% 20%;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   }
 
   .filter-container {

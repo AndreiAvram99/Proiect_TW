@@ -140,6 +140,20 @@ class EventModel
         return $result->fetch_assoc()["count"];
     }
 
+    
+    public function get_column_list($column, $table){
+        $sql_command = "SELECT DISTINCT ".$column." FROM ".$table." ORDER BY ".$column." ASC";
+        $result = $this->conn->query($sql_command);
+        
+        $column_list = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($column_list, $row[$column]);
+            }
+        }
+        return $column_list;
+    }
+
     public function get_states_list(){
         $sql_command = "SELECT DISTINCT state FROM events ORDER BY state ASC";
         $result = $this->conn->query($sql_command);
@@ -177,19 +191,6 @@ class EventModel
             }
         }
         return $cities;
-    }
-
-    public function get_streets_name_list(){
-        $sql_command = "SELECT DISTINCT street_name FROM events ORDER BY street_name ASC";
-        $result = $this->conn->query($sql_command);
-
-        $street_name = [];
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
-                array_push($street_name, $row["street_name"]);
-            }
-        }
-        return $street_name;
     }
 
     public function create_event($author_id, 
