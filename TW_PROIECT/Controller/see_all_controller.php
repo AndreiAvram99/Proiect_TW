@@ -61,7 +61,15 @@ function add_filters($event_model){
 }
 
 function add_orders($event_model){
+    if(isset($_REQUEST["sort_by_date"]) && $_REQUEST["sort_by_date"] != "none"){
+        $type = $_REQUEST["sort_by_date"];
+        $event_model->add_order_criteria(["start_time"], $type);
+    }
 
+    if(isset($_REQUEST["sort_by_state"]) && $_REQUEST["sort_by_state"] != "none"){
+        $type = $_REQUEST["sort_by_state"];
+        $event_model->add_order_criteria(["state"], $type);
+    }
 }
 
 function load_events(){
@@ -73,12 +81,14 @@ function load_events(){
 
     $event_model->instantiate_query_with_filters(["*"]);
     add_filters($event_model);
+    add_orders($event_model);
     $event_model->add_limits($from, $count);
     $events = $event_model->execute_query_with_filters();
 
     foreach ($events as $event){
         $event_title = "Accdinent happen in ".$event["state"].", city: ".$event["city"].", date: ".$event["start_time"];
         $event_controller = new eventController($event_title, $event["author_id"], $event["description"]);
+        $event_controller->set_id($event["id"]);
         $event_controller->show();
     }
 }

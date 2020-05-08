@@ -59,17 +59,21 @@
             </div>
 
             <div class="sort-by-date">
-                <input type="checkbox" id="ascByDate" name="descByDate" value="0">
-                <label for="ascByDate"> Sort asc by date</label><br>
-                <input type="checkbox" id="descByDate" name="descByDate" value="1">
-                <label for="descByDate"> Sort desc by date</label><br>
+                <input type="radio" id="asc_by_date" name="sort_by_date" value="asc">
+                <label for="asc_by_date"> Sort asc by date</label><br>
+                <input type="radio" id="desc_by_date" name="sort_by_date" value="desc">
+                <label for="desc_by_date"> Sort desc by date</label><br>
+                <input type="radio" id="none" name="sort_by_date" value="none">
+                <label for="none"> None </label><br>
             </div>
 
             <div class="sort-by-state">
-                <input type="checkbox" id="ascByState" name="ascByState" value="0">
-                <label for="ascByState"> Sort asc by state</label><br>
-                <input type="checkbox" id="descByState" name="vehicle2" value="1">
-                <label for="descByState"> Sort desc by state</label><br>
+                <input type="radio" id="asc_by_state" name="sort_by_state" value="asc">
+                <label for="asc_by_state"> Sort asc by state</label><br>
+                <input type="radio" id="desc_by_state" name="sort_by_state" value="desc">
+                <label for="desc_by_state"> Sort desc by state</label><br>
+                <input type="radio" id="none" name="sort_by_state" value="none">
+                <label for="none"> None </label><br>
             </div>
         </div>
     </div>

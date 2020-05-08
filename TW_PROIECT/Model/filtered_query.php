@@ -29,7 +29,7 @@ class FilteredQuery{
     // type = asc, desc
     // list = list of order criteria
     public function add_order_criteria($list, $type){
-        $this->order .= ", " . $this->get_string_list($list, true) . " " . $type;
+        $this->order .= ", " . $this->get_string_list($list, false) . " " . $type;
     }
 
     public function add_limits($from, $count){

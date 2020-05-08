@@ -28,7 +28,7 @@
             </span>
         </div>
         <div class = "event-footer-right">
-            <a href="../HTML/eventDescription.html"><button type="button" class = "event-see-more-button" id = "seeMore"> See more</button></a>
+            <a href=<?php echo $this->get_event_page_link()?>><button type="button" class = "event-see-more-button" id = "seeMore"> See more</button></a>
         </div>
     </div>
 </div>

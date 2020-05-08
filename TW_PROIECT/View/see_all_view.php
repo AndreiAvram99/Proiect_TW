@@ -40,9 +40,9 @@
         <div class="center">
             <div class = "pagination" id = "seeAllPagination">
                 <form action = "see_all_controller.php" method="get">
+<!--                here pages will be inserted-->
                     <?php load_pagination();?>
                 </form>
-<!--            here pages will be inserted-->
             </div>
         </div>
     </div>
