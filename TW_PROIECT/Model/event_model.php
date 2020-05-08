@@ -140,6 +140,20 @@ class EventModel
         return $result->fetch_assoc()["count"];
     }
 
+    
+    public function get_column_list($column, $table){
+        $sql_command = "SELECT DISTINCT ".$column." FROM ".$table." ORDER BY ".$column." ASC";
+        $result = $this->conn->query($sql_command);
+        
+        $column_list = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($column_list, $row[$column]);
+            }
+        }
+        return $column_list;
+    }
+
     public function get_states_list(){
         $sql_command = "SELECT DISTINCT state FROM events ORDER BY state ASC";
         $result = $this->conn->query($sql_command);
@@ -179,30 +193,137 @@ class EventModel
         return $cities;
     }
 
-    public function create_event($author_id, $severity, $description, $start_time, $city, $county, $state, $distance, $side){
+    public function create_event($author_id, 
+                                 $source, 
+                                 $severity, 
+                                 $description, 
+                                 $start_time, 
+                                 $start_lat, 
+                                 $start_lng, 
+                                 $city, 
+                                 $county, 
+                                 $state, 
+                                 $distance, 
+                                 $street_nb,
+                                 $stree_name,
+                                 $side,
+                                 $timezone,
+                                 $airport_code,
+                                 $temperature,
+                                 $wind_chill,
+                                 $humidity,
+                                 $pressure,
+                                 $visibility,
+                                 $wind_direction,
+                                 $wind_speed,
+                                 $precipitation,
+                                 $weather_condition,
+                                 $amenity,
+                                 $bump,
+                                 $crossing,
+                                 $give_way,
+                                 $junction,
+                                 $no_exit,
+                                 $railway,
+                                 $roundabout,
+                                 $station,
+                                 $stop,
+                                 $traffic_calming,
+                                 $traffic_signal,
+                                 $turn_loop,
+                                 $sunrise_sunset,
+                                 $civil_twilight,
+                                 $nautical_twilight,
+                                 $astronomical_twilight){
 
         $sql_command = "INSERT INTO events (
                                                 author_id,
+                                                source,
                                                 severity,
                                                 description,
                                                 start_time,
+                                                start_lat,
+                                                start_lng,
                                                 city,
                                                 county,
                                                 state,
                                                 distance,
-                                                side)
-                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                                street_nb,
+                                                street_name,
+                                                side,
+                                                timezone,
+                                                airport_code,
+                                                temperature,
+                                                wind_chill,
+                                                humidity,
+                                                pressure,
+                                                visibility,
+                                                wind_direction,
+                                                wind_speed,
+                                                precipitation,
+                                                weather_condition,
+                                                amenity,
+                                                bump,
+                                                crossing,
+                                                give_way,
+                                                junction,
+                                                no_exit,
+                                                railway,
+                                                roundabout,
+                                                station,
+                                                stop,
+                                                traffic_calming,
+                                                traffic_signal,
+                                                turn_loop,
+                                                sunrise_sunset,
+                                                civil_twilight,
+                                                nautical_twilight,
+                                                astronomical_twilight)
+                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql_command);
-        $stmt->bind_param("iisssssds", $author_id,
-            $severity,
-            $description,
-            $start_time,
-            $city,
-            $county,
-            $state,
-            $distance,
-            $side);
+        $stmt->bind_param("isissddsssdissssdddddsddsiiiiiiiiiiiiissss", $author_id,
+                                                                        $source, 
+                                                                        $severity, 
+                                                                        $description, 
+                                                                        $start_time, 
+                                                                        $start_lat, 
+                                                                        $start_lng, 
+                                                                        $city, 
+                                                                        $county, 
+                                                                        $state, 
+                                                                        $distance, 
+                                                                        $street_nb,
+                                                                        $stree_name,
+                                                                        $side,
+                                                                        $timezone,
+                                                                        $airport_code,
+                                                                        $temperature,
+                                                                        $wind_chill,
+                                                                        $humidity,
+                                                                        $pressure,
+                                                                        $visibility,
+                                                                        $wind_direction,
+                                                                        $wind_speed,
+                                                                        $precipitation,
+                                                                        $weather_condition,
+                                                                        $amenity,
+                                                                        $bump,
+                                                                        $crossing,
+                                                                        $give_way,
+                                                                        $junction,
+                                                                        $no_exit,
+                                                                        $railway,
+                                                                        $roundabout,
+                                                                        $station,
+                                                                        $stop,
+                                                                        $traffic_calming,
+                                                                        $traffic_signal,
+                                                                        $turn_loop,
+                                                                        $sunrise_sunset,
+                                                                        $civil_twilight,
+                                                                        $nautical_twilight,
+                                                                        $astronomical_twilight);
         $stmt->execute();
         $stmt->close();
     }

@@ -5,23 +5,29 @@ class FilterContainer{
     private $rows = array();
     private $id = "";
     private $title;
+    private $container_type;
 
-    public function __construct($id, $title){ 
+    public function __construct($id, $title, $container_type){ 
         $this->id = $id;
         $this->title = $title;
-        if( !in_array($id, array("chart_types_container", "xaxis_container", "yaxis_container"))){
+        $this->container_type = $container_type;
+        
+        if($container_type == 0){
             $this->add_all_filter_button();
         }
     }
     
     public function add_all_filter_button()
     {
-        $row = new FilterContainerRow("All", $this->get_id()."[]");
+        $row = new FilterContainerRow("All", $this->get_id()."[]", 0);
         array_push($this->rows, $row);    
     }
 
     public function add_row($value){
-        $row = new FilterContainerRow($value, $this->get_id()."[]");
+        if($this->container_type == 0 || $this->container_type == 1)
+            $row = new FilterContainerRow($value, $this->get_id()."[]", $this->container_type);
+        else 
+            $row = new FilterContainerRow($value, $this->get_id(), $this->container_type);
         array_push($this->rows, $row);
     }
 

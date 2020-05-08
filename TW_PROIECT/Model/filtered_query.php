@@ -56,7 +56,12 @@ class FilteredQuery{
             }
             else{
                 if ($first) {
-                    $string_list = $element;
+                    if($element == 'Yes')
+                        str_replace('Yes', '1');
+                    if($element == 'No')
+                        str_replace('No', '0');
+                    
+                    $string_list = str_replace('_', ' ', $element);
                     $first = false;
                 } else {
                     $string_list .= ", " . $element;
