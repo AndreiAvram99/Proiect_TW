@@ -1,6 +1,7 @@
 <?php
 
 include("event_controller.php");
+
 function create_event(){
     $event = new eventController("titlu", "autor", "ceva descriere");
 

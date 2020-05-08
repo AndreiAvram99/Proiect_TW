@@ -1,5 +1,5 @@
 <?php
-include('./../../config.php');
+include('./../../../config.php');
 
 class Database{
     private static $dbi_instance = null;

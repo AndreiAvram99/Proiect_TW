@@ -20,11 +20,11 @@
 
 <body>
 
-    <?php include("navBar.html")?>
+    <?php include("navBar.html") ?>
 
 <main>
 
-    <?php include("../Controller/filter_menu_controller.php")?>
+    <?php include("../Controller/filter_menu_controller.php") ?>
 
     <div class = "data-container">
 
