@@ -18,78 +18,17 @@ $events_per_page = 10;
 if (isset($_REQUEST["page_number"])){
     $current_page = $_REQUEST["page_number"] - 1;
 }
-//
-//$current_state = null;
-//if (isset($_REQUEST["state"]) && $_REQUEST["state"] != "all"){
-//    $current_state = $_REQUEST["state"];
-//}
-//
-//$current_county = null;
-//if (isset($_REQUEST["county"]) && $_REQUEST["county"] != "all"){
-//    $current_county = $_REQUEST["county"];
-//}
-//
-//$current_city = null;
-//if (isset($_REQUEST["city"]) && $_REQUEST["city"] != "all"){
-//    $current_city = $_REQUEST["city"];
-//}
-//
-//$start_date = null;
-//if (isset($_REQUEST["start_date"])){
-//    $start_date =  $_REQUEST["start_date"];
-//}
-//
-//$end_date = null;
-//if (isset($_REQUEST["end_date"])){
-//    $end_date = $_REQUEST["end_date"];
-//}
 
 function get_self(){
     return "see_all_controller.php";
 }
-//
-//function add_filters($event_model){
-//    if ($GLOBALS["current_state"] != null)
-//        $event_model->add_in_filter("state", [$GLOBALS["current_state"]]);
-//    if ($GLOBALS["current_county"] != null)
-//        $event_model->add_in_filter("county", [$GLOBALS["current_county"]]);
-//    if ($GLOBALS["current_city"] != null)
-//        $event_model->add_in_filter("city", [$GLOBALS["current_city"]]);
-//    if ($GLOBALS["start_date"] != null && $GLOBALS["end_date"] != null) {
-//        $event_model->add_between_filter("start_time", $GLOBALS["start_date"], $GLOBALS["end_date"]);
-//    }
-//}
-//
-//function add_orders($event_model){
-//    if(isset($_REQUEST["sort_by_date"]) && $_REQUEST["sort_by_date"] != "none"){
-//        $type = $_REQUEST["sort_by_date"];
-//        $event_model->add_order_criteria(["start_time"], $type);
-//    }
-//
-//    if(isset($_REQUEST["sort_by_state"]) && $_REQUEST["sort_by_state"] != "none"){
-//        $type = $_REQUEST["sort_by_state"];
-//        $event_model->add_order_criteria(["state"], $type);
-//    }
-//}
-
-function get_events(){
-    $event_model = new EventModel();
-    return $event_model->get_events();
-}
 
 function load_events(){
-    // to do: extrage numele autorului
-
     $from = $GLOBALS['current_page'] * $GLOBALS['events_per_page'];
     $count = $GLOBALS['events_per_page'];
 
-//    $event_model->instantiate_query_with_filters(["*"]);
-//    add_filters($event_model);
-//    add_orders($event_model);
-//    $event_model->add_limits($from, $count);
-//    $events = $event_model->execute_query_with_filters();
-
-    $events = get_events();
+    $event_model = new EventModel();
+    $events = $event_model->get_events_with_limits($from, $count);
     foreach ($events as $event){
         $event_title = "Accdinent happen in ".$event["state"].", city: ".$event["city"].", date: ".$event["start_time"];
         $event_controller = new eventController($event_title, $event["author_id"], $event["description"]);
@@ -117,11 +56,7 @@ function load_pagination(){
     // to do: daca sunt multe butoane afiseaza doar primele, ultimele si mijloc.
     $event_model = new EventModel();
 
-    $event_model->instantiate_query_with_filters(["COUNT('a')"]);
-    add_filters($event_model);
-    $event_model->add_limits(0, 100000000);
-    $events_number = $event_model->execute_query_with_filters()[0]["COUNT('a')"];
-
+    $events_number = $event_model->get_count();
     $number_of_pages = ceil($events_number / $GLOBALS["events_per_page"]);
 
     if ($number_of_pages <= 7) {

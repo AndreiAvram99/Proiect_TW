@@ -7,7 +7,13 @@ class Events
     static function get_events(){
         $event_model = new EventModel();
 
-        $event_model->instantiate_query_with_filters(["*"]);
+        if (isset($_REQUEST['columns']))
+            $event_model->instantiate_query_with_filters($_REQUEST['columns']);
+        else
+            $event_model->instantiate_query_with_filters(["*"]);
+
+        if (isset($_REQUEST['limits_from']) && isset($_REQUEST['limits_count']))
+            $event_model->add_limits($_REQUEST['limits_from'], $_REQUEST['limits_count']);
 
         if (isset($_REQUEST['sources_container']) && !in_array('All', $_REQUEST['sources_container']))
             $event_model->add_in_filter("source", $_REQUEST['sources_container']);
