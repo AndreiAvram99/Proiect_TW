@@ -1,17 +1,25 @@
   .all-filters-container{
-    height: 3750px;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    height: auto;
+    display: block;
   }
 
-  .filter-container {
+  .all-filters-part{
+    height: auto;
     display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    overflow: hidden;
+  }
+  
+  .filter-container {
+    height: var(--container-height);
+    display: grid;
+    
     border-radius: 5px;
     grid-template-rows: 27% 73%;
     margin: 10px 10px 10px 10px;
     box-shadow: 0px 2px 15px -3px rgba(0,0,0,0.75);
   }
+
   .filter-container-title{
     background-color: darkslateblue;
     border-radius: 5px 5px 0px 0px;
@@ -26,10 +34,10 @@
   }
   
   .filter-container-rows{
+    width: 100%;
     padding-top: 6px;
     background-color: white;
     border-radius: 0px 0px 5px 5px;
-    width: 100%;
     overflow: auto;
   } 
 
@@ -83,15 +91,12 @@
   }
 
 
-  @media screen and (max-width: 1000px) {
-    
-    .all-filters-container{
-      height: 800px;
-      display: grid;
-      grid-template-columns: 50% 50%;
-      grid-template-rows: 30% 30% 30% 10%;
+  @media screen and (max-width: 1200px) {
 
+    .all-filters-part{
+      grid-template-columns: 33% 33% 33%;
     }
+    
     .chart-filters-container{
       grid-template-columns: 50% 50%;
       grid-template-rows: 80% 20%;     
@@ -109,15 +114,12 @@
     }
   } 
 
-  @media screen and (max-width: 520px) {
-    
-    .all-filters-container{
-      height: 1600px;
-      display: block;
-    }
 
-    .all-filters-container>div{
-      height: 14%;
+
+  @media screen and (max-width: 620px) {
+    
+    .all-filters-part{
+      grid-template-columns: 50% 50%;
     }
 
     .chart-filters-container{
@@ -158,6 +160,13 @@
     }
 
   } 
+
+  @media screen and (max-width: 420px) {
+    .all-filters-part{
+      grid-template-columns: 100%;
+    }
+
+  }
 
 
   

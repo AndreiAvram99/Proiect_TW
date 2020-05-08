@@ -91,6 +91,7 @@ function create_by_noa($xaxis){
     $csv_manager = []; //pair name(x)-value(y)
     $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
 
+
     foreach($GLOBALS['events'] as $event){
         if (!array_key_exists($event[$xaxis], $csv_manager)) 
             $csv_manager[$event[$xaxis]] = 1;
@@ -111,7 +112,6 @@ function create_chart($chart_params){
     // aici trebuie creat chartul pe baza la events :D
     $xaxis = $chart_params[0];
     $yaxis = $chart_params[1];
-    debug_to_console($yaxis);
     if($yaxis == "Number-of-accidents")
         create_by_noa($xaxis);
 
@@ -149,7 +149,6 @@ function get_chart_params(){
     $params = array();
 
     if (isset($_REQUEST['xaxis_container']) && isset($_REQUEST['yaxis_container'])){
-        debug_to_console($_REQUEST['xaxis_container'][0]);
         array_push($params, strtolower($_REQUEST['xaxis_container'][0]));
         array_push($params, $_REQUEST['yaxis_container'][0]);
         return $params;

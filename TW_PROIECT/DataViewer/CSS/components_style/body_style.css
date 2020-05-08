@@ -45,6 +45,9 @@
         /* Chart container */
         --chart-container-download-menu-background-color : var(--pallete-color-1);
 
+        /* Stats container height */
+        --container-height : 250px;
+
 }
 
 body{
