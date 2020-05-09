@@ -4,6 +4,7 @@
                              value=<?php echo $this->get_min();?> 
                              min=<?php echo $this->get_min();?>
                              max=<?php echo $this->get_max();?>
+                             step="0.00001"
         >
     <br>
     </label>
@@ -13,6 +14,7 @@
                              value=<?php echo $this->get_max();?> 
                              min=<?php echo $this->get_min();?>
                              max=<?php echo $this->get_max();?>
+                             step="0.00001"
         >
     </label>
 </div>
