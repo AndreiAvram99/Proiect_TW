@@ -15,29 +15,29 @@ class Events
         if (isset($_REQUEST['limits_from']) && isset($_REQUEST['limits_count']))
             $event_model->add_limits($_REQUEST['limits_from'], $_REQUEST['limits_count']);
 
-        if (isset($_REQUEST['sources_container']) && !in_array('All', $_REQUEST['sources_container']))
-            $event_model->add_in_filter("source", $_REQUEST['sources_container']);
+        if (isset($_REQUEST['source_container']) && !in_array('All', $_REQUEST['source_container']))
+            $event_model->add_in_filter("source", $_REQUEST['source_container']);
 
-        if (isset($_REQUEST['states_container']) && !in_array('All', $_REQUEST['states_container']))
-            $event_model->add_in_filter("state", $_REQUEST['states_container']);
+        if (isset($_REQUEST['state_container']) && !in_array('All', $_REQUEST['state_container']))
+            $event_model->add_in_filter("state", $_REQUEST['state_container']);
 
-        if (isset($_REQUEST['counties_container']) && !in_array('All', $_REQUEST['counties_container']))
-            $event_model->add_in_filter("county", $_REQUEST['counties_container']);
+        if (isset($_REQUEST['county_container']) && !in_array('All', $_REQUEST['county_container']))
+            $event_model->add_in_filter("county", $_REQUEST['county_container']);
 
-        if (isset($_REQUEST['cities_container']) && !in_array('All', $_REQUEST['cities_container']))
-            $event_model->add_in_filter("city", $_REQUEST['cities_container']);
+        if (isset($_REQUEST['city_container']) && !in_array('All', $_REQUEST['city_container']))
+            $event_model->add_in_filter("city", $_REQUEST['city_container']);
 
-        if (isset($_REQUEST['streets_name_container']) && !in_array('All', $_REQUEST['streets_name_container']))
-            $event_model->add_in_filter("street_name", $_REQUEST['streets_name_container']);
+        if (isset($_REQUEST['street_name_container']) && !in_array('All', $_REQUEST['street_name_container']))
+            $event_model->add_in_filter("street_name", $_REQUEST['street_name_container']);
 
-        if (isset($_REQUEST['timezones_container']) && !in_array('All', $_REQUEST['timezones_container']))
-            $event_model->add_in_filter("timezone", $_REQUEST['timezones_container']);
+        if (isset($_REQUEST['timezone_container']) && !in_array('All', $_REQUEST['timezone_container']))
+            $event_model->add_in_filter("timezone", $_REQUEST['timezone_container']);
 
-        if (isset($_REQUEST['airports_code_container']) && !in_array('All', $_REQUEST['airports_code_container']))
-            $event_model->add_in_filter("airport_code", $_REQUEST['airports_code_container']);
+        if (isset($_REQUEST['airport_code_container']) && !in_array('All', $_REQUEST['airport_code_container']))
+            $event_model->add_in_filter("airport_code", $_REQUEST['airport_code_container']);
 
-        if (isset($_REQUEST['wind_directions_container']) && !in_array('All', $_REQUEST['wind_directions_container']))
-            $event_model->add_in_filter("wind_direction", $_REQUEST['wind_directions_container']);
+        if (isset($_REQUEST['wind_direction_container']) && !in_array('All', $_REQUEST['wind_direction_container']))
+            $event_model->add_in_filter("wind_direction", $_REQUEST['wind_direction_container']);
 
         if (isset($_REQUEST['weather_condition_container']) && !in_array('All', $_REQUEST['weather_condition_container']))
             $event_model->add_in_filter("weather_condition", $_REQUEST['weather_condition_container']);
@@ -54,14 +54,11 @@ class Events
         if (isset($_REQUEST['astronomical_twilight_container']) && !in_array('All', $_REQUEST['astronomical_twilight_container']))
             $event_model->add_in_filter("astronomical_twilight", $_REQUEST['astronomical_twilight_container']);
 
-        if (isset($_REQUEST['sides_container']) && !in_array('All', $_REQUEST['sides_container']))
-            $event_model->add_in_filter("side", $_REQUEST['sides_container']);
+        if (isset($_REQUEST['side_container']) && !in_array('All', $_REQUEST['side_container']))
+            $event_model->add_in_filter("side", $_REQUEST['side_container']);
 
-        if (isset($_REQUEST['severities_container']) && !in_array('All', $_REQUEST['severities_container']))
-            $event_model->add_in_filter("severity", $_REQUEST['severities_container']);
-
-
-
+        if (isset($_REQUEST['severity_container']) && !in_array('All', $_REQUEST['severity_container']))
+            $event_model->add_in_filter("severity", $_REQUEST['severity_container']);
 
         if (isset($_REQUEST['amenity_container']) && !in_array('All', $_REQUEST['amenity_container']))
             $event_model->add_in_filter("amenity", $_REQUEST['amenity_container']);
@@ -102,16 +99,15 @@ class Events
         if (isset($_REQUEST['stop_container']) && !in_array('All', $_REQUEST['stop_container']))
             $event_model->add_in_filter("stop", $_REQUEST['stop_container']);
 
-
-        if (isset($_REQUEST['latitude_min']) && isset($_REQUEST['latitude_max']))
+        if (isset($_REQUEST['start_lat_min']) && isset($_REQUEST['start_lat_max']))
             $event_model->add_between_filter("start_lat",
-                $_REQUEST['latitude_min'],
-                $_REQUEST['latitude_max']);
+                $_REQUEST['start_lat_min'],
+                $_REQUEST['start_lat_max']);
 
-        if (isset($_REQUEST['longitude_min']) && isset($_REQUEST['longitude_max']))
+        if (isset($_REQUEST['start_lng_min']) && isset($_REQUEST['start_lng_max']))
             $event_model->add_between_filter("start_lng",
-                $_REQUEST['longitude_min'],
-                $_REQUEST['longitude_max']);
+                $_REQUEST['start_lng_min'],
+                $_REQUEST['start_lng_max']);
 
         if (isset($_REQUEST['distance_min']) && isset($_REQUEST['end_date_max']))
             $event_model->add_between_filter("distance",
@@ -123,10 +119,10 @@ class Events
                 $_REQUEST['street_nb_min'],
                 $_REQUEST['street_nb_max']);
 
-        if (isset($_REQUEST['temperature(c)_min']) && isset($_REQUEST['temperature(c)_max']))
+        if (isset($_REQUEST['temperature_min']) && isset($_REQUEST['temperature_max']))
             $event_model->add_between_filter("temperature",
-                $_REQUEST['temperature(c)_min'],
-                $_REQUEST['temperature(c)_max']);
+                $_REQUEST['temperature_min'],
+                $_REQUEST['temperature_max']);
 
         if (isset($_REQUEST['wind_chill_min']) && isset($_REQUEST['wind_chill_max']))
             $event_model->add_between_filter("wind_chill",
@@ -137,7 +133,6 @@ class Events
             $event_model->add_between_filter("humidity",
                 $_REQUEST['humidity_min'],
                 $_REQUEST['humidity_max']);
-
 
         if (isset($_REQUEST['pressure_min']) && isset($_REQUEST['pressure_max']))
             $event_model->add_between_filter("pressure",
@@ -158,9 +153,6 @@ class Events
             $event_model->add_between_filter("precipitation",
                 $_REQUEST['precipitation_min'],
                 $_REQUEST['precipitation_max']);
-
-
-
 
         if (isset($_REQUEST['start_date']) && isset($_REQUEST['end_date']))
             $event_model->add_between_filter("start_time",

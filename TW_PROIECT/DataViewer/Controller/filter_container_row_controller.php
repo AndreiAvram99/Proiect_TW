@@ -4,10 +4,14 @@ class FilterContainerRow{
     private $name;
     private $value;
     private $container_type;
+    private $min;
+    private $max;
 
-    public function __construct($value, $name, $container_type){
+    public function __construct($value, $name, $min, $max, $container_type){
         $this->value = $value;
         $this->name = $name;
+        $this->min = $min;
+        $this->max = $max;
         $this->container_type = $container_type;
     }
 
@@ -27,4 +31,13 @@ class FilterContainerRow{
         if($this->container_type == 2)
             include("./../View/filter_container_row_between_view.php");
     }
+
+    public function get_min(){
+        return $this->min;
+    }
+
+    public function get_max(){
+        return $this->max;
+    }
+ 
 }

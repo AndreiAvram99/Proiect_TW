@@ -1,9 +1,18 @@
 <div class="container-row">
     <label> <?php echo ($this->get_value().' min: ');?>
-        <input type="number" name=<?php echo $this->get_name().'_min';?> min="-10000" max="10000"><br>
+        <input type="number" name=<?php echo $this->get_name().'_min';?>
+                             value=<?php echo $this->get_min();?> 
+                             min=<?php echo $this->get_min();?>
+                             max=<?php echo $this->get_max();?>
+        >
+    <br>
     </label>
     
     <label> <?php echo ($this->get_value().' max: ');?>
-        <input type="number" name=<?php echo $this->get_name().'_max';?> min="-10000" max="10000">
+        <input type="number" name=<?php echo $this->get_name().'_max';?> 
+                             value=<?php echo $this->get_max();?> 
+                             min=<?php echo $this->get_min();?>
+                             max=<?php echo $this->get_max();?>
+        >
     </label>
 </div>

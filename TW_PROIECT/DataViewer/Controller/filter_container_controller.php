@@ -6,12 +6,16 @@ class FilterContainer{
     private $id = "";
     private $title;
     private $container_type;
+    private $min;
+    private $max;
 
-    public function __construct($id, $title, $container_type){ 
+    public function __construct($id, $title, $min, $max, $container_type){ 
         $this->id = $id;
-        $this->title = $title;
+        $this->title = str_replace('start', '', $title);
         $this->container_type = $container_type;
-        
+        $this->min = $min;
+        $this->max = $max;
+
         if($container_type == 0){
             $this->add_all_filter_button();
         }
@@ -19,15 +23,15 @@ class FilterContainer{
     
     public function add_all_filter_button()
     {
-        $row = new FilterContainerRow("All", $this->get_id()."[]", 0);
+        $row = new FilterContainerRow("All", $this->get_id()."[]",0 ,0 ,0);
         array_push($this->rows, $row);    
     }
 
     public function add_row($value){
         if($this->container_type == 0 || $this->container_type == 1)
-            $row = new FilterContainerRow($value, $this->get_id()."[]", $this->container_type);
+            $row = new FilterContainerRow($value, $this->get_id()."[]", $this->min, $this->max, $this->container_type);
         else 
-            $row = new FilterContainerRow($value, $this->get_id(), $this->container_type);
+            $row = new FilterContainerRow(str_replace(['start_','_container'], '', $value), str_replace('_container','',$this->get_id()), $this->min, $this->max, $this->container_type);
         array_push($this->rows, $row);
     }
 
@@ -42,6 +46,6 @@ class FilterContainer{
     public function get_title(){  
         return $this->title;
     }
- 
+
 } 
 
