@@ -33,11 +33,12 @@
                
                 <div class = "filter-title">
                     <p>Choose custom filters:</p>
-                    <button type="button" 
-                            class="show-menu" 
-                            onclick="addRemoveMenu('custom_container')">
-                            <p> Show menu </p>
-                    </button>
+                    <input type = "button" 
+                            id = "custom_container_button"
+                            class = "show-menu" 
+                            value = "Show menu"
+                            onclick = "addRemoveMenu('custom_container', id)">
+                    </input>
                     
                     <div class="underline"></div>    
                 </div>
@@ -53,11 +54,12 @@
                 
                     <div class = "filter-title">
                         <p>Presence filters:</p>
-                        <button type="button" 
-                                class="show-menu" 
-                                onclick="addRemoveMenu('tf_containers')">
-                                <p> Show menu </p>
-                        </button>
+                        <input type = "button" 
+                                id = "tf_containers_button"
+                                class = "show-menu"
+                                value = "Show menu"
+                                onclick = "addRemoveMenu('tf_containers', id)">
+                        </input>
                         
                         <div class="underline"></div>    
                     </div>
@@ -72,11 +74,12 @@
             <div class = "sub-menu">
                 <div class = "filter-title">
                     <p>Data filters:</p>
-                    <button type="button" 
-                            class="show-menu" 
-                            onclick="addRemoveMenu('data_containers')">
-                            <p> Show menu </p>
-                    </button>
+                    <input type = "button" 
+                            id = "data_containers_button"
+                            class = "show-menu" 
+                            value = "Show menu"
+                            onclick = "addRemoveMenu('data_containers', id)">
+                    </input>
                     
                     <div class="underline"></div>    
                 </div>
@@ -91,11 +94,13 @@
             <div class = "sub-menu">
                 <div class = "filter-title">
                     <p>Between filters:</p>
-                    <button type="button" 
-                            class="show-menu" 
-                            onclick="addRemoveMenu('between_containers')">
-                            <p> Show menu </p>
-                    </button>
+                    <input type = "button" 
+                            id = "between_containers_button"
+                            value = "Show menu"
+                            class = "show-menu" 
+                            onclick = "addRemoveMenu('between_containers', id)"
+                            >
+                    </input>
                     
                     <div class="underline"></div>    
                 </div>
@@ -179,6 +184,7 @@
     <script type="text/javascript" src = "../JS/chartsScript.js"></script>
     <script type="text/javascript" src = "../JS/validateChartsForm.js"></script>
     <script type="text/javascript" src = "../JS/addRemoveMenuScript.js"> </script>
+    <script type="text/javascript" src = "../JS/changeCheckBoxValueScript.js"></script>
 
 </body>
 

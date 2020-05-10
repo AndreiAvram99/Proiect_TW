@@ -1,14 +1,14 @@
   .filter-title{
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 85% 15%;
     font-size: 30px;
   }
 
 .show-menu{
   background-color: darkslateblue;
-  margin-top: 50%;
+  margin-top: 30%;
   margin-bottom: 5px;
-  border-radius: 5%;
+  border-radius: 2%;
   color: white;
   font-size: medium;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,7 +39,6 @@
 
   .data-filters-container{
     max-height: 0;
-    transition: max-height 0.1s ease-out;
     overflow: hidden;
   }
 

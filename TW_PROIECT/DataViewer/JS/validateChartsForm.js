@@ -18,5 +18,4 @@ function validateForm() {
         return false;
     }
 
-    console.log("interesanta treaba");
 }
