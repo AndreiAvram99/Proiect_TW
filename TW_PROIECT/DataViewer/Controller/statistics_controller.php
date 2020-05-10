@@ -69,7 +69,7 @@ function load_between_containers(){
         $min = min($item);
         $max = max($item);
 
-        add_single_container( $column.'_container', 'Choose '.str_replace('_', ' ', $column).' between('.$min.', '.$max.')', $GLOBALS['BT_COLUMNS'], $min, $max, 2);
+        add_single_container( $column.'_container', 'Choose '.str_replace('_', ' ', $column).' between['.$min.', '.$max.']', $GLOBALS['BT_COLUMNS'], $min, $max, 2);
     }
 }
 

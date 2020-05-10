@@ -17,4 +17,6 @@ function validateForm() {
         alert("You must choose y-axis from choose chart axis menu");
         return false;
     }
+
+    console.log("interesanta treaba");
 }

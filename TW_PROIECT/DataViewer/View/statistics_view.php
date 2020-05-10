@@ -11,20 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/stats_filter_menu_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/check_box_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/input_date_style.css">
-
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
-    
-    <script type="text/javascript" src = "../JS/chartsScript.js"></script>
-    <script type="text/javascript" src = "../JS/validateChartsForm.js"></script>
-
-    
-    <!-- <script type="text/javascript" src = "../JS/addRemoveMenuScript.js"> </script> -->
-    
 
 </head>
 
@@ -41,50 +29,79 @@
         
         <div class = "data-filters-menu"  id = "data_filter_menu">
            
-            <div class = "sub-menu" id = "tf_containers" onchange="addRemoveMenu()">
-                    <div class = "title">
-                        <p>Presence filters:</p>
-                        <div class="underline"></div>
-                    </div>
-                    <div class = "data-filters-container">
-                        <?php
-                            load_true_false_containers();
-                        ?>
-                    </div>
-            </div>
-
-            <div class = "sub-menu" id = "custom_containers" onchange="addRemoveMenu()">
-                <div class = "title">
+            <div class = "sub-menu">
+               
+                <div class = "filter-title">
                     <p>Choose custom filters:</p>
-                    <div class="underline"></div>
+                    <button type="button" 
+                            class="show-menu" 
+                            onclick="addRemoveMenu('custom_container')">
+                            <p> Show menu </p>
+                    </button>
+                    
+                    <div class="underline"></div>    
                 </div>
-                <div class = "data-filters-container">
+                
+                <div class = "data-filters-container" id = "custom_container">
                     <?php
                         load_custom_containers();
                     ?>
                 </div>
             </div>
 
-            <div class = "sub-menu" id = "between_containers" onchange="addRemoveMenu()">
-                <div class = "title">
-                    <p>Between filters</p>
-                    <div class="underline"></div>
+            <div class = "sub-menu">
+                
+                    <div class = "filter-title">
+                        <p>Presence filters:</p>
+                        <button type="button" 
+                                class="show-menu" 
+                                onclick="addRemoveMenu('tf_containers')">
+                                <p> Show menu </p>
+                        </button>
+                        
+                        <div class="underline"></div>    
+                    </div>
+
+                    <div class = "data-filters-container" id = "tf_containers">
+                        <?php
+                            load_true_false_containers();
+                        ?>
+                    </div>
+            </div>
+
+            <div class = "sub-menu">
+                <div class = "filter-title">
+                    <p>Data filters:</p>
+                    <button type="button" 
+                            class="show-menu" 
+                            onclick="addRemoveMenu('data_containers')">
+                            <p> Show menu </p>
+                    </button>
+                    
+                    <div class="underline"></div>    
                 </div>
-                <div class = "data-filters-container">
+
+                <div class = "data-filters-container" id = "data_containers">
                     <?php
-                        load_between_containers();
+                        load_db_containers();
                     ?>
                 </div>
             </div>
 
-            <div class = "sub-menu" id = "data_containers" onchange="addRemoveMenu()">
-                <div class = "title">
-                    <p>Data base filters</p>
-                    <div class="underline"></div>
+            <div class = "sub-menu">
+                <div class = "filter-title">
+                    <p>Between filters:</p>
+                    <button type="button" 
+                            class="show-menu" 
+                            onclick="addRemoveMenu('between_containers')">
+                            <p> Show menu </p>
+                    </button>
+                    
+                    <div class="underline"></div>    
                 </div>
-                <div class = "data-filters-container">
+                <div class = "data-filters-container" id = "between_containers">
                     <?php
-                        load_db_containers();
+                        load_between_containers();
                     ?>
                 </div>
             </div>
@@ -116,14 +133,14 @@
 
         <div class = "chart-filter-menu" id = "chart_filter_menu">
     
-            <div class = "sub-menu" id = "charts_submenu" onchange="addRemoveMenu()">
+            <div class = "sub-menu">
 
                 <div class="title"  id="chart_filters_title">
                     <p>Choose chart axis</p>
                     <div class="underline"></div>
                 </div>
 
-                <div class = "chart-filters-container">
+                <div class = "chart-filters-container" id = "charts_submenu">
                     <?php
                         load_charts_containers();
                     ?>
@@ -152,6 +169,16 @@
 
 
 </main>
+
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
+    
+    <script type="text/javascript" src = "../JS/chartsScript.js"></script>
+    <script type="text/javascript" src = "../JS/validateChartsForm.js"></script>
+    <script type="text/javascript" src = "../JS/addRemoveMenuScript.js"> </script>
 
 </body>
 
