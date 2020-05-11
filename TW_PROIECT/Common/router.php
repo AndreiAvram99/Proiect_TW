@@ -32,6 +32,57 @@ class Router{
         return true;
     }
 
+    public function route($request){
+        $method = $request->get_method();
+
+        if (!in_array($method, $this->supported_methods)){
+            $this->handle_unsupported_method();
+            die();
+        }
+
+        switch ($method){
+            case "GET":
+                return $this->get($request);
+                break;
+            case "POST":
+                return $this->post($request);
+        }
+    }
+
+    /**
+     * For a request with method = get find the callback function for a certain path.
+     * If the path contains parameters, the list of parameters is passed as parameter to
+     * the function.
+     * @param $request
+     * @return mixed
+     */
+    private function get($request){
+        $path = $request->get_path();
+        $function = $this->find_function($path, $this->get_functions, $parameters);
+        if (is_null($function)){
+            $this->handle_not_found();
+            die();
+        }
+
+        if (empty($parameters))
+            return call_user_func($function);
+        return call_user_func($function, $parameters);
+    }
+
+    private function post($request){
+        $path = $request->get_path();
+        $function = $this->find_function($path, $this->post_functions, $parameters);
+        if (is_null($function)){
+            $this->handle_not_found();
+            die();
+        }
+
+        if (empty($parameters))
+            return call_user_func($function);
+        return call_user_func($function, $parameters);
+    }
+
+
     /**
      * Insert a path like example/of/path in dictionary dict in the following form:
      * dict['example'] = dictB
@@ -80,54 +131,18 @@ class Router{
         $dict['#'] = $function;
     }
 
-    public function route($request){
-        $method = $request->get_method();
-
-        if (!in_array($method, $this->supported_methods)){
-            $this->handle_unsupported_method();
-            die();
-        }
-
-        switch ($method){
-            case "GET":
-                return $this->get($request);
-                break;
-            case "POST":
-                return $this->post($request);
-        }
-    }
-
-    private function get($request){
-        $path = $request->get_path();
-        $function = $this->find_function($path, $this->get_functions);
-        if (is_null($function)){
-            $this->handle_not_found();
-            die();
-        }
-
-        return call_user_func($function);
-    }
-
-    private function post($request){
-        $path = $request->get_path();
-        $function = $this->find_function($path, $this->post_functions);
-        if (is_null($function)){
-            $this->handle_not_found();
-            die();
-        }
-
-        return call_user_func($function, $request);
-    }
 
     /**
      * Check if a path like example/of/path is present in dictionary dict and
      * if it is return the callback function saved there.
+     * $parameters is used to return the list of parameters from link.
      * See insert_route
      * @param $path
      * @param $dict
+     * @param $parameters
      * @return mixed
      */
-    private function find_function($path, $dict){
+    private function find_function($path, $dict, &$parameters){
         $path = trim($path, '/');
         $path = explode('/', $path);
         $parameters = [];
@@ -143,7 +158,7 @@ class Router{
             }
             else if (isset($dict['{}'])){
                 $dict = &$dict['{}'];
-                array_push($parameters, substr($name, 1, strlen($name) - 2));
+                array_push($parameters, $name);
             }
             else{
                 $this->handle_not_found();

@@ -7,7 +7,6 @@ class EventModel{
     private $root = data_filter_root;
 
     function get_events(){
-
         $query_param = $_SERVER["QUERY_STRING"];
         $url = $this->root . "/events?" . $query_param;
 

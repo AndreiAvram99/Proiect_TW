@@ -154,44 +154,44 @@ class EventModel
         return $column_list;
     }
 
-    public function get_states_list(){
-        $sql_command = "SELECT DISTINCT state FROM events ORDER BY state ASC";
-        $result = $this->conn->query($sql_command);
-
-        $states = [];
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
-                array_push($states, $row["state"]);
-            }
-        }
-        return $states;
-    }
-
-    public function get_counties_list(){
-        $sql_command = "SELECT DISTINCT county FROM events ORDER BY county ASC";
-        $result = $this->conn->query($sql_command);
-
-        $counties = [];
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
-                array_push($counties, $row["county"]);
-            }
-        }
-        return $counties;
-    }
-
-    public function get_cities_list(){
-        $sql_command = "SELECT DISTINCT city FROM events ORDER BY city ASC";
-        $result = $this->conn->query($sql_command);
-
-        $cities = [];
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
-                array_push($cities, $row["city"]);
-            }
-        }
-        return $cities;
-    }
+//    public function get_states_list(){
+//        $sql_command = "SELECT DISTINCT state FROM events ORDER BY state ASC";
+//        $result = $this->conn->query($sql_command);
+//
+//        $states = [];
+//        if ($result->num_rows > 0){
+//            while ($row = $result->fetch_assoc()){
+//                array_push($states, $row["state"]);
+//            }
+//        }
+//        return $states;
+//    }
+//
+//    public function get_counties_list(){
+//        $sql_command = "SELECT DISTINCT county FROM events ORDER BY county ASC";
+//        $result = $this->conn->query($sql_command);
+//
+//        $counties = [];
+//        if ($result->num_rows > 0){
+//            while ($row = $result->fetch_assoc()){
+//                array_push($counties, $row["county"]);
+//            }
+//        }
+//        return $counties;
+//    }
+//
+//    public function get_cities_list(){
+//        $sql_command = "SELECT DISTINCT city FROM events ORDER BY city ASC";
+//        $result = $this->conn->query($sql_command);
+//
+//        $cities = [];
+//        if ($result->num_rows > 0){
+//            while ($row = $result->fetch_assoc()){
+//                array_push($cities, $row["city"]);
+//            }
+//        }
+//        return $cities;
+//    }
 
     public function create_event($author_id, 
                                  $source, 

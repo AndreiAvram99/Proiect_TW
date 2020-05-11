@@ -1,9 +1,11 @@
 <?php
-
+include("./../Model/event_model.php");
 
 class Events
 {
-    function get_column(){
-        echo "a mers";
+    static function get_column($parameters){
+        $event_model = new EventModel();
+        $column = $parameters[0];
+        return json_encode($event_model->get_column_list($column, "events"));
     }
 }
