@@ -154,6 +154,20 @@ class EventModel
         return $column_list;
     }
 
+    public function get_columns_list(){
+        $sql_command = "SELECT COLUMN_NAME FROM information_schema.columns 
+                            WHERE table_schema='tw_project' AND table_name='events'";
+        $result = $this->conn->query($sql_command);
+
+        $columns_list = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($columns_list, $row['COLUMN_NAME']);
+            }
+        }
+        return $columns_list;
+    }
+
 //    public function get_states_list(){
 //        $sql_command = "SELECT DISTINCT state FROM events ORDER BY state ASC";
 //        $result = $this->conn->query($sql_command);

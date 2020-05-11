@@ -179,6 +179,10 @@ class Events
 
         $event_model = new EventModel();
 
+        if (strtolower($column) == "list"){
+            $columns['columns'] = $event_model->get_columns_list();
+            return json_encode($columns);
+        }
         return json_encode($event_model->get_column_list($column, "events"));
     }
 }
