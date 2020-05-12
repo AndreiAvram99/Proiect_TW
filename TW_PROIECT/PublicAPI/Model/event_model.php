@@ -23,4 +23,15 @@ class EventModel
         $text = curl_exec($ch);
         return json_decode($text, true)['columns'];
     }
+
+    function get_events(){
+        $query_param = $_SERVER["QUERY_STRING"];
+        $url = data_filter_root . "/events?" . $query_param;
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $text = curl_exec($ch);
+        return json_decode($text, true);
+    }
 }
