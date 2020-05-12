@@ -22,8 +22,8 @@ class Router{
     }
 
     private function check_name($name){
-        $legal_characters = "/[a-zA-Z0-9_]+";
-        if ($name = '/')
+        $legal_characters = "/[a-zA-Z0-9_]+/";
+        if ($name == '/')
             return true;
         if (empty($name))
             return false;
