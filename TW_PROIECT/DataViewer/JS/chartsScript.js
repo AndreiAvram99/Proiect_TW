@@ -136,6 +136,7 @@ function barPlotChartDraw() {
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        .attr("id", "chart")
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
@@ -271,5 +272,23 @@ function lollipopChartDraw(){
 
 }
 
+var element = $("#Bar_plot_chart");; 
+var getCanvas; 
 
-function refresh() { location.reload();}
+function refresh() { location.reload(); 
+}
+
+$('document').ready(function(){
+    html2canvas(element, {
+        onrendered: function (canvas) {
+            getCanvas = canvas;
+        }
+    });
+});
+
+
+$("#downloadPNG").on('click', function () {
+    var imageData = getCanvas.toDataURL("image/png");
+    var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+    $("#downloadPNG").attr("download", "image.png").attr("href", newData);
+});

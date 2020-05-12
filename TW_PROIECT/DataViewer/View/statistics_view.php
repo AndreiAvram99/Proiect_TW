@@ -186,6 +186,10 @@
     <script type="text/javascript" src = "../JS/addRemoveMenuScript.js"> </script>
     <script type="text/javascript" src = "../JS/changeCheckBoxValueScript.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 </body>
 
 </html>
