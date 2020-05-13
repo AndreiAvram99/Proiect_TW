@@ -20,9 +20,6 @@
 
 <?php include("navBar.html") ?>
 
-<!-- onchange="addRemoveMenu()" -->
-<!-- onsubmit="return validateForm()" -->
-
 <main>
     
     <form name="all_filters_form" action="../Controller/statistics_controller.php" onsubmit="return validateForm()">
@@ -180,15 +177,18 @@
     <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
-    
+    <script type="text/javascript" src=http://code.jquery.com/jquery-latest.js></script>
+
+    <script type="text/javascript" src="../JS/saveSvgAsPng.js"></script>
+    <script type="text/javascript" src = "../JS/pieChartScript.js"></script>
+    <script type="text/javascript" src = "../JS/barPlotScript.js"></script>
+    <script type="text/javascript" src = "../JS/lollipopChartScript.js"></script>
     <script type="text/javascript" src = "../JS/chartsScript.js"></script>
+
     <script type="text/javascript" src = "../JS/validateChartsForm.js"></script>
+    
     <script type="text/javascript" src = "../JS/addRemoveMenuScript.js"> </script>
     <script type="text/javascript" src = "../JS/changeCheckBoxValueScript.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 </body>
 

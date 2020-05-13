@@ -54,7 +54,6 @@ function load_separator_button(){
 }
 
 function load_pagination(){
-    // to do: daca sunt multe butoane afiseaza doar primele, ultimele si mijloc.
     $event_model = new EventModel();
 
     $events_number = $event_model->get_count();
@@ -81,7 +80,7 @@ function load_pagination(){
 
             load_separator_button();
 
-            for ($i=$number_of_pages - 4;$i<$number_of_pages;$i++)
+            for ($i=$number_of_pages - 4; $i<$number_of_pages; $i++)
                 load_page($i);
         }
         else{

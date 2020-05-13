@@ -1,8 +1,32 @@
 .map-container{
-    width: 90%;
-    margin: auto;
+    width: 100%;
+    height: 600px;
+    display: block;
+    margin-bottom: 30px;
 }
 
+#mapid { 
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    }
+    
+.info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+
+/* 
 path {
     fill: white;
     stroke: var(--pallete-color-1);
@@ -35,7 +59,7 @@ text{
     font-size: small;
     display: none;
 }
-
+*/
 /* Responsive */
 
 @media screen and (max-width: 820px) {
@@ -44,4 +68,4 @@ text{
         width: 100%;
     }
 
-}
+} 

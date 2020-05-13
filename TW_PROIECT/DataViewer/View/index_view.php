@@ -22,7 +22,7 @@
 
 <main>
 
-    <?php include("map.html") ?>
+    <?php include("new_map.html") ?>
 
 
     <div class = "index-content-container">
