@@ -11,35 +11,45 @@ class UsersModel
     }
 
     public function get_password_for($username){
-        $sql_command = "SELECT password FROM users WHERE username = ?";
+        $user = $this->get_user_by_username($username);
+        if (empty($user))
+            return null;
+        return $user["password"];
+    }
+
+    public function get_user_id($username){
+        $user = $this->get_user_by_username($username);
+        if (empty($user))
+            return null;
+        return $user["password"];
+    }
+
+    public function get_user_by_username($username){
+        $sql_command = "SELECT * FROM users WHERE username = ?";
         $stmt = $this->conn->prepare($sql_command);
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
 
-        $passwords = array();
+        $users = array();
         if ($result->num_rows > 0){
             while ($row = $result->fetch_assoc()){
-                array_push($passwords, $row);
+                array_push($users, $row);
             }
         }
 
-        if (empty($passwords))
+        if (empty($users))
             return null;
-        return $passwords[0]["password"];
+        return $users[0];
     }
 
-    public function get_states_list(){
-        $sql_command = "SELECT DISTINCT state FROM events ORDER BY state ASC";
-        $result = $this->conn->query($sql_command);
-
-        $states = [];
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
-                array_push($states, $row["state"]);
-            }
-        }
-        return $states;
+    public function create_user($username, $password){
+        $sql_command = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $stmt = $this->conn->prepare($sql_command);
+        $stmt->bind_param("ss", $username, $password);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
     }
 }
