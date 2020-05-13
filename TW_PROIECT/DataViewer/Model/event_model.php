@@ -1,7 +1,5 @@
 <?php
-
 include("./../../Common/request.php");
-include("./../../../config.php");
 
 class EventModel{
     private $root = data_filter_root;

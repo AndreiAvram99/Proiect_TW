@@ -1,4 +1,5 @@
 <?php
+include("./../../../config.php");
 include("../Model/event_model.php");
 include("filter_container_controller.php");
 include("chart_container_controller.php");

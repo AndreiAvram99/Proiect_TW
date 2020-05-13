@@ -1,5 +1,5 @@
 <?php
-include("database_model.php");
+include("./../../Common/Model/database_model.php");
 include("filtered_query.php");
 
 class EventModel
@@ -52,68 +52,68 @@ class EventModel
     }
 
     // add filters to a sql command
-    private function add_filters(&$sql_command, &$sql_types,  $filters){
-        $number_of_filters = count($filters);
-
-        $keys_array = array_keys($filters);
-
-        for($index=0;$index < $number_of_filters; $index++){
-            $sql_command = $sql_command . " AND " . $keys_array[$index] . "=? ";
-            $sql_types = $sql_types . "s";
-        }
-    }
-    
+//    private function add_filters(&$sql_command, &$sql_types,  $filters){
+//        $number_of_filters = count($filters);
+//
+//        $keys_array = array_keys($filters);
+//
+//        for($index=0;$index < $number_of_filters; $index++){
+//            $sql_command = $sql_command . " AND " . $keys_array[$index] . "=? ";
+//            $sql_types = $sql_types . "s";
+//        }
+//    }
+//
     // to do: add filters on get_event
     // return an array with "count" events starting index "from"
-    public function get_event($from, $count, $filters){
-        $values_array = array_values($filters);
-
-        $sql_command = "SELECT * FROM events WHERE 1";
-        $sql_types = "";
-        $this->add_filters($sql_command,  $sql_types, $filters);
-        $sql_command = $sql_command . " LIMIT ? OFFSET ?";
-        $sql_types = $sql_types . "ii";
-
-
-        $new_array = array();
-        array_push($new_array, $sql_types);
-        foreach ($values_array as $value){
-            array_push($new_array, $value);
-        }
-
-        array_push($new_array, $count);
-        array_push($new_array, $from);
-
-        $stmt = $this->conn->prepare($sql_command);
-
-        if (count($new_array) > 1)
-            call_user_func_array(array($stmt, 'bind_param'), $this->ref_values($new_array));
-
-
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-
-        $events = array();
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
-                $new_event = array(
-                                "id" => $row["id"],
-                                "author_id" => $row["author_id"],
-                                "severity" => $row["severity"],
-                                "description" => $row["description"],
-                                "start_time" => $row["start_time"],
-                                "city" => $row["city"],
-                                "county" => $row["county"],
-                                "state" => $row["state"]
-                            );
-                array_push($events, $new_event);
-            }
-        }
-
-        return $events;
-    }
+//    public function get_event($from, $count, $filters){
+//        $values_array = array_values($filters);
+//
+//        $sql_command = "SELECT * FROM events WHERE 1";
+//        $sql_types = "";
+//        $this->add_filters($sql_command,  $sql_types, $filters);
+//        $sql_command = $sql_command . " LIMIT ? OFFSET ?";
+//        $sql_types = $sql_types . "ii";
+//
+//
+//        $new_array = array();
+//        array_push($new_array, $sql_types);
+//        foreach ($values_array as $value){
+//            array_push($new_array, $value);
+//        }
+//
+//        array_push($new_array, $count);
+//        array_push($new_array, $from);
+//
+//        $stmt = $this->conn->prepare($sql_command);
+//
+//        if (count($new_array) > 1)
+//            call_user_func_array(array($stmt, 'bind_param'), $this->ref_values($new_array));
+//
+//
+//        $stmt->execute();
+//        $result = $stmt->get_result();
+//        $stmt->close();
+//
+//
+//        $events = array();
+//        if ($result->num_rows > 0){
+//            while ($row = $result->fetch_assoc()){
+//                $new_event = array(
+//                                "id" => $row["id"],
+//                                "author_id" => $row["author_id"],
+//                                "severity" => $row["severity"],
+//                                "description" => $row["description"],
+//                                "start_time" => $row["start_time"],
+//                                "city" => $row["city"],
+//                                "county" => $row["county"],
+//                                "state" => $row["state"]
+//                            );
+//                array_push($events, $new_event);
+//            }
+//        }
+//
+//        return $events;
+//    }
 
     public function get_number_of_events($filters){
         $values_array = array_values($filters);

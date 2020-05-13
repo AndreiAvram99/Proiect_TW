@@ -1,5 +1,5 @@
 <?php
-
+include("./../../../config.php");
 include("event_controller.php");
 
 function create_event(){

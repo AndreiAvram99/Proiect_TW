@@ -1,6 +1,4 @@
 <?php
-include('./../../../config.php');
-
 class Database{
     private static $dbi_instance = null;
     private $mysql = null;
@@ -17,14 +15,15 @@ class Database{
     }
 
     private function __construct(){
-        $username = $GLOBALS['database_username'];
-        $password = $GLOBALS['database_password'];
+        $username = database_username;
+        $password = database_password;
+        $database_name = database_name;
 
         $this->mysql = new mysqli (
             'localhost', // locatia serverului
             $username,       // numele de cont
             $password,    // parola
-            'tw_project'   // baza de date
+            $database_name   // baza de date
         );
 
         if (mysqli_connect_errno()) {

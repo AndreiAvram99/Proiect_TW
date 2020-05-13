@@ -1,4 +1,5 @@
 <?php
+include("./../../../config.php");
 include("./../../Common/request.php");
 include("./../../Common/router.php");
 include("events.php");
