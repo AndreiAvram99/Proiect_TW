@@ -23,12 +23,20 @@
 
 <main>
 
+    <div class="title">
+        <p>Number of accidents per state map</p>
+        <div class="underline"></div>
+    </div>
 
     <?php
         create_map_data(); 
-        include("new_map.html"); 
+        include("map.html"); 
     ?>
 
+    <div class="title">
+        <p>Main page</p>
+        <div class="underline"></div>
+    </div>
 
     <div class = "index-content-container">
       
