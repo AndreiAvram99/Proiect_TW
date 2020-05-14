@@ -1,6 +1,6 @@
 <?php
-include("./../../Common/Model/database_model.php");
-include("filtered_query.php");
+include_once("./../../Common/Model/database_model.php");
+include_once("filtered_query.php");
 
 class EventModel
 {

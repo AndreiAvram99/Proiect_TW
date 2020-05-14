@@ -1,5 +1,5 @@
 <?php
-include("./../../../config.php");
+include_once("./../../../config.php");
 include("event_controller.php");
 include("pagination_controller.php");
 include("../Model/event_model.php");

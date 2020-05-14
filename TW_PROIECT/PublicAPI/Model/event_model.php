@@ -1,7 +1,5 @@
 <?php
 
-include("./../../../config.php");
-
 class EventModel
 {
     function get_column_list($column){
