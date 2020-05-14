@@ -13,26 +13,31 @@
     <!-- to do: mai trebuie scos ranking -->
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/ranking_style.css">
     <script type="text/javascript" src = "../JS/rankingResponsiveScript.js"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 <body>
 
-    <?php include("navBar.html") ?>
+    <?php include("navBar.html"); ?>
 
 <main>
 
-    <?php include("new_map.html") ?>
+
+    <?php
+        create_map_data(); 
+        include("new_map.html"); 
+    ?>
 
 
     <div class = "index-content-container">
       
         <div id = "events_container" class = "events-container" >
-            <?php create_event()?>
+            <?php create_event();?>
         </div>
 
         <div id = "rankings_container" class = "rankings-container" >
-            <?php get_ranking()?>
+            <?php get_ranking();?>
         </div>
 
         <div  id="side_panel" class="side-panel">
@@ -45,7 +50,7 @@
             <canvas id="panel_close_btn" class="panel-close-btn" ontouchmove="closePanel(event)"></canvas>
 
             <div class="panel-content">
-                <?php get_ranking()?>
+                <?php get_ranking();?>
             </div>
 
         </div>
