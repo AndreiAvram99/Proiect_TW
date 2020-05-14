@@ -12,12 +12,14 @@ $router = new Router();
  * Login request must have username and password in body.
  * If login was successful it returns status:success and a token for the current session.
  */
-$router->add_route("POST", "login", "AccountManager::login");
+$router->add_route("POST", "v1/login", "AccountManager::login");
 
 /**
  * Register request must have username, password and register token in body.
  */
-$router->add_route("POST", "register", "AccountManager::register");
+$router->add_route("POST", "v1/register", "AccountManager::register");
 
+
+$router->add_route("POST", "v1/event", "AccountManager::create_event");
 
 echo $router->route($request);

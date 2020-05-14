@@ -21,6 +21,7 @@ class AccountManager
         if (password_verify($password, $hashed_password)){
             $user_id = $user_model->get_user_id($username);
             $data["user_id"] = $user_id;
+            $data["live_time"] = SESSION_TIME;
             $token = JWT::encode($data);
             $answer["success"] = true;
             $answer["token"] = $token;
@@ -68,6 +69,34 @@ class AccountManager
         $answer["token"] = $token;
         http_response_code(201);
         return json_encode($answer);
+    }
+
+    public static function create_event(){
+        $token = JWT::get_token_from_header();
+        $validate_answer = JWT::validate($token);
+        if ($validate_answer != "OK") {
+            return $validate_answer;
+        }
+
+        $user_id = JWT::decode($token)["user_id"];
+
+        $validate_data_answer = self::create_event_validate_data();
+
+        if ($validate_data_answer != "OK"){
+            return $validate_data_answer;
+        }
+
+        $query_data = self::extract_event_data();
+
+        return $user_id;
+    }
+
+    private static function extract_event_data(){
+
+    }
+
+    private static function create_event_validate_data(){
+
     }
 
     public static function error_handle($message){

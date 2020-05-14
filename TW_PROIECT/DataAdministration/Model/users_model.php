@@ -21,7 +21,7 @@ class UsersModel
         $user = $this->get_user_by_username($username);
         if (empty($user))
             return null;
-        return $user["password"];
+        return $user["id"];
     }
 
     public function get_user_by_username($username){
