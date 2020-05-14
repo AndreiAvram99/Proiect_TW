@@ -110,7 +110,7 @@ function load_charts_containers(){
     add_single_container('chart_type_container', 'Choose chart type', $chart_types_list, $GLOBALS['DMI'], $GLOBALS['DMA'], 1);
 
     
-    $xaxis_list = [ 'source', 'state', 'county', 'city', 'street_name', 'timezone', 'airport_code', 'wind_direction', 'weather_condition', 'side', 'severity', 'sunrise_sunset', 'civil_twilght', 'nautical_twilight', 'astronomical_twilight' ];
+    $xaxis_list = [ 'source', 'state', 'county', 'city', 'street_name', 'timezone', 'airport_code', 'wind_direction', 'weather_condition', 'side', 'severity', 'sunrise_sunset', 'civil_twilight', 'nautical_twilight', 'astronomical_twilight' ];
     add_single_container("xaxis_container", "Choose x-axis", $xaxis_list, $GLOBALS['DMI'], $GLOBALS['DMA'], 1);
 
 
@@ -148,10 +148,17 @@ function create_by_number_of_accidents($xaxis){
 
 
 function create_by_mean($xaxis, $yaxis){
-    debug_to_console("salut");
+
+    $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
+    fputcsv($fp, array('Name', 'Value', 'Color'));    
+    $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
+    $color_index = 0;
+
     $results = $GLOBALS['event_model']->mean_column_group_by_other_column($yaxis, $xaxis, 'events');
+    
     foreach($results as $result){
-        debug_to_console($result);
+        fputcsv($fp, array($result[$xaxis], $result['mean'], $colors[$color_index]));
+        $color_index = ($color_index + 1) % 4;
     }
 }
 
