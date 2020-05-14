@@ -32,7 +32,7 @@ class EventModel{
     }
 
     function get_column_list($column, $table){
-        $url = $this->root .  "/events/columns/" . $column;
+        $url = $this->root .  "/v1/events/columns/" . $column;
         
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -42,7 +42,7 @@ class EventModel{
     }
 
     function mean_column_group_by_other_column($mean_column, $group_column, $table){
-        $url = $this->root .  "/events/mean?" . "mean_column=" . $mean_column . "&group_column=".$group_column;
+        $url = $this->root .  "/v1/events/mean?" . "mean_column=" . $mean_column . "&group_column=".$group_column;
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
