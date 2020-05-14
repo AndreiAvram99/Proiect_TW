@@ -20,6 +20,6 @@ $router->add_route("POST", "v1/login", "AccountManager::login");
 $router->add_route("POST", "v1/register", "AccountManager::register");
 
 
-$router->add_route("POST", "v1/event", "AccountManager::create_event");
+$router->add_route("POST", "v1/events", "AccountManager::create_event");
 
 echo $router->route($request);

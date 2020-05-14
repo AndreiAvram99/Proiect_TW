@@ -192,4 +192,25 @@ class Events
         $columns['columns'] = $event_model->get_columns_list();
         return json_encode($columns);
     }
+
+    static function create_event(){
+        $data = (array) json_decode(file_get_contents('php://input'));
+
+        $event_model = new EventModel();
+        $result = $event_model->create_event_from_dict($data);
+
+        if ($result == false){
+            $answer["success"] = "err";
+            $answer["error_message"] = "Database insert fail.";
+            http_response_code(400);
+            return $answer;
+        }
+
+        $answer["success"] = true;
+
+        $event = $event_model->get_last_event_for($data["author_id"]);
+        $answer["data"] = ["event" => $event];
+
+        return json_encode($answer);
+    }
 }

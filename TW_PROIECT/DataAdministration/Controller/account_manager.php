@@ -88,19 +88,49 @@ class AccountManager
         }
 
         $query_data = self::extract_event_data();
+        $query_data["author_id"] = $user_id;
 
-        return $user_id;
+        $event_model = new EventModel();
+        $answer = $event_model->create_event($query_data);
+
+        if ($answer["success"] !== true){
+            http_response_code(400);
+        }
+        else{
+            http_response_code(201);
+        }
+        return json_encode($answer);
     }
 
     private static function extract_event_data(){
+        $event_model = new EventModel();
+        $columns = $event_model->get_columns_list();
 
+
+        $data = (array) json_decode(file_get_contents('php://input'));
+        $query_data = [];
+
+        foreach ($columns as $column){
+            if ($column == "id" || $column == "author_id")
+                continue;
+            if (isset($data[$column])){
+                echo $column . " " . $data[$column] . "<br>";
+                $query_data[$column] = $data[$column];
+            }
+        }
+
+        return $query_data;
     }
 
     private static function create_event_validate_data(){
         $event_model = new EventModel();
         $columns = $event_model->get_columns_list();
 
-        return $columns;
+//        foreach ($columns as $column)
+//            if (isset($_REQUEST[$column])){
+//                if ()
+//            }
+        return "OK";
     }
 
     public static function error_handle($message){

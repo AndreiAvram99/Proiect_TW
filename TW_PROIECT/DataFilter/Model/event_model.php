@@ -140,6 +140,20 @@ class EventModel
         return $result->fetch_assoc()["count"];
     }
 
+    public function get_last_event_for($user_id){
+        $sql_command = "SELECT * FROM events WHERE author_id = ? ORDER BY id desc LIMIT 1";
+        $stmt = $this->conn->prepare($sql_command);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        $events = array();
+        while ($row = $result->fetch_assoc()){
+            array_push($events, $row);
+        }
+        return $events[0];
+    }
     
     public function get_column_list($column, $table){
         $sql_command = "SELECT DISTINCT ".$column." FROM ".$table." ORDER BY ".$column." ASC";
@@ -220,48 +234,177 @@ class EventModel
 //        return $cities;
 //    }
 
+    public function create_event_from_dict($dict){
+        $author_id = null;
+        $source = null;
+        $severity = null;
+        $description = null;
+        $start_time = null;
+        $start_lat = null;
+        $start_lng = null;
+        $city = null;
+        $county = null;
+        $state = null;
+        $distance = null;
+        $street_nb = null;
+        $street_name = null;
+        $side = null;
+        $timezone = null;
+        $airport_code = null;
+        $temperature = null;
+        $wind_chill = null;
+        $humidity = null;
+        $pressure = null;
+        $visibility = null;
+        $wind_direction = null;
+        $wind_speed = null;
+        $precipitation = null;
+        $weather_condition = null;
+        $amenity = null;
+        $bump = null;
+        $crossing = null;
+        $give_way = null;
+        $junction = null;
+        $no_exit = null;
+        $railway = null;
+        $roundabout = null;
+        $station = null;
+        $stop = null;
+        $traffic_calming = null;
+        $traffic_signal = null;
+        $turn_loop = null;
+        $sunrise_sunset = null;
+        $civil_twilight = null;
+        $nautical_twilight = null;
+        $astronomical_twilight = null;
+        if (isset($dict["author_id"])) $author_id = $dict["author_id"];
+        if (isset($dict["source"])) $source = $dict["source"];
+        if (isset($dict["severity"])) $severity = $dict["severity"];
+        if (isset($dict["description"])) $description = $dict["description"];
+        if (isset($dict["start_time"])) $start_time = $dict["start_time"];
+        if (isset($dict["start_lat"])) $start_lat = $dict["start_lat"];
+        if (isset($dict["start_lng"])) $start_lng = $dict["start_lng"];
+        if (isset($dict["city"])) $city = $dict["city"];
+        if (isset($dict["county"])) $county = $dict["county"];
+        if (isset($dict["state"])) $state = $dict["state"];
+        if (isset($dict["distance"])) $distance = $dict["distance"];
+        if (isset($dict["street_nb"])) $street_nb = $dict["street_nb"];
+        if (isset($dict["street_name"])) $street_name = $dict["street_name"];
+        if (isset($dict["side"])) $side = $dict["side"];
+        if (isset($dict["timezone"])) $timezone = $dict["timezone"];
+        if (isset($dict["airport_code"])) $airport_code = $dict["airport_code"];
+        if (isset($dict["temperature"])) $temperature = $dict["temperature"];
+        if (isset($dict["wind_chill"])) $wind_chill = $dict["wind_chill"];
+        if (isset($dict["humidity"])) $humidity = $dict["humidity"];
+        if (isset($dict["pressure"])) $pressure = $dict["pressure"];
+        if (isset($dict["visibility"])) $visibility = $dict["visibility"];
+        if (isset($dict["wind_direction"])) $wind_direction = $dict["wind_direction"];
+        if (isset($dict["wind_speed"])) $wind_speed = $dict["wind_speed"];
+        if (isset($dict["precipitation"])) $precipitation = $dict["precipitation"];
+        if (isset($dict["weather_condition"])) $weather_condition = $dict["weather_condition"];
+        if (isset($dict["amenity"])) $amenity = $dict["amenity"];
+        if (isset($dict["bump"])) $bump = $dict["bump"];
+        if (isset($dict["crossing"])) $crossing = $dict["crossing"];
+        if (isset($dict["give_way"])) $give_way = $dict["give_way"];
+        if (isset($dict["junction"])) $junction = $dict["junction"];
+        if (isset($dict["no_exit"])) $no_exit = $dict["no_exit"];
+        if (isset($dict["railway"])) $railway = $dict["railway"];
+        if (isset($dict["roundabout"])) $roundabout = $dict["roundabout"];
+        if (isset($dict["station"])) $station = $dict["station"];
+        if (isset($dict["stop"])) $stop = $dict["stop"];
+        if (isset($dict["traffic_calming"])) $traffic_calming = $dict["traffic_calming"];
+        if (isset($dict["traffic_signal"])) $traffic_signal = $dict["traffic_signal"];
+        if (isset($dict["turn_loop"])) $turn_loop = $dict["turn_loop"];
+        if (isset($dict["sunrise_sunset"])) $sunrise_sunset = $dict["sunrise_sunset"];
+        if (isset($dict["civil_twilight"])) $civil_twilight = $dict["civil_twilight"];
+        if (isset($dict["nautical_twilight"])) $nautical_twilight = $dict["nautical_twilight"];
+        if (isset($dict["astronomical_twilight"])) $astronomical_twilight = $dict["astronomical_twilight"];
+        return $this->create_event($author_id,
+                            $source,
+                            $severity,
+                            $description,
+                            $start_time,
+                            $start_lat,
+                            $start_lng,
+                            $city,
+                            $county,
+                            $state,
+                            $distance,
+                            $street_nb,
+                            $street_name,
+                            $side,
+                            $timezone,
+                            $airport_code,
+                            $temperature,
+                            $wind_chill,
+                            $humidity,
+                            $pressure,
+                            $visibility,
+                            $wind_direction,
+                            $wind_speed,
+                            $precipitation,
+                            $weather_condition,
+                            $amenity,
+                            $bump,
+                            $crossing,
+                            $give_way,
+                            $junction,
+                            $no_exit,
+                            $railway,
+                            $roundabout,
+                            $station,
+                            $stop,
+                            $traffic_calming,
+                            $traffic_signal,
+                            $turn_loop,
+                            $sunrise_sunset,
+                            $civil_twilight,
+                            $nautical_twilight,
+                            $astronomical_twilight);
+    }
+
     public function create_event($author_id, 
-                                 $source, 
-                                 $severity, 
-                                 $description, 
-                                 $start_time, 
-                                 $start_lat, 
-                                 $start_lng, 
-                                 $city, 
-                                 $county, 
-                                 $state, 
-                                 $distance, 
-                                 $street_nb,
-                                 $stree_name,
-                                 $side,
-                                 $timezone,
-                                 $airport_code,
-                                 $temperature,
-                                 $wind_chill,
-                                 $humidity,
-                                 $pressure,
-                                 $visibility,
-                                 $wind_direction,
-                                 $wind_speed,
-                                 $precipitation,
-                                 $weather_condition,
-                                 $amenity,
-                                 $bump,
-                                 $crossing,
-                                 $give_way,
-                                 $junction,
-                                 $no_exit,
-                                 $railway,
-                                 $roundabout,
-                                 $station,
-                                 $stop,
-                                 $traffic_calming,
-                                 $traffic_signal,
-                                 $turn_loop,
-                                 $sunrise_sunset,
-                                 $civil_twilight,
-                                 $nautical_twilight,
-                                 $astronomical_twilight){
+                                 $source = null,
+                                 $severity = null,
+                                 $description = null,
+                                 $start_time = null,
+                                 $start_lat = null,
+                                 $start_lng = null,
+                                 $city = null,
+                                 $county = null,
+                                 $state = null,
+                                 $distance = null,
+                                 $street_nb = null,
+                                 $street_name = null,
+                                 $side = null,
+                                 $timezone = null,
+                                 $airport_code = null,
+                                 $temperature = null,
+                                 $wind_chill = null,
+                                 $humidity = null,
+                                 $pressure = null,
+                                 $visibility = null,
+                                 $wind_direction = null,
+                                 $wind_speed = null,
+                                 $precipitation = null,
+                                 $weather_condition = null,
+                                 $amenity = null,
+                                 $bump = null,
+                                 $crossing = null,
+                                 $give_way = null,
+                                 $junction = null,
+                                 $no_exit = null,
+                                 $railway = null,
+                                 $roundabout = null,
+                                 $station = null,
+                                 $stop = null,
+                                 $traffic_calming = null,
+                                 $traffic_signal = null,
+                                 $turn_loop = null,
+                                 $sunrise_sunset = null,
+                                 $civil_twilight = null,
+                                 $nautical_twilight = null,
+                                 $astronomical_twilight = null){
 
         $sql_command = "INSERT INTO events (
                                                 author_id,
@@ -321,7 +464,7 @@ class EventModel
                                                                         $state, 
                                                                         $distance, 
                                                                         $street_nb,
-                                                                        $stree_name,
+                                                                        $street_name,
                                                                         $side,
                                                                         $timezone,
                                                                         $airport_code,
@@ -351,7 +494,8 @@ class EventModel
                                                                         $civil_twilight,
                                                                         $nautical_twilight,
                                                                         $astronomical_twilight);
-        $stmt->execute();
+        $result = $stmt->execute();
         $stmt->close();
+        return $result;
     }
 }
