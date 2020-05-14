@@ -1,7 +1,7 @@
 <?php
-include("./../../../config.php");
-include("./../../Common/request.php");
-include("./../../Common/router.php");
+include_once("./../../../config.php");
+include_once("./../../Common/request.php");
+include_once("./../../Common/router.php");
 include("events.php");
 
 $request = new Request();

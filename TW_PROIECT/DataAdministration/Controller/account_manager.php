@@ -1,5 +1,6 @@
 <?php
 include("./../Model/users_model.php");
+include("./../Model/event_model.php");
 
 class AccountManager
 {
@@ -96,7 +97,10 @@ class AccountManager
     }
 
     private static function create_event_validate_data(){
+        $event_model = new EventModel();
+        $columns = $event_model->get_columns_list();
 
+        return $columns;
     }
 
     public static function error_handle($message){
