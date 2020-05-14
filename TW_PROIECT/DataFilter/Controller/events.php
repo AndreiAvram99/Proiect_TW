@@ -174,15 +174,15 @@ class Events
         return json_encode($events);
     }
 
-    static function get_column_values(){
-        $column = $_REQUEST["column"];
-
+    static function get_column_values($parameters){
+        $column = $parameters[0];
         $event_model = new EventModel();
-
-        if (strtolower($column) == "list"){
-            $columns['columns'] = $event_model->get_columns_list();
-            return json_encode($columns);
-        }
         return json_encode($event_model->get_column_list($column, "events"));
+    }
+
+    static function get_columns(){
+        $event_model = new EventModel();
+        $columns['columns'] = $event_model->get_columns_list();
+        return json_encode($columns);
     }
 }

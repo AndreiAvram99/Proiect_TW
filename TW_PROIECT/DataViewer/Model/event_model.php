@@ -6,7 +6,7 @@ class EventModel{
 
     function get_events(){
         $query_param = $_SERVER["QUERY_STRING"];
-        $url = $this->root . "/events?" . $query_param;
+        $url = $this->root . "/v1/events?" . $query_param;
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -22,7 +22,7 @@ class EventModel{
         $query_param .= "limits_from=" . $from;
         $query_param .= "&limits_count=" . $count;
 
-        $url = $this->root . "/events?" . $query_param;
+        $url = $this->root . "/v1/events?" . $query_param;
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -31,9 +31,8 @@ class EventModel{
         return json_decode($text, true);
     }
 
-
     function get_column_list($column, $table){
-        $url = $this->root .  "/events/columns?" . "column=" . $column;
+        $url = $this->root .  "/events/columns/" . $column;
         
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -51,7 +50,7 @@ class EventModel{
         $query_param .= "&limits_from=0";
         $query_param .= "&limits_count=100000000";
 
-        $url = $this->root . "/events?" . $query_param;
+        $url = $this->root . "/v1/events?" . $query_param;
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
