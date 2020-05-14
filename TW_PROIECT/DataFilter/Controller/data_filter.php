@@ -9,5 +9,6 @@ $router = new Router();
 
 $router->add_route("GET", "/events", "Events::get_events");
 $router->add_route("GET", "/events/columns", "Events::get_column_values");
+$router->add_route("GET", "/events/mean", "Events::get_mean_values");
 
 echo $router->route($request);

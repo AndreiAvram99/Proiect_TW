@@ -185,4 +185,13 @@ class Events
         }
         return json_encode($event_model->get_column_list($column, "events"));
     }
+
+    static function get_mean_values(){
+        $mean_column = $_REQUEST["mean_column"];
+        $group_column = $_REQUEST["group_column"];
+
+        $event_model = new EventModel();
+
+        return json_encode($event_model->mean_column_group_by_other_column($mean_column, $group_column, "events"));
+    }
 }

@@ -29,6 +29,12 @@ $DB_COLUMNS = [ 'source', 'state', 'county',
 
 $TF_OPTIONS = ["Yes", "No"];
 
+$NUMERIC_FIELDS = ['start_lat', 'start_lng', 'distance',
+                   'temperature', 'wind_chill', 'humidity', 
+                   'pressure', 'visibility', 'wind_speed', 
+                   'precipitation', 'severity'];
+
+
 $DMI = 0;
 $DMA = 0;
 
@@ -103,15 +109,20 @@ function load_charts_containers(){
     $chart_types_list = [ 'Pie-chart', 'Bar-plot-chart', 'Lollipop-chart'];
     add_single_container('chart_type_container', 'Choose chart type', $chart_types_list, $GLOBALS['DMI'], $GLOBALS['DMA'], 1);
 
+    
     $xaxis_list = [ 'source', 'state', 'county', 'city', 'street_name', 'timezone', 'airport_code', 'wind_direction', 'weather_condition', 'side', 'severity', 'sunrise_sunset', 'civil_twilght', 'nautical_twilight', 'astronomical_twilight' ];
     add_single_container("xaxis_container", "Choose x-axis", $xaxis_list, $GLOBALS['DMI'], $GLOBALS['DMA'], 1);
 
-    $yaxis_list = [ 'Number-of-accidents', 'Mean-of-severity', 'Mean-of-distance'];
+
+    $yaxis_list = ['Number-of-accidents'];
+    foreach ($GLOBALS['NUMERIC_FIELDS'] as $field){
+        array_push($yaxis_list, 'Mean-of-'.$field);
+    }  
     add_single_container('yaxis_container', 'Choose y-axis', $yaxis_list, $GLOBALS['DMI'], $GLOBALS['DMA'], 1);
 
 }
 
-function create_by_noa($xaxis){
+function create_by_number_of_accidents($xaxis){
 
     $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
     fputcsv($fp, array('Name', 'Value', 'Color'));
@@ -135,12 +146,23 @@ function create_by_noa($xaxis){
 
 }
 
+
+function create_by_mean($xaxis, $yaxis){
+    debug_to_console("salut");
+    $results = $GLOBALS['event_model']->mean_column_group_by_other_column($yaxis, $xaxis, 'events');
+    foreach($results as $result){
+        debug_to_console($result);
+    }
+}
+
 function create_chart($chart_params){
     $xaxis = $chart_params[0];
     $yaxis = $chart_params[1];
 
     if($yaxis == "Number-of-accidents")
-        create_by_noa($xaxis);
+        create_by_number_of_accidents($xaxis);
+    else 
+        create_by_mean($xaxis, str_replace('Mean-of-', '', $yaxis));
 
 }
 

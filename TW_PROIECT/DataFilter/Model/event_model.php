@@ -154,6 +154,19 @@ class EventModel
         return $column_list;
     }
 
+    public function mean_column_group_by_other_column($mean_column, $group_column, $table){
+        $sql_command = "SELECT ".$group_column.", AVG(".$mean_column.") AS mean FROM ".$table." GROUP BY ".$group_column;
+        $result = $this->conn->query($sql_command);
+        
+        $avg_dict = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($avg_dict, $row);
+            }
+        }
+        return $avg_dict;
+    }
+
     public function get_columns_list(){
         $sql_command = "SELECT COLUMN_NAME FROM information_schema.columns 
                             WHERE table_schema='tw_project' AND table_name='events'";
