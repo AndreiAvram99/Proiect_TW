@@ -16,7 +16,7 @@
 
 </head>
 
-<body onResize="refresh()">
+<body>
 
 <?php include("navBar.html") ?>
 
