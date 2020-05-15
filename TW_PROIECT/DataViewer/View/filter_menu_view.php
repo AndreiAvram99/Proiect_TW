@@ -20,8 +20,8 @@
             <h3>Place of accidents:</h3>
 
             <label for="State">State:</label>
-            <select id="State" name = 'state'>
-                <option value="all">All</option>
+            <select id="State" name = 'state_container[]'>
+                <option value="All">All</option>
                 <?php
                     init_states();
 
@@ -31,8 +31,8 @@
             </select>
 
             <label for="County">County:</label>
-            <select id="County" name = 'county'>
-                <option value="all">All</option>
+            <select id="County" name = 'county_container[]'>
+                <option value="All">All</option>
                 <?php
                     init_counties();
 
@@ -42,8 +42,8 @@
             </select>
 
             <label for="City">City:</label>
-            <select id="City" name = 'city'>
-                <option value="all">All</option>
+            <select id="City" name = 'city_container[]'>
+                <option value="All">All</option>
                 <?php
                     init_cities();
 
