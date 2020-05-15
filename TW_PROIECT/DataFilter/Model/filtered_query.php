@@ -5,7 +5,7 @@ class FilteredQuery{
     private $where = " WHERE true";
     private $order = " ORDER BY NULL asc";
     private $from = 0;
-    private $count = 10000;
+    private $count = 1000000;
 
 
     public function __construct($columns, $table){
@@ -19,11 +19,11 @@ class FilteredQuery{
         if (gettype($list) != "array"){
             echo "Second parameter of method add_in_filter from class FilteredQuery has to be array!";
         }
-        $this->where .= " AND " . $column . " IN " . "(" . $this->get_string_list($list, true) . ")";
+        $this->where .= " AND( " . $column . " IN " . "(" . $this->get_string_list($list, true) . ") OR ". $column ." IS NULL)";
     }
 
     public function add_between_filter($column, $first, $last){
-        $this->where .= " AND " . $column . " BETWEEN " . "'" . $first . "'" . " AND " . "'" . $last . "'" ;
+        $this->where .= " AND( " . $column . " BETWEEN " . "'" . $first . "'" . " AND " . "'" . $last . "' OR ".$column. " IS NULL) " ;
     }
 
     // type = asc, desc

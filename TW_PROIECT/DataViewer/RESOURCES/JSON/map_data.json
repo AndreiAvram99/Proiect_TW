@@ -7,7 +7,7 @@
             "properties": {
                 "name": "Alabama",
                 "short_name": "AL",
-                "accidents_per_state": 0
+                "accidents_per_state": 6
             },
             "geometry": {
                 "type": "Polygon",
@@ -155,7 +155,7 @@
             "properties": {
                 "name": "Arizona",
                 "short_name": "AZ",
-                "accidents_per_state": 0
+                "accidents_per_state": 76
             },
             "geometry": {
                 "type": "Polygon",
@@ -463,7 +463,7 @@
             "properties": {
                 "name": "California",
                 "short_name": "CA",
-                "accidents_per_state": 9273
+                "accidents_per_state": 14933
             },
             "geometry": {
                 "type": "Polygon",
@@ -851,7 +851,7 @@
             "properties": {
                 "name": "Colorado",
                 "short_name": "CO",
-                "accidents_per_state": 0
+                "accidents_per_state": 39
             },
             "geometry": {
                 "type": "Polygon",
@@ -931,7 +931,7 @@
             "properties": {
                 "name": "Connecticut",
                 "short_name": "CT",
-                "accidents_per_state": 0
+                "accidents_per_state": 4
             },
             "geometry": {
                 "type": "Polygon",
@@ -1011,7 +1011,7 @@
             "properties": {
                 "name": "Delaware",
                 "short_name": "DE",
-                "accidents_per_state": 0
+                "accidents_per_state": 7
             },
             "geometry": {
                 "type": "Polygon",
@@ -1115,7 +1115,7 @@
             "properties": {
                 "name": "Florida",
                 "short_name": "FL",
-                "accidents_per_state": 0
+                "accidents_per_state": 96
             },
             "geometry": {
                 "type": "Polygon",
@@ -1443,7 +1443,7 @@
             "properties": {
                 "name": "Georgia",
                 "short_name": "GA",
-                "accidents_per_state": 0
+                "accidents_per_state": 66
             },
             "geometry": {
                 "type": "Polygon",
@@ -1663,7 +1663,7 @@
             "properties": {
                 "name": "Idaho",
                 "short_name": "ID",
-                "accidents_per_state": 0
+                "accidents_per_state": 1
             },
             "geometry": {
                 "type": "Polygon",
@@ -1943,7 +1943,7 @@
             "properties": {
                 "name": "Illinois",
                 "short_name": "IL",
-                "accidents_per_state": 0
+                "accidents_per_state": 32
             },
             "geometry": {
                 "type": "Polygon",
@@ -2427,7 +2427,7 @@
             "properties": {
                 "name": "Iowa",
                 "short_name": "IA",
-                "accidents_per_state": 0
+                "accidents_per_state": 7
             },
             "geometry": {
                 "type": "Polygon",
@@ -2643,7 +2643,7 @@
             "properties": {
                 "name": "Kansas",
                 "short_name": "KS",
-                "accidents_per_state": 0
+                "accidents_per_state": 6
             },
             "geometry": {
                 "type": "Polygon",
@@ -2711,7 +2711,7 @@
             "properties": {
                 "name": "Kentucky",
                 "short_name": "KY",
-                "accidents_per_state": 0
+                "accidents_per_state": 1
             },
             "geometry": {
                 "type": "Polygon",
@@ -3027,7 +3027,7 @@
             "properties": {
                 "name": "Louisiana",
                 "short_name": "LA",
-                "accidents_per_state": 0
+                "accidents_per_state": 113
             },
             "geometry": {
                 "type": "Polygon",
@@ -4061,7 +4061,7 @@
             "properties": {
                 "name": "Michigan",
                 "short_name": "MI",
-                "accidents_per_state": 0
+                "accidents_per_state": 6
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -4699,7 +4699,7 @@
             "properties": {
                 "name": "Minnesota",
                 "short_name": "MN",
-                "accidents_per_state": 0
+                "accidents_per_state": 26
             },
             "geometry": {
                 "type": "Polygon",
@@ -5047,7 +5047,7 @@
             "properties": {
                 "name": "Mississippi",
                 "short_name": "MS",
-                "accidents_per_state": 0
+                "accidents_per_state": 3
             },
             "geometry": {
                 "type": "Polygon",
@@ -5247,7 +5247,7 @@
             "properties": {
                 "name": "Missouri",
                 "short_name": "MO",
-                "accidents_per_state": 0
+                "accidents_per_state": 9
             },
             "geometry": {
                 "type": "Polygon",
@@ -5831,7 +5831,7 @@
             "properties": {
                 "name": "Nevada",
                 "short_name": "NV",
-                "accidents_per_state": 0
+                "accidents_per_state": 13
             },
             "geometry": {
                 "type": "Polygon",
@@ -5931,7 +5931,7 @@
             "properties": {
                 "name": "New Hampshire",
                 "short_name": "NH",
-                "accidents_per_state": 0
+                "accidents_per_state": 1
             },
             "geometry": {
                 "type": "Polygon",
@@ -6059,7 +6059,7 @@
             "properties": {
                 "name": "New Jersey",
                 "short_name": "NJ",
-                "accidents_per_state": 0
+                "accidents_per_state": 10
             },
             "geometry": {
                 "type": "Polygon",
@@ -6203,7 +6203,7 @@
             "properties": {
                 "name": "New Mexico",
                 "short_name": "NM",
-                "accidents_per_state": 0
+                "accidents_per_state": 10
             },
             "geometry": {
                 "type": "Polygon",
@@ -6287,7 +6287,7 @@
             "properties": {
                 "name": "New York",
                 "short_name": "NY",
-                "accidents_per_state": 0
+                "accidents_per_state": 60
             },
             "geometry": {
                 "type": "Polygon",
@@ -6575,7 +6575,7 @@
             "properties": {
                 "name": "North Carolina",
                 "short_name": "NC",
-                "accidents_per_state": 0
+                "accidents_per_state": 118
             },
             "geometry": {
                 "type": "Polygon",
@@ -7119,7 +7119,7 @@
             "properties": {
                 "name": "Oklahoma",
                 "short_name": "OK",
-                "accidents_per_state": 0
+                "accidents_per_state": 64
             },
             "geometry": {
                 "type": "Polygon",
@@ -7315,7 +7315,7 @@
             "properties": {
                 "name": "Oregon",
                 "short_name": "OR",
-                "accidents_per_state": 0
+                "accidents_per_state": 76
             },
             "geometry": {
                 "type": "Polygon",
@@ -7555,7 +7555,7 @@
             "properties": {
                 "name": "Pennsylvania",
                 "short_name": "PA",
-                "accidents_per_state": 0
+                "accidents_per_state": 13
             },
             "geometry": {
                 "type": "Polygon",
@@ -7703,7 +7703,7 @@
             "properties": {
                 "name": "Rhode Island",
                 "short_name": "RI",
-                "accidents_per_state": 0
+                "accidents_per_state": 2
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -7785,7 +7785,7 @@
             "properties": {
                 "name": "South Carolina",
                 "short_name": "SC",
-                "accidents_per_state": 0
+                "accidents_per_state": 37
             },
             "geometry": {
                 "type": "Polygon",
@@ -8109,7 +8109,7 @@
             "properties": {
                 "name": "Tennessee",
                 "short_name": "TN",
-                "accidents_per_state": 0
+                "accidents_per_state": 11
             },
             "geometry": {
                 "type": "Polygon",
@@ -8297,7 +8297,7 @@
             "properties": {
                 "name": "Texas",
                 "short_name": "TX",
-                "accidents_per_state": 0
+                "accidents_per_state": 290
             },
             "geometry": {
                 "type": "Polygon",
@@ -8921,7 +8921,7 @@
             "properties": {
                 "name": "Utah",
                 "short_name": "UT",
-                "accidents_per_state": 0
+                "accidents_per_state": 33
             },
             "geometry": {
                 "type": "Polygon",
@@ -9113,7 +9113,7 @@
             "properties": {
                 "name": "Virginia",
                 "short_name": "VA",
-                "accidents_per_state": 0
+                "accidents_per_state": 7
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -9459,7 +9459,7 @@
             "properties": {
                 "name": "Washington",
                 "short_name": "WA",
-                "accidents_per_state": 0
+                "accidents_per_state": 82
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -10049,7 +10049,7 @@
             "properties": {
                 "name": "Wisconsin",
                 "short_name": "WI",
-                "accidents_per_state": 0
+                "accidents_per_state": 9
             },
             "geometry": {
                 "type": "Polygon",

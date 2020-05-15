@@ -41,7 +41,7 @@ class EventModel
     public function execute_query_with_filters(){
         $sql = $this->event_filtered_query->get_sql_query();
         $result = $this->conn->query($sql);
-
+        
         $events = [];
         if ($result->num_rows > 0){
             while ($row = $result->fetch_assoc()){
@@ -156,7 +156,7 @@ class EventModel
     }
     
     public function get_column_list($column, $table){
-        $sql_command = "SELECT DISTINCT ".$column." FROM ".$table." ORDER BY ".$column." ASC";
+        $sql_command = "SELECT DISTINCT ".$column." FROM ".$table." WHERE ".$column." IS NOT NULL " ." ORDER BY ".$column." ASC " ;
         $result = $this->conn->query($sql_command);
         
         $column_list = [];
