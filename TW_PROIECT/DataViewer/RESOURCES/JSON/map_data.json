@@ -8297,7 +8297,7 @@
             "properties": {
                 "name": "Texas",
                 "short_name": "TX",
-                "accidents_per_state": 290
+                "accidents_per_state": 289
             },
             "geometry": {
                 "type": "Polygon",

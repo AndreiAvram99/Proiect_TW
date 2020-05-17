@@ -61,7 +61,8 @@ class FilteredQuery{
                     if($element == 'No')
                         str_replace('No', '0');
                     
-                    $string_list = str_replace('_', ' ', $element);
+                    $string_list = str_replace('-', ' ', $element);
+
                     $first = false;
                 } else {
                     $string_list .= ", " . $element;

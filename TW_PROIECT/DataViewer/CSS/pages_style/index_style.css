@@ -1,12 +1,11 @@
 .index-content-container{
-    display: grid;
-    grid-template-columns: 5fr 2fr;
+    display: block;
 }
 
-@media screen and (max-width: 820px) {
+article{
+    margin-bottom: 10%;
+}
 
-    .index-content-container {
-        display: block;
-    }
-
+article>p{
+    text-indent: 30px;
 }

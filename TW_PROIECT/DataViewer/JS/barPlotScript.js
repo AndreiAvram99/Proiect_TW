@@ -6,7 +6,7 @@ function barPlotChartDraw() {
     // Set the dimensions and margins of the graph
     let margin = {top: 10, right: 10, bottom: 45, left: 100},
         width = CONTAINER_WIDTH - 120,
-        height = CONTAINER_HEIGHT - 40;
+        height = CONTAINER_HEIGHT - 60;
 
     // Append the svg object to the body of the page
     let svg = d3.select("#Bar_plot_chart")

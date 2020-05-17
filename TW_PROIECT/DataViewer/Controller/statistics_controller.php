@@ -138,10 +138,14 @@ function create_by_number_of_accidents($xaxis){
     }
 
     $color_index = 0;
+    $counter = 0;
     foreach($csv_manager as $value){
         fputcsv($fp, array(key($csv_manager), $csv_manager[key($csv_manager)], $colors[$color_index]));
         $color_index = ($color_index + 1) % 4;
         next($csv_manager);
+        //de scos 
+        if($counter == 40) break;
+        $counter++;
     }
 
 }

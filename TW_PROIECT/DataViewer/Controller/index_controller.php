@@ -6,19 +6,6 @@ include("../Model/event_model.php");
 $event_model = new EventModel();
 $events = $event_model->get_events();
 
-function create_event(){
-    $event = new eventController("titlu", "autor", "ceva descriere");
-    $event->show();
-}
-
-
-
-include("ranking_controller.php");
-function get_ranking(){
-    $ranking = new Ranking();
-    $ranking->show();
-}
-
 function get_nb_of_accidents($state){
     
     $nb_of_accidents = 0;

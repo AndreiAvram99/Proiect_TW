@@ -16,7 +16,7 @@ class FilterContainerRow{
     }
 
     public function get_value(){
-        return str_replace(' ', '_', $this->value);
+        return str_replace(' ', '-', $this->value);
     }
 
     public function get_name(){

@@ -9,18 +9,10 @@
 
     <link rel="stylesheet" type="text/css" href="../CSS/pages_style/index_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/body_style.css">
-    
-    <!-- to do: mai trebuie scos ranking -->
-    <link rel="stylesheet" type="text/css" href="../CSS/components_style/ranking_style.css">
-    <script type="text/javascript" src = "../JS/rankingResponsiveScript.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 </head>
 <body>
-
     <?php include("navBar.html"); ?>
-
 <main>
 
     <div class="title">
@@ -39,32 +31,7 @@
     </div>
 
     <div class = "index-content-container">
-      
-        <div id = "events_container" class = "events-container" >
-            <?php create_event();?>
-        </div>
-
-        <div id = "rankings_container" class = "rankings-container" >
-            <?php get_ranking();?>
-        </div>
-
-        <div  id="side_panel" class="side-panel">
-
-            <div class="ranking-title">
-                <h3>Rankings</h3>
-                <div class="underline"></div>
-            </div>
-
-            <canvas id="panel_close_btn" class="panel-close-btn" ontouchmove="closePanel(event)"></canvas>
-
-            <div class="panel-content">
-                <?php get_ranking();?>
-            </div>
-
-        </div>
-
-        <canvas id="panel_open_btn" class="panel-open-btn" ontouchmove="openPanel(event)"></canvas>
-
+        <?php include("mainPage.html"); ?>
     </div>
 
 </main>

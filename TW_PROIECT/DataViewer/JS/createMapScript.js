@@ -69,7 +69,6 @@ function highlightFeature(e) {
 
 function resetHighlight(e) {
     geojson.resetStyle(e.target);
-
     info.update();
 }
 

@@ -29,7 +29,7 @@
             <div class = "sub-menu">
                
                 <div class = "filter-title">
-                    <p>Choose custom filters:</p>
+                    <p>Custom filters:</p>
                     <input type = "button" 
                             id = "custom_container_button"
                             class = "show-menu" 

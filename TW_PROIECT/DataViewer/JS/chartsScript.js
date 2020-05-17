@@ -13,7 +13,5 @@ window.onload = function (){
             lollipopChartDraw(); 
 };
 
-function refresh() { 
-    location.reload(); 
-}
+
 

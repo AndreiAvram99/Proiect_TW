@@ -3,9 +3,9 @@ function lollipopChartDraw(){
     const CONTAINER_HEIGHT = document.getElementsByClassName("chart").item(0).clientHeight;
     const CONTAINER_WIDTH = document.getElementsByClassName("chart").item(0).clientWidth;
 
-    var margin = {top: 20, right: 0, bottom: 80, left: 60},
+    var margin = {top: 50, right: 0, bottom: 80, left: 60},
                 width = CONTAINER_WIDTH - 80,
-                height = CONTAINER_HEIGHT - 120;
+                height = CONTAINER_HEIGHT - 130;
 
     var svg = d3.select("#Lollipop_chart")
     .append("svg")
