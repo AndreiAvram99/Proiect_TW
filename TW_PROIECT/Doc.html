@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="padding-left: 20%;padding-right: 20%;text-align: justify">
+    <div role="contentinfo">
+        <ol>
+            <li>
+                <a href="#architectural_pattern">
+                    <span>1. </span>
+                    Architectural pattern
+                </a>
+            </li>
+        </ol>
+    </div>
+    <section id="architectural_pattern">
+        <h2><span>1. </span>Architectural pattern</h2>
+        <p> This application uses the <b>MCV architectural style</b>. It was chosen because the application
+            contains both interaction with the database and with users and in this way it is easy to
+            split the view components from the rest of application. Also working with databases is
+            separate from the the application functionalities. As a result all this components
+            can be implemented individually by different people.</p>
+        <p> The entire application is split in 4 components, which work individually as <b>microservices</b>.
+        <p> <b>Microservices</b> allow the parallel development of all these components. Abstracts the operations
+            that are done in the back, offering only the result. To use a microservices you don't need to
+            know how it is implemented.</p>
+        <p> The communication between these microservices respects the REST architecture using the
+            operations: GET and POST. All data returned by them are in JSON format. This format was
+            chosen because nowadays it is becoming more and more popular to the detriment of XML.</p>
+    </section>
+    <section id="structure">
+        <h2>Structure</h2>
+        <p> The application is structured in 4 microservices depending on the functionalities:</p>
+            <ul>
+                <li>Data filter</li>
+                <li>Data viewer</li>
+                <li>Public API</li>
+                <li>Data Administration</li>
+            </ul>
+        <section id="data_filter">
+            <h3>Data filter</h3>
+            <p> <b>Data filter</b> is the only component which has access to the events table form the database.
+                Because this table can be very large, operations must be optimized as much as possible. This component
+                has the role of extracting accidents according to different filters. This filters are sent as
+                parameter in a GET request and the response to the events is returned in JSON format.</p>
+        </section>
+        <section id="data_viewer">
+            <h3>Data viewer</h3>
+            <p> To do...</p>
+        </section>
+        <section id="public_api">
+            <h3>Public API</h3>
+            <p> <b>Public API</b> component it is handling of requests from external applications and provides
+                access to the data in the database by returning it in a structured way in the form of JSON.</p>
+        </section>
+        <section id="data_administration">
+            <h3>Data Administration</h3>
+            <p> <b>Data Administration</b> component allows authorized users to add events to the database.</p>
+        </section>
+    </section>
+    <section id="database">
+        <h2>Database</h2>
+        <p> To store data was used MySQL, relational database management system, because it is suitable for
+            large data and it is easy to do filtered queries according to many criteria.</p>
+    </section>
+</body>
+</html>
