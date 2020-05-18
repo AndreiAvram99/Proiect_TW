@@ -63,8 +63,10 @@
                 <label for="asc_by_date"> Sort asc by date</label><br>
                 <input type="radio" id="desc_by_date" name="sort_by_date" value="desc">
                 <label for="desc_by_date"> Sort desc by date</label><br>
-                <input type="radio" id="none" name="sort_by_date" value="none">
-                <label for="none"> None </label><br>
+
+                <label>
+                    <input type="radio" name="sort_by_date" value="none"> None
+                </label><br>
             </div>
 
             <div class="sort-by-state">
@@ -72,8 +74,9 @@
                 <label for="asc_by_state"> Sort asc by state</label><br>
                 <input type="radio" id="desc_by_state" name="sort_by_state" value="desc">
                 <label for="desc_by_state"> Sort desc by state</label><br>
-                <input type="radio" id="none" name="sort_by_state" value="none">
-                <label for="none"> None </label><br>
+                <label>
+                    <input type="radio" name="sort_by_state" value="none"> None
+                </label><br>
             </div>
         </div>
     </div>

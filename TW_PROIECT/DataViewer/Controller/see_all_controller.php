@@ -31,6 +31,7 @@ function load_events(){
     $event_model = new EventModel();
     $events = $event_model->get_events_with_limits($from, $count);
     foreach ($events as $event){
+
         $event_title = "Accdinent happen in ".$event["state"].", city: ".$event["city"].", date: ".$event["start_time"];
         $event_controller = new eventController($event_title, $event["author_id"], $event["description"]);
         $event_controller->set_id($event["id"]);
