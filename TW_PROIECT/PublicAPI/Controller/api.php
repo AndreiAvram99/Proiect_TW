@@ -10,21 +10,21 @@ $router = new Router();
 /**
  * Return the list of columns as JSON.
  */
-$router->add_route("GET", "events/columns", "Events::get_columns_list");
+$router->add_route("GET", "v1/events/columns", "Events::get_columns_list");
 
 /**
  * Return all distinct elements from specified column as JSON.
  */
-$router->add_route("GET", "events/columns/{column}", "Events::get_column");
+$router->add_route("GET", "v1/events/columns/{column}", "Events::get_column");
 
 /**
  * Return filtered events according to certain parameters as JSON.
  */
-$router->add_route("GET", "events", "Events::get_events");
+$router->add_route("GET", "v1/events", "Events::get_events");
 
 /**
  * Return a chart with filtered events.
  */
-$router->add_route("GET", "events/charts/{chart}", "Events::get_chart");
+$router->add_route("GET", "v1/events/statistics", "Events::get_statistics");
 
 echo $router->route($request);

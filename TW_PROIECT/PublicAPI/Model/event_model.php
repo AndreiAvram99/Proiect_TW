@@ -32,4 +32,14 @@ class EventModel
         $text = curl_exec($ch);
         return json_decode($text, true);
     }
+
+    function mean_column_group_by_other_column($mean_column, $group_column, $table){
+        $url = data_filter_root .  "/v1/events/mean?" . "mean_column=" . $mean_column . "&group_column=".$group_column;
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $text = curl_exec($ch);
+        return json_decode($text, true);
+    }
 }

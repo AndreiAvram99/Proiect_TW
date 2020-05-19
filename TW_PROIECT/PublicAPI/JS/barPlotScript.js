@@ -25,8 +25,8 @@ function barPlotChartDraw() {
 
         data.forEach(function(d) {
             d.Value = +d.Value;
-         });
-        
+        });
+
         var max = d3.max(data, function(d) { return d.Value; });
 
         // set the color scale
@@ -71,8 +71,13 @@ function barPlotChartDraw() {
     });
 
     d3.select("#downloadPNG").on('click', function(){
-    // Get the d3js SVG element and save using saveSvgAsPng.js
-    saveSvgAsPng(document.getElementsByTagName("svg")[0], "graph.png", {scale: 2, backgroundColor: "#FFFFFF"});
+        // Get the d3js SVG element and save using saveSvgAsPng.js
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], "graph.png", {scale: 2, backgroundColor: "#FFFFFF"});
     })
+
+    function getSVG() {
+        d3.select("#downloadSVG").d3.select(this)
+            .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#Bar_plot_chart").html()))
+    }
 
 }

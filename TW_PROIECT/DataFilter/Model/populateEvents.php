@@ -59,7 +59,7 @@ class PopulateEvents{
     }
 
     private function getFile(){
-        $path = "./../RESOURCES/CSV/databasePopulateTest.csv";
+        $path = "./../RESOURCES/CSV/databasePopulateTest.CSV";
         return fopen($path, "r");
     }
 }
