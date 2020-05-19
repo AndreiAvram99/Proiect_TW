@@ -7,22 +7,10 @@ function create_by_number_of_accidents($column){
     $fp = fopen('../RESOURCES/CSV/chart_data.CSV', 'w');
     fputcsv($fp, array('Name', 'Value'));
 
-    $csv_manager = []; //pair name(x)-value(y)
+    $results = $GLOBALS['event_model']->count_events_group_by_column($column, 'events');
 
-    foreach($GLOBALS['events'] as $event){
-        if (!array_key_exists($event[$column], $csv_manager))
-            $csv_manager[$event[$column]] = 1;
-        else
-            $csv_manager[$event[$column]] += 1;
-    }
-
-    $counter = 0;
-    foreach($csv_manager as $value){
-        fputcsv($fp, array(key($csv_manager), $csv_manager[key($csv_manager)]));
-        next($csv_manager);
-        //de scos
-        if($counter == 40) break;
-        $counter++;
+    foreach($results as $result){
+        fputcsv($fp, array($result[$column], $result['count']));
     }
 
 }

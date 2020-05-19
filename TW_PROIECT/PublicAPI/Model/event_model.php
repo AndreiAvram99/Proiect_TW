@@ -22,6 +22,16 @@ class EventModel
         return json_decode($text, true)['columns'];
     }
 
+    function count_events_group_by_column($column){
+        $url = data_filter_root .  "/v1/events/count?" . "column=" . $column ;
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $text = curl_exec($ch);
+        return json_decode($text, true);
+    }
+
     function get_events(){
         $query_param = $_SERVER["QUERY_STRING"];
         $url = data_filter_root . "/v1/events?" . $query_param;
