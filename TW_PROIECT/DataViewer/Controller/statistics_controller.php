@@ -5,7 +5,6 @@ include("filter_container_controller.php");
 include("chart_container_controller.php");
 
 $event_model = new EventModel();
-$events = get_events();
 
 //CONTAINER_TYPE = 0 - DB_CONTAINER + CUSTOM_CONTAINER + TF_CONTAINER
 //CONTAINER_TYPE = 1 - SINGLE_OPTION_CONTAINER
@@ -37,12 +36,6 @@ $NUMERIC_FIELDS = ['start_lat', 'start_lng', 'distance',
 
 $DMI = 0;
 $DMA = 0;
-
-
-function get_events(){
-    $event_model = new EventModel();
-    return $event_model->get_events();
-}
 
 function add_single_container($name, $title, $content_list, $min, $max, $container_type){
    

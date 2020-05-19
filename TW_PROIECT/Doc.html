@@ -8,15 +8,52 @@
     <div role="contentinfo">
         <ol>
             <li>
+                <a href="#introduction">
+                    Introduction
+                </a>
+            </li>
+
+            <li>
                 <a href="#architectural_pattern">
-                    <span>1. </span>
                     Architectural pattern
+                </a>
+            </li>
+
+            <li>
+                <a href="#structure">
+                    Structure
+                </a>
+            </li>
+
+            <li>
+                <a href="#used_technologies">
+                    Used technologies
+                </a>
+            </li>
+
+            <li>
+                <a href="#database">
+                    Database
+                </a>
+            </li>
+
+            <li>
+                <a href="#references">
+                    References
                 </a>
             </li>
         </ol>
     </div>
+
+    <section id="introduction">
+        <h2><span>1. </span>Introduction</h2>
+        <p>
+            To do...
+        </p>
+    </section>
+
     <section id="architectural_pattern">
-        <h2><span>1. </span>Architectural pattern</h2>
+        <h2><span>2. </span>Architectural pattern</h2>
         <p> This application uses the <b>MCV architectural style</b>. It was chosen because the application
             contains both interaction with the database and with users. This way, it's easy to
             split the view components from the rest of the application. The application's functionalities different than
@@ -30,40 +67,320 @@
             operations: GET and POST. All data returned by them are in JSON format. This format was
             chosen because nowadays it is becoming more and more popular in the detriment of XML.</p>
     </section>
+
     <section id="structure">
-        <h2>Structure</h2>
-        <p> The application is structured in 4 microservices depending on the functionalities:</p>
-            <ul>
-                <li>Data filter</li>
-                <li>Data viewer</li>
-                <li>Public API</li>
-                <li>Data Administration</li>
-            </ul>
-        <section id="data_filter">
-            <h3>Data filter</h3>
-            <p> <b>Data filter</b> is the only component which has access to the events table from the database.
-                Because this table can be very large, operations must be optimized as much as possible. This component
-                has the role of extracting accidents according to different filters. This filters are sent as
-                parameter in a GET request and the response to the events is returned in JSON format.</p>
+        
+        <h2><span>3. </span>Structure</h2>
+
+        <section id = "microservices">
+            <h3>Microservices</h3>
+            
+            <p> The application is structured in 4 microservices depending on the functionalities:</p>
+                <ul>
+                    <li>Data filter</li>
+                    <li>Data viewer</li>
+                    <li>Public API</li>
+                    <li>Data Administration</li>
+                </ul>
+            
+            <section id="data_filter">
+                <h4>Data filter</h4>
+                <p> It is the only component which has access to the events table from the database.
+                    Because this table can be very large, operations must be optimized as much as possible. This component
+                    has the role of extracting accidents according to different filters. This filters are sent as
+                    parameter in a GET request and the response to the events is returned in JSON format.</p>
+            </section>
+
+            <section id="data_viewer">
+                <h4>Data viewer</h4>
+                <p> 
+                    Acest microserviciu se ocupa de interfaţa aplicaţiei/sitului Web. <b>Data viewr</b> se foloseste de informatiile extrase
+                    de pe partea de back-end cu ajutorul microserviciului <b>data filter</b>, pentru a afisa intr-un mod cat mai clar  
+                    informatiile pe partea de front-end.
+                </p> 
+
+                <p>
+                    <b>Utilizatorul poate filtra datele dupa cum doreste</b> pentru a putea extrage informatiile de care are nevoie,
+                    ori sub forma de chart in <b>format svg, png, ori</b> in <b>format csv</b> in care i se ofera un document cu ce coloana a selectat si valoarea pentru aceasta, 
+                    totodata, acesta <b>poate vedea informatii legate de accidente</b> si mai poate vizualiza <b>o harta</b> ce se coloreaza in functie de numarul de accidente din fiecare stat.
+                </p>
+            </section>
+            
+            <section id="public_api">
+                <h4>Public API</h4>
+                <p> <b>Public API</b> component is handling of requests from external applications and provides
+                    access to the data in the database by returning it in a structured way in the form of JSON.</p>
+            </section>
+
+            <section id="data_administration">
+                <h4>Data Administration</h4>
+                <p> <b>Data Administration</b> component allows authorized users to add events to the database.</p>
+            </section>
+
         </section>
-        <section id="data_viewer">
-            <h3>Data viewer</h3>
-            <p> To do...</p>
+
+        <section id="user_interface">
+        <h3> User interface </h3>
+            
+            <section id="interface_components">
+                <h4>Interface components</h4>
+                <p>
+                    Interfata site-ului este impartita in trei pagini principale: 
+                </p>
+                    <ul>
+                        <li>Home</li>
+                        <li>See all</li>
+                        <li>Statistics</li>
+                    </ul>
+                
+                <section id="home_page">
+                    <h5>Home page</h5>
+                    <p>
+                        Pe pagina principala, utilizatorul poate vedea o reprezentare cartografica a evenimentelor,
+                        fiecare stat este colorat in functie de numarul de accidente, acest numar este extras din baza de date
+                        si pus intr-un fisier de tip jason, iar apoi cu ajutorul unui api('leaflet') se creeaza harta. 
+                        Cu cat sunt mai multe accidente cu atat culoarea este mai inchisa. Tot in acelasi loc apare 
+                        specificata movatia alegerii temei si cateva informatii despre numarul accidentelor din 
+                        Statele Unite ale Americii.
+                    </p>
+
+                    <p>
+                        Pe partea de back-end pagina are o singura componenta importanta si anume map controlerul ce se ocupa de prelucrea datelor
+                        si crearea hartii.
+                    </p>
+
+                </section>
+
+                <section id="See_all_page">
+                    <h5>See all page</h5>
+                    <p>
+                        Aceasta pagina ofera informatii legate de accidentele ce au avut loc si se regasesc in baza de date. Containerele cu 
+                        informatii pot fi sortate crescator sau descrescator dupa numele statelor sau dupa data si pot fi filtrate in functie de stat
+                        oras, county si data la care au avut loc. Pentru eficienta sunt incarcate cate zece evenimente pe pagina, iar la final apare un 
+                        meniu de paginare pentru a putea selecta alta pagina cu alte 10 evenimente.
+                    </p>
+                </section>
+
+
+                <section id="Statistics_page">
+                    <h5>Statistics page</h5>
+                    <p>
+                        Pagina statisticilor este imparatita in doua compponente principale: prima componenta cuprinde
+                        meniul de filtrare, in timp ce a doua apare in momentul in care sunt completate toate datel si
+                        ofera o reprezentare grafica a datelor in functie de cum vrea utilizatorul sa fie filtrate si cum
+                        vrea sa apara. Meniul de filtrare pentru a fi mai accesibil si mai usor de folosit este impartit in
+                        patru submeniuri(Custom filters, Presence filters, Data filters si Between filters).
+                    </p>
+
+                    <p>
+                        Primul submeniu, cuprinde filtre ce contin foarte putine valori, acestea sunt de tipul (zi-noapte, dreapta-stanga etc.).
+                        Pentru optimizare, am decis sa le punem separat deoarece nu avea sens sa mai interogam baza de date pentru 
+                        niste valori ce nu pot avea alta valoare decat acestea prestabilite.
+                    </p>
+
+                    <p>
+                        Al doilea submeniu, cuprinde filtre de tip boolean(true, false), poti alege daca a avut loc sau nu filtrul respectiv(daca au fost sau nu daune,
+                        accidente etc.)
+                    </p>
+
+                    <p>
+                        Al doilea submeniu, cuprinde filtre de tip boolean(true, false), poti alege daca a avut loc sau nu filtrul respectiv(daca au fost sau nu daune,
+                        rani etc.)
+                    </p>
+
+                    <p>
+                        Cel de al treilea submeniu, cuprinde filtre ce depind exclusiv de baza de date, cum ar fi (nume de state, orase, nume de strazi etc.).
+                    </p>
+
+                    <p>
+                        Ultimul submeniu contine filtre numerice, ce pot fi setate intre valoarea minima a filtrului respectiv din baza de date si valoarea maxima.
+                        De exemplu: viteza vantului, temperatura, latitudinea, longitudinea etc.
+                    </p>
+                    
+                    <p>
+                        Dupa ce sunt completate toate aceste filtre, utillizatorul trebuie sa aleaga un tip de chart(bar-plot, pie-chart, lollipop-chart) si ce informatii
+                        doreste sa apara in acel chart(aceste lucruri se valideaza pe partea de front-end, iar daca nu sunt introduse valori din intervalul specificat, sau 
+                        nu sunt completate ultimele specificatii legate de tipul de chart si ce informatii apar, sunt returnate mesaje de avertizare si nu va 
+                        putea fi apasat butonul de submit).
+                    </p>
+
+                    <p>
+                        In momentul in care toate filtrele au fost completate, apare un chart container ce contine reprezentarea grafica a chartului si un meniu de unde se poate alege
+                        modalitatea de export in formatele png, svg sau csv. In crearea graficelor a fost folosita libraria D3, pentru grafice in format vectorial, pentru fiecare tip de grafic
+                        se genereaza un document csv cu datele necesare, iar mai apoi D3 prelueaza acaeste informatii si construieste graficul. 
+                    </p>
+
+                    <p>
+                        Am ales acest tip de reprezentare a paginii deoarece ne-am gandit ca este destul de intuitiva pentru utilizator si tot odata ii ofera libertate totala in a selecta 
+                        filtrele dupa cum doreste. Totodata toate aceste submeniuri sunt inchise la inceput, pentru ca pagina sa nu fie foarte incarcata si apar in momentul in care cineva doreste sa le modifice
+                        (by default sunt setate pe All, adica sa le ia pe toate).  
+                    </p>
+
+                    <p>
+                        Pe partea de back-end clasele principale folosite sunt ChartCointainer si FilterContainer, prima clasa este pentru partea de statisci, care ajuta la crearea containerului in care vor fi puse,
+                        iar a doua creeaza containere pentru filtere, fiecare container are ca atribute id, title, tipul de container(between, cu mai multe optiuni, sau cu o singura optiune) si o lista cu obiecte de 
+                        tipul FilterContainerRow ce reprezinta valorile din container si in functie de tipul containerlui pot fi(numerice, check-box-uri, radio-uri), in aceeasi ordine cu tipul de container specificat mai sus.   
+                        La final controlerul de la Statistics se ocupa de prelucrarea datelor si la final este inclus view-ul pentru pagina de statistici.            
+                    </p>
+
+                </section>
+
+            </section>
+            
+            <section id="interface_evolution">
+                <h4>Interface evolution</h4>
+                <p>
+                    In primele saptamani de dupa ce am ales tema proiectului, ne-am intalnit pentru a incerac sa desenam o schema a aplicatiei noastre:
+                    cam de ce anume o sa avem nevoie, cam cum o sa arate paginile si cel mai important cum o sa decurga interactiunea cu utilizatorul. La 
+                    inceput eram foarte optimisti si chiar am vrut sa facem ceva super interesan, ceva ca o retea sociala in care fiecare utilizator 
+                    poate posta accidente si ceilalti pot spune cat de veridica este postarea respectiva, iar cele adevarate sa primeasca acordul adminului, 
+                    urmand ca cele false sa fie sterse.   
+                </p>
+
+                <p>
+                    Dupa ceva timp, ne-am dat seama ca incercand sa facem foarte multe lucruri pierdem din functionalitatile ce trebuia sa le contina aplicatia, 
+                    astfel am decis sa ne concentram mai mult pe partea de functionalitate si sa facem ce este necesar, urmand sa adaugamm lucruri noi in limita
+                    timpului disponibil.
+                </p>
+                
+                <p>
+                    Acestea sunt niste schite ale aplicatiei dupa prima intalnire:
+                </p>
+                    <img src="RESOURCES/IMAGES/0.png">
+                    <img src="RESOURCES/IMAGES/1.png">
+                    <img src="RESOURCES/IMAGES/2.png">
+                    <img src="RESOURCES/IMAGES/3.png">
+                    <img src="RESOURCES/IMAGES/4.png">
+                
+                <p>
+                    Dupa am mai avut o intalnire in care am stabilit cum sa arate meniul de filtrari de pe pagina de statistici,
+                    la inceput meniul era simplist si avea foarte putine filtre, dupa ne-a venit ideea ca ar trebui sa il structuram 
+                    pe categorii. 
+                </p>
+                <p>
+                    Mai jos este o imagine cu felul in care arata meniul de filtrare:  
+                </p>
+                    <img src="RESOURCES/IMAGES/5.png">
+                
+
+                <p>
+                    Pe parte de back-end, ca si structura, la inceput sitelul era format doar din cateva fisiere html, css si js, dupa am facut
+                    trecerea la MVC si am introdus php-ul ca in final sa ajungem sa impartim aplicatia in microservicii si sa ne ocupam de partea 
+                    de API.
+                </p>
+                
+            </section>
+
+
         </section>
-        <section id="public_api">
-            <h3>Public API</h3>
-            <p> <b>Public API</b> component is handling of requests from external applications and provides
-                access to the data in the database by returning it in a structured way in the form of JSON.</p>
+
+    </section>
+
+    <section id="used_technologies">
+        <h2> <span>4. </span>Used technologies</h2>
+        <p>
+            In realizarea proiectului am folosit urmatoarele tehnologii:<br>
+            Pe partea de back-end am folosit php, MySQL, in timp ce pe partea de front-end am folosit html, css si js
+        </p>
+
+        <section id="PHP">
+            <p>
+                PHP este un limbaj de programare folosit pentru a crea pagini web dinamice sau
+                aplicatii web interactive. PHP a devenit un limbaj foarte important de programare 
+                web open-source si server-side.
+            </p>
         </section>
-        <section id="data_administration">
-            <h3>Data Administration</h3>
-            <p> <b>Data Administration</b> component allows authorized users to add events to the database.</p>
+
+        <section id="MySQL">
+            <p>
+                MySQL este un sistem de gestiune a bazelor de date folosit foarte des împreună cu aplicații de programare PHP prin care se pot construi 
+                numeroase aplicații web și nu numai, dar MySQL poate fi folosit împreună cu aproape orice limbaj major. 
+                Este produs de compania suedeză MySQL AB și este distribuit sub Licența Publică Generală GNU. 
+                Acest soft funcționează cu stiva LAMP (Linux, Apache, MySQL, PHP). 
+                Bazele de date MySQL pot fi accesate și editate prin scheme API de limbaje de programare C, C++, C#, Perl, Java, Python, PHP, FreeBasic și multe altele. 
+            </p>
+        </section>
+
+        <section id="HTML">
+            <p>
+                HTML este o technologie prin care documente text, dar și imagini, pot fi afișate pe o singură pagină prin intermediul unui soft specializat, 
+                numit browser web. Textul și informația dintr-o pagină pot fi aranjate și adnotate cu diverse coduri, tipuri de metadate și indicații de redare.
+            </p>
+        </section>
+
+        <section id="CSS">
+            <p>
+                CSS sau Cascading Style Sheets este un standard care ajută la formatarea unui document HTML într-un mod mai simplu și mai creativ. 
+                Un fișier CSS se poate atașa unui fișier HTML ca fișier extern sau chiar în documentul HTML printr-un atribut. 
+                Modul în care este afișat conținutul unui site poate să fie controlat prin CSS. CSS ajută și la formatarea unor pagini realizate în formatele XHTML, 
+                XML sau SVGL.
+            </p>
+        </section>
+
+        <section id="JS">
+            <p>
+                Javascript este un limbaj de programare foarte popular care este folosit în numeroase pagini web. Prin codul Javascript se pot introduce funcționalități
+                interactive în orice site astfel încât site-ul să fie mai dinamic. Codul Javascript este rulat de browser și poate da acces și la obiecte sau programe din alte aplicații. 
+            </p>
         </section>
     </section>
+
     <section id="database">
-        <h2>Database</h2>
-        <p> To store data was used MySQL, relational database management system, because it is suitable for
-            large data and it is easy to do filtered queries according to many criteria.</p>
+        <h2><span>5. </span> Database </h2>
+        <p> 
+            To store data was used MySQL, relational database management system, because it is suitable for
+            large data and it is easy to do filtered queries according to many criteria.
+        </p>
+        <p>    
+            MySQL ensures data security with exceptional data protection features. Powerful data encryption 
+            prevents unauthorized viewing of data and SSH and SSL supports ensure safer connections. 
+            It also features a powerful mechanism that restricts server access to authorized users and has 
+            the ability to block users even at the man-machine level. Finally, the data backup feature facilitates 
+            point-in-time recovery.
+        </p>
     </section>
+
+    <section id="references">
+        <h2><span>6. </span> References </h2>
+        <p>
+            In realizarea proiectului am folosit urmatoarele de resurse: 
+        </p>
+        <ul>
+            <li>
+                Pentru harta apelam la serviciile api-ului leaflet, iar in realizarea ei am urmarit tutorialul 
+                de pe pagina lor de <a href="https://leafletjs.com/examples/choropleth/">aici</a>. Acest API 
+                are licenta BSD, pentru a citi mai multe despre aceasta accesati link-ul de 
+                <a href="https://github.com/Leaflet/Leaflet/blob/master/LICENSE">aici</a>.
+            </li>
+
+            <li>
+                Pentru crearea chart-urilor am folosit libraria D3.js si am urmarit tutorialele de la pagina de 
+                <a href="https://d3js.org/">aici</a>.
+                Aceasta librarie are licenta BSD, pentru a citi mai multe despre aceasta accesati link-ul de 
+                <a href="https://github.com/d3/d3/blob/master/LICENSE">aici</a>.
+            </li>
+
+            <li> 
+                Pentru exportul de charturi in format png folosim un script cu licenta MIT luat de pe github de 
+                <a href="https://github.com/bjpop/saveSvgAsPng"> aici </a>.
+            </li>
+
+            <li>
+                Pentru partea de front-end am apelat la ajutorul site-ului <a href="https://www.w3schools.com/">https://www.w3schools.com/</a>.
+            </li>
+
+            <li>
+                Pentru intrebari legate de php am folosit manualul PHP, pe care il puteti vedea 
+                <a href="https://www.php.net/manual/ro/index.php"> aici </a>.
+            </li>
+
+            <li>
+                Pentru citirea unui fisier json in java script am folosit un script in jquery de la link-ul de 
+                <a href="https://stackoverflow.com/questions/20400076/reading-a-file-into-a-string-in-jquery-js">aici</a>
+            </li>
+
+        </ul>
+    </section>
+
 </body>
 </html>
