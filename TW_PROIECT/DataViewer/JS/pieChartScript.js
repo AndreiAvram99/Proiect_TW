@@ -22,9 +22,9 @@ function pieChartDraw() {
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     // Read the data
-    // Insert csv file!!
+    // Insert CSV file!!
     // Parse the Data
-    d3.csv("../RESOURCES/CSV/chart_data.csv", function(data) {
+    d3.csv("../RESOURCES/CSV/chart_data.CSV", function(data) {
         // set the color scale
 
         let color = d3.scaleOrdinal()

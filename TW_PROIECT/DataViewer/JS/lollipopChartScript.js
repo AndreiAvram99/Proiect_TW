@@ -15,7 +15,7 @@ function lollipopChartDraw(){
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.csv("../RESOURCES/CSV/chart_data.csv", function(data) {
+    d3.csv("../RESOURCES/CSV/chart_data.CSV", function(data) {
 
     data.forEach(function(d) {
         d.Value = +d.Value;

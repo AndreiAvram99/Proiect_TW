@@ -1,5 +1,6 @@
 <?php
-include("./../Model/event_model.php");
+include_once("./../Model/event_model.php");
+include("chart_controller.php");
 
 class Events
 {
@@ -9,32 +10,74 @@ class Events
      * @param $parameters
      * @return false|mixed|string
      */
-    static function get_chart($parameters){
-        $accepted_charts = ["pie_chart" => "Events::get_pie_chart",
-                            "bar_plot_chart" => "Events::get_bar_plot_chart",
-                            "lollipop_chart" => "Events::get_lollipop_chart"];
-        $chart = $parameters[0];
-        if (!isset($accepted_charts[$chart])){
-            $answer['error'] = "Chart not found!";
+    static function get_statistics(){
+        if (!isset($_REQUEST['type'])){
+            $answer['success'] = false;
+            $answer['error'] = "Type attribute is necessary.";
+            return json_encode($answer);
+        }
+        if (!isset($_REQUEST['column'])){
+            $answer['success'] = false;
+            $answer['error'] = "Column attribute is necessary.";
             return json_encode($answer);
         }
 
-        return call_user_func($accepted_charts[$chart]);
+        $type = $_REQUEST['type'];
+        $column = $_REQUEST['column'];
+
+        $check_column_answer = self::check_column($column);
+        if ($check_column_answer !== 'OK'){
+            return $check_column_answer;
+        }
+
+
+        if ($type == 'count'){
+            create_by_number_of_accidents($column);
+            $answer['success'] = true;
+            $answer['data'] = file_get_contents('../RESOURCES/CSV/chart_data.CSV');
+            return json_encode($answer);
+        }
+        else if ($type == 'average'){
+            if (!isset($_REQUEST['mean_column'])){
+                $answer['success'] = false;
+                $answer['error'] = "Average type require mean_column attribute.";
+                return json_encode($answer);
+            }
+            $mean_column = $_REQUEST['mean_column'];
+            $check_column_answer = self::check_column($mean_column);
+            if ($check_column_answer !== 'OK'){
+                return $check_column_answer;
+            }
+            create_by_mean($column, $mean_column);
+
+            $answer['success'] = true;
+            $answer['data'] = file_get_contents('../RESOURCES/CSV/chart_data.CSV');
+            return json_encode($answer);
+        }
+        else{
+            $answer['success'] = false;
+            $answer['error'] = "Bad type.";
+            return json_encode($answer);
+        }
     }
 
-    static function get_pie_chart(){
-        $answer['chart'] = "pie-chart";
-        return json_encode($answer);
-    }
+    private static function check_column($column){
+        $column_characters = "/[a-zA-Z0-9_]+/";
+        if (!preg_match($column_characters, $column)){
+            $answer['success'] = false;
+            $answer['error'] = "Illegal characters in column.";
+            return json_encode($answer);
+        }
 
-    static function get_bar_plot_chart(){
-        $answer['chart'] = "bar_plot_chart";
-        return json_encode($answer);
-    }
+        $event_model = new EventModel();
+        $columns = $event_model->get_columns_list();
 
-    static function get_lollipop_chart(){
-        $answer['chart'] = "lollipop_chart";
-        return json_encode($answer);
+        if (!in_array($column, $columns)){
+            $answer['success'] = false;
+            $answer['error'] = "There is no column " . $column;
+            return json_encode($answer);
+        }
+        return 'OK';
     }
 
     /**

@@ -19,9 +19,9 @@ function barPlotChartDraw() {
             "translate(" + margin.left + "," + margin.top + ")");
 
     // Read the data
-    // Insert csv file!!
+    // Insert CSV file!!
     // Parse the Data
-    d3.csv("../RESOURCES/CSV/chart_data.csv", function(data) {
+    d3.csv("../RESOURCES/CSV/chart_data.CSV", function(data) {
 
         data.forEach(function(d) {
             d.Value = +d.Value;
