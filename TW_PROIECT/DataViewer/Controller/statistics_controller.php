@@ -123,12 +123,9 @@ function load_charts_containers(){
 }
 
 function create_by_number_of_accidents($xaxis){
-
     $fp = fopen('../RESOURCES/CSV/chart_data.CSV', 'w');
     fputcsv($fp, array('Name', 'Value', 'Color'));
-    
-    $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
-    fputcsv($fp, array('Name', 'Value', 'Color'));    
+
     $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
     $color_index = 0;
 

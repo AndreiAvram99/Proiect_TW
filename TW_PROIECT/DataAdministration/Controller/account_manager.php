@@ -114,7 +114,6 @@ class AccountManager
             if ($column == "id" || $column == "author_id")
                 continue;
             if (isset($data[$column])){
-                echo $column . " " . $data[$column] . "<br>";
                 $query_data[$column] = $data[$column];
             }
         }

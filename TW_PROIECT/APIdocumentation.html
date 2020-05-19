@@ -9,14 +9,284 @@
         <h2>Public API</h2>
         <p> The public API is organized around REST. This API accepts form-encoded request bodies, returns
             JSON-encoded responses, and uses standard HTTP response codes and verbs.</p>
-        <p> </p>
-        <section id="events/columns">
-            <h3>URL: /events/columns</h3>
+        <p> All data from public api can be accessed without any authentication.</p>
+        <section id="v1/events/columns">
+            <h3>URL: v1/events/columns</h3>
             <h4>Method: GET</h4>
             <p>Return the list of all columns from events table.</p>
-        </section>
-        <section id="">
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/PublicAPI/Controller/api.php/v1/events/columns </p>
 
+                <b>Response example:</b>
+                <pre style = "overflow-x: auto;">
+{
+    "success": true,
+    "data": ["id","author_id","source","severity","description","start_time","start_lat","start_lng","city","county","state","distance","street_nb","street_name","side","timezone","airport_code","temperature","wind_chill","humidity","pressure","visibility","wind_direction","wind_speed","precipitation","weather_condition","amenity","bump","crossing","give_way","junction","no_exit","railway","roundabout","station","stop","traffic_calming","traffic_signal","turn_loop","sunrise_sunset","civil_twilight","nautical_twilight","astronomical_twilight"]
+}</pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>200 - OK</li>
+            </ul>
+        </section>
+        <section id="v1/events/columns/{column}">
+            <h3>URL: v1/events/columns/{column}</h3>
+            <h4>Method: GET</h4>
+            <p>Return all distinct elements which are in the specified column.</p>
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/PublicAPI/Controller/api.php/v1/events/columns/state </p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+    "success":true,
+    "data":{
+        "state":["AL","AZ","CA","CO","CT","DE","FL","GA","IA","ID","IL","KS","KY","LA","MI","MN","MO","MS","NC","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","TN","TX","UT","VA","WA","WI","WV"]
+    }
+}</pre>
+            <pre style = "overflow-x: auto;">
+{
+    "success":false,
+    "error":"There is no column states"
+}</pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>200 - OK</li>
+                <li>400 - Bad Request</li>
+            </ul>
+        </section>
+        <section id="GET_v1/events">
+            <h3>URL: v1/events</h3>
+            <h4>Method: GET</h4>
+            <p>Return all events which respects all the added filters. Filters cen be added as query
+                parameters. There can be array filters with all columns from events table which are not
+                of numeric type, and if a column is present as filter then only events that have the value
+                from that column in filter list will be returned.( to add this type of filter, the parameter
+                has to be of form: columnName_container[]=value) For numeric columns cen be specified between
+                filters in the following format: columnName_min for min value and columnName_max for max value.
+                Also to filter events by date, query parameters 'start_date' and 'end_date' must be
+                filled. The date format is YYYY-MM-DD.</p>
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/PublicAPI/Controller/api.php/v1/events?state_container[]=ID&state_container[]=MO&temperature_min=1&temperature_max=90&start_date=1998-11-05&end_date=2018-11-05</p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+  "success": true,
+  "data": {
+    "events": [
+      {
+        "id": "15236",
+        "author_id": "1",
+        "source": "MapQuest",
+        "severity": "3",
+        "description": "Left lane blocked due to accident on I-55 Northbound at Exit 1 MO-O.",
+        "start_time": "2017-11-03 20:24:20",
+        "start_lat": "36.0161",
+        "start_lng": "-89.875",
+        "city": "Steele",
+        "county": "Pemiscot",
+        "state": "MO",
+        "distance": "0",
+        "street_nb": "0",
+        "street_name": "I-55 S",
+        "side": "R",
+        "timezone": "US\/Central",
+        "airport_code": "KHKA",
+        "temperature": "62.1",
+        "wind_chill": "0",
+        "humidity": "96",
+        "pressure": "30.11",
+        "visibility": "9",
+        "wind_direction": "East",
+        "wind_speed": "3.5",
+        "precipitation": "0",
+        "weather_condition": "Overcast",
+        "amenity": "0",
+        "bump": "0",
+        "crossing": "0",
+        "give_way": "0",
+        "junction": "0",
+        "no_exit": "0",
+        "railway": "0",
+        "roundabout": "0",
+        "station": "0",
+        "stop": "0",
+        "traffic_calming": "0",
+        "traffic_signal": "0",
+        "turn_loop": "0",
+        "sunrise_sunset": "Night",
+        "civil_twilight": "Night",
+        "nautical_twilight": "Night",
+        "astronomical_twilight": "Night"
+      }
+    ]
+  }
+}
+            </pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>200 - OK</li>
+                <li>400 - Bad Request</li>
+            </ul>
+
+        </section>
+        <section id="v1/events/statistics">
+            <h3>URL: v1/events/statistics</h3>
+            <h4>Method: GET</h4>
+            <p> There are two types of statistics. You have to specified the type in 'type' parameter, it can
+                be 'count' or 'average'. </p>
+            <p> For count type, you have to give a parameter with name column. It must to be a valid column
+                name. The response will consist in number of accidents for each distinct value from
+                specified column.</p>
+            <p> For average type, you have to give a parameter with name column. It must to be a valid column
+                name. In addition there must be specified an other column named 'mean_column' and for this
+                column an average will be made. The response will consist in average value of 'mean_column' for
+                each distinct value from specified column.
+            </p>
+            <p>
+                In 'data' field of the JSON response will be encoded a CSV with two columns.
+                The information from this columns help you to make charts and other statistics.</p>
+            <p><b>Example:</b>  http://localhost/Proiect_TW/TW_PROIECT/PublicAPI/Controller/api.php/v1/events/statistics?type=count&column=state</p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+    "success":true,
+    "data":"Name,Value\nAL,6\nAZ,76\nCA,14933\nCO,39\nCT,4\nDE,7\nFL,96\nGA,66\nIA,7\nID,1\nIL,32\nKS,6\nKY,1\nLA,113\nMI,6\nMN,26\nMO,9\nMS,3\nNC,118\nNE,1\nNH,1\nNJ,10\nNM,10\nNV,13\nNY,60\nOH,725\nOK,64\nOR,76\nPA,13\nRI,2\nSC,37\nTN,11\nTX,289\nUT,33\nVA,7\nWA,82\nWI,9\nWV,2\n"
+}
+            </pre>
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/PublicAPI/Controller/api.php/v1/events/statistics?type=average&column=state&mean_column=severity </p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+    "success":true,
+    "data":"Name,Value\nAL,2.8333\nAZ,2.4079\nCA,2.4404\nCO,2.5897\nCT,2.7500\nDE,2.1429\nFL,2.6250\nGA,2.8182\nIA,2.5714\nID,3.0000\nIL,2.2813\nKS,3.0000\nKY,2.0000\nLA,2.2212\nMI,2.8333\nMN,2.7308\nMO,2.7778\nMS,2.6667\nNC,2.3390\nNE,3.0000\nNH,3.0000\nNJ,2.5000\nNM,2.6000\nNV,2.4615\nNY,2.6500\nOH,2.3214\nOK,2.1719\nOR,2.4211\nPA,2.6154\nRI,3.0000\nSC,2.3514\nTN,2.6364\nTX,2.2595\nUT,2.6667\nVA,2.5714\nWA,2.3780\nWI,2.8889\nWV,2.5000\n"
+}
+            </pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>200 - OK</li>
+                <li>400 - Bad Request</li>
+            </ul>
+        </section>
+
+    </section>
+    <section id="admin_api">
+        <h2>Admin API</h2>
+        <p> The public API is organized around REST. This API accepts form-encoded request bodies, returns
+            JSON-encoded responses, and uses standard HTTP response codes and verbs. This API is dedicated
+            to administrators, so you can add new events.</p>
+        <p> To add new events you have to be authorised. You have to create an account, to log in
+            and after you can create events. Not everyone can create an account, to do this you need
+            a token received from site owner. </p>
+
+        <section id="v1/register">
+            <h3>URL: v1/register</h3>
+            <h4>Method: POST</h4>
+            <p>In order to register you have to set in body 'username', 'password' and 'register_token'. If you
+                don't have a register_token, ask application owner for that. In case of success you receive
+                the session token, it expire after 10 minutes and you have to login again.</p>
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/DataAdministration/Controller/api.php/v1/register </p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+    "success":true,
+    "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjpudWxsLCJsaXZlX3RpbWUiOjE1ODk4ODQxMDl9.NL00XrXjyF33WdKG6Dh-OMlAEUA3NM6K6UTzjZ93_RI"
+}
+            </pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>201 - Created</li>
+                <li>400 - Bad Request</li>
+            </ul>
+        </section>
+        <section id="v1/login">
+            <h3>URL: v1/login</h3>
+            <h4>Method: POST</h4>
+            <p>In order to login you have to set in body 'username' and 'password'. In case of success you receive
+                the session token, it expire after 10 minutes and you have to login again.</p>
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/DataAdministration/Controller/api.php/v1/login </p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+    "success":true,
+    "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjpudWxsLCJsaXZlX3RpbWUiOjE1ODk4ODQxMDl9.NL00XrXjyF33WdKG6Dh-OMlAEUA3NM6K6UTzjZ93_RI"
+}
+            </pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>200 - Created</li>
+                <li>400 - Bad Request</li>
+            </ul>
+        </section>
+
+        <section id="POST_v1/events">
+            <h3>URL: v1/events</h3>
+            <h4>Method: POST</h4>
+            <p> In order to add events you have to be logged, it means to add a valid token in header.
+                In body will be the new event in JSON format. This JSON has to have attributes of form
+                "column": "value". An example of body is:</p>
+            <pre style = "overflow-x: auto;">
+{
+    "state": "OH",
+    "city": "Dayton",
+    "severity": "3"
+}
+            </pre>
+            <p> All other fields will be filled in with null.</p>
+            <p><b>Example:</b> http://localhost/Proiect_TW/TW_PROIECT/DataAdministration/Controller/api.php/v1/events </p>
+            <b>Response example:</b>
+            <pre style = "overflow-x: auto;">
+{
+  "success": true,
+  "data": {
+    "event": {
+      "id": 17009,
+      "author_id": 4,
+      "source": null,
+      "severity": 3,
+      "description": null,
+      "start_time": null,
+      "start_lat": null,
+      "start_lng": null,
+      "city": "Dayton",
+      "county": null,
+      "state": "OH",
+      "distance": null,
+      "street_nb": null,
+      "street_name": null,
+      "side": null,
+      "timezone": null,
+      "airport_code": null,
+      "temperature": null,
+      "wind_chill": null,
+      "humidity": null,
+      "pressure": null,
+      "visibility": null,
+      "wind_direction": null,
+      "wind_speed": null,
+      "precipitation": null,
+      "weather_condition": null,
+      "amenity": null,
+      "bump": null,
+      "crossing": null,
+      "give_way": null,
+      "junction": null,
+      "no_exit": null,
+      "railway": null,
+      "roundabout": null,
+      "station": null,
+      "stop": null,
+      "traffic_calming": null,
+      "traffic_signal": null,
+      "turn_loop": null,
+      "sunrise_sunset": null,
+      "civil_twilight": null,
+      "nautical_twilight": null,
+      "astronomical_twilight": null
+    }
+  }
+}
+            </pre>
+            <b>Response codes:</b>
+            <ul>
+                <li>201 - Created</li>
+                <li>400 - Bad Request</li>
+            </ul>
         </section>
     </section>
 </body>

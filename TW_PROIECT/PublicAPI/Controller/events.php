@@ -14,11 +14,13 @@ class Events
         if (!isset($_REQUEST['type'])){
             $answer['success'] = false;
             $answer['error'] = "Type attribute is necessary.";
+            http_response_code(400);
             return json_encode($answer);
         }
         if (!isset($_REQUEST['column'])){
             $answer['success'] = false;
             $answer['error'] = "Column attribute is necessary.";
+            http_response_code(400);
             return json_encode($answer);
         }
 
@@ -41,6 +43,7 @@ class Events
             if (!isset($_REQUEST['mean_column'])){
                 $answer['success'] = false;
                 $answer['error'] = "Average type require mean_column attribute.";
+                http_response_code(400);
                 return json_encode($answer);
             }
             $mean_column = $_REQUEST['mean_column'];
@@ -57,6 +60,7 @@ class Events
         else{
             $answer['success'] = false;
             $answer['error'] = "Bad type.";
+            http_response_code(400);
             return json_encode($answer);
         }
     }
@@ -66,6 +70,7 @@ class Events
         if (!preg_match($column_characters, $column)){
             $answer['success'] = false;
             $answer['error'] = "Illegal characters in column.";
+            http_response_code(400);
             return json_encode($answer);
         }
 
@@ -75,6 +80,7 @@ class Events
         if (!in_array($column, $columns)){
             $answer['success'] = false;
             $answer['error'] = "There is no column " . $column;
+            http_response_code(400);
             return json_encode($answer);
         }
         return 'OK';
@@ -98,7 +104,10 @@ class Events
     static function get_events_as_JSON(){
         $event_model = new EventModel();
         $events['events'] = $event_model->get_events();
-        return json_encode($events);
+
+        $answer['success'] = true;
+        $answer['data'] = $events;
+        return json_encode($answer);
     }
 
     /**
@@ -114,11 +123,14 @@ class Events
         $columns = $event_model->get_columns_list();
 
         if (!in_array($column, $columns)){
+            $answer['success'] = false;
             $answer['error'] = "There is no column " . $column;
+            http_response_code(400);
             return json_encode($answer);
         }
 
-        $answer[$column] = $event_model->get_column_list($column);
+        $answer['success'] = true;
+        $answer['data'][$column] = $event_model->get_column_list($column);
         return json_encode($answer);
     }
 
@@ -128,6 +140,8 @@ class Events
      */
     static function get_columns_list(){
         $event_model = new EventModel();
-        return json_encode($event_model->get_columns_list());
+        $answer['success'] = true;
+        $answer['data'] = $event_model->get_columns_list();
+        return json_encode($answer);
     }
 }
