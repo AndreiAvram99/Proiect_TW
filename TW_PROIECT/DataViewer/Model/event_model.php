@@ -51,6 +51,16 @@ class EventModel{
         return json_decode($text, true);
     }
 
+    function count_events_group_by_column($column){
+        $url = $this->root .  "/v1/events/count?" . "column=" . $column ;
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        $text = curl_exec($ch);
+        return json_decode($text, true);
+    }
+
     // return the number of events with filters from _REQUEST
     function get_count(){
         $query_param = $_SERVER["QUERY_STRING"];

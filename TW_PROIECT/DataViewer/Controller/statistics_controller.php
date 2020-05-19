@@ -123,31 +123,18 @@ function load_charts_containers(){
 }
 
 function create_by_number_of_accidents($xaxis){
-
-    $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
-    fputcsv($fp, array('Name', 'Value', 'Color'));
     
-    $csv_manager = []; //pair name(x)-value(y)
+    $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
+    fputcsv($fp, array('Name', 'Value', 'Color'));    
     $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
-
-    foreach($GLOBALS['events'] as $event){
-        if (!array_key_exists($event[$xaxis], $csv_manager)) 
-            $csv_manager[$event[$xaxis]] = 1;
-        else 
-            $csv_manager[$event[$xaxis]] += 1;
-    }
-
     $color_index = 0;
-    $counter = 0;
-    foreach($csv_manager as $value){
-        fputcsv($fp, array(key($csv_manager), $csv_manager[key($csv_manager)], $colors[$color_index]));
-        $color_index = ($color_index + 1) % 4;
-        next($csv_manager);
-        //de scos 
-        if($counter == 40) break;
-        $counter++;
-    }
 
+    $results = $GLOBALS['event_model']->count_events_group_by_column($xaxis, 'events');
+    
+    foreach($results as $result){
+        fputcsv($fp, array($result[$xaxis], $result['count'], $colors[$color_index]));
+        $color_index = ($color_index + 1) % 4;
+    }
 }
 
 

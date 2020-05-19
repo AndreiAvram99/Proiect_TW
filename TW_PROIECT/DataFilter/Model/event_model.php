@@ -181,6 +181,20 @@ class EventModel
         return $avg_dict;
     }
 
+    function count_events_group_by_column($column){
+        $sql_command = "SELECT ".$column.", COUNT(id) AS count FROM events GROUP BY ".$column;
+        $result = $this->conn->query($sql_command);
+        
+        $count_dict = [];
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($count_dict, $row);
+            }
+        }
+        return $count_dict;
+    }
+
+
     public function get_columns_list(){
         $sql_command = "SELECT COLUMN_NAME FROM information_schema.columns 
                             WHERE table_schema='tw_project' AND table_name='events'";

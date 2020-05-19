@@ -187,6 +187,12 @@ class Events
         return json_encode($event_model->mean_column_group_by_other_column($mean_column, $group_column, "events"));
     }
 
+    static function get_count_values(){
+        $column = $_REQUEST["column"];
+        $event_model = new EventModel();
+        return json_encode($event_model->count_events_group_by_column($column));
+    }
+
     static function get_columns(){
         $event_model = new EventModel();
         $columns['columns'] = $event_model->get_columns_list();
