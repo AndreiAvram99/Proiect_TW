@@ -116,7 +116,7 @@ function load_charts_containers(){
 }
 
 function create_by_number_of_accidents($xaxis){
-    $fp = fopen('../RESOURCES/CSV/chart_data.CSV', 'w');
+    $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
     fputcsv($fp, array('Name', 'Value', 'Color'));
 
     $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
@@ -125,7 +125,12 @@ function create_by_number_of_accidents($xaxis){
     $results = $GLOBALS['event_model']->count_events_group_by_column($xaxis, 'events');
     
     foreach($results as $result){
-        fputcsv($fp, array($result[$xaxis], $result['count'], $colors[$color_index]));
+
+        if($result[$xaxis] === '')
+            fputcsv($fp, array('Undifined', $result['count'], $colors[$color_index]));
+        else 
+            fputcsv($fp, array($result[$xaxis], $result['count'], $colors[$color_index]));
+        
         $color_index = ($color_index + 1) % 4;
     }
 }
@@ -133,7 +138,7 @@ function create_by_number_of_accidents($xaxis){
 
 function create_by_mean($xaxis, $yaxis){
 
-    $fp = fopen('../RESOURCES/CSV/chart_data.CSV', 'w');
+    $fp = fopen('../RESOURCES/CSV/chart_data.csv', 'w');
     fputcsv($fp, array('Name', 'Value', 'Color'));    
     $colors = ['slateblue', 'lightsalmon','lightskyblue', 'lightgreen']; // colors
     $color_index = 0;
@@ -141,7 +146,10 @@ function create_by_mean($xaxis, $yaxis){
     $results = $GLOBALS['event_model']->mean_column_group_by_other_column($yaxis, $xaxis, 'events');
     
     foreach($results as $result){
-        fputcsv($fp, array($result[$xaxis], $result['mean'], $colors[$color_index]));
+        if($result[$xaxis] === '')
+            fputcsv($fp, array('Undifined', $result['mean'], $colors[$color_index]));
+        else 
+            fputcsv($fp, array($result[$xaxis], $result['mean'], $colors[$color_index]));
         $color_index = ($color_index + 1) % 4;
     }
 }
@@ -159,7 +167,9 @@ function create_chart($chart_params){
 
 function load_chart_container(){
 
-    if(isset($_REQUEST['chart_type_container']) && sizeof($GLOBALS['events'])!=0 ){
+
+
+    if(isset($_REQUEST['chart_type_container']) && filesize('../RESOURCES/CSV/chart_data.csv') !=0 ){
         
         if(in_array('Pie-chart', $_REQUEST['chart_type_container']))
         { 
