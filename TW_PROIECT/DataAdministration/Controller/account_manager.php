@@ -14,9 +14,13 @@ class AccountManager
             return self::error_handle("Password is required!");
         }
 
-        // to do: check username
         $username = $_POST["username"];
         $password = $_POST["password"];
+
+        if (self::check_username($username) !== 'OK' ||
+            self::check_password($password) !== 'OK'){
+            return self::error_handle("Username or password is incorrect.");
+        }
 
         $user_model = new UsersModel();
         $hashed_password = $user_model->get_password_for($username);
@@ -47,9 +51,20 @@ class AccountManager
             return self::error_handle("Register_token is required!");
         }
 
-        $user_model = new UsersModel();
         $username = $_POST["username"];
         $password = $_POST["password"];
+
+        $check_username_answer = self::check_username($username);
+        if ($check_username_answer !== 'OK'){
+            return $check_username_answer;
+        }
+
+        $check_password_answer = self::check_password($password);
+        if ($check_password_answer !== 'OK'){
+            return $check_password_answer;
+        }
+
+        $user_model = new UsersModel();
         $register_token = $_POST["register_token"];
 
         $password = password_hash($password, PASSWORD_BCRYPT);
@@ -74,6 +89,37 @@ class AccountManager
         $answer["token"] = $token;
         http_response_code(201);
         return json_encode($answer);
+    }
+
+    private static function check_username($username){
+        $username_characters = "/[a-zA-Z0-9_]+/";
+        preg_match($username_characters, $username, $match);
+        if ($match[0] !== $username){
+            $answer['success'] = false;
+            $answer['error'] = "Username must have only letters, digits or '_'.";
+            http_response_code(400);
+            return json_encode($answer);
+        }
+
+        if (strlen($username) < 4 || strlen($username) > 30){
+            $answer['success'] = false;
+            $answer['error'] = "Username must have between 4 and 30 characters.";
+            http_response_code(400);
+            return json_encode($answer);
+        }
+
+        return 'OK';
+    }
+
+    private static function check_password($password){
+        if (strlen($password) < 8 || strlen($password) > 30){
+            $answer['success'] = false;
+            $answer['error'] = "Password must have between 8 and 30 characters.";
+            http_response_code(400);
+            return json_encode($answer);
+        }
+
+        return 'OK';
     }
 
     public static function create_event(){
