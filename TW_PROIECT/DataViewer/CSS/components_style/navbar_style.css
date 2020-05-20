@@ -34,10 +34,10 @@ nav{
 .navbar .icon {
     display: none;
 }
-
+/* 
 .right-menu{
     padding-left: 60%;
-}
+} */
 
 /* Responsive */
 
@@ -47,15 +47,15 @@ nav{
         padding-right: 0;
     }
 
-    .right-menu{
+    /* .right-menu{
         float:none;
         z-index: 1;
         padding-left: 0;
-    }
+    } */
 
     .left-menu a:not(:first-child) {display: none;}
-    .right-menu a{display: none;
-    }
+    /* .right-menu a{display: none;
+    } */
 
     .navbar a.icon {
         float: right;

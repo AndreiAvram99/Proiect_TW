@@ -36,7 +36,11 @@
 
 </main>
 
-<footer></footer>
+<footer>
+    <p> <b>Project doc <a href="../View/project_doc.html">here</a></b></p>
+    <p> <b>API doc <a href="../View/API_doc.html">here</a></b></p>
+    <p> <b>Credentials: Leaflet released under BSD license. © 2010–2019 Vladimir Agafonkin. Maps © OpenStreetMap contributors.</b></p>
+</footer>
 
 </body>
 </html>

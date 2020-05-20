@@ -124,14 +124,18 @@ function create_by_number_of_accidents($xaxis){
 
     $results = $GLOBALS['event_model']->count_events_group_by_column($xaxis, 'events');
     
+    $counter = 0;
     foreach($results as $result){
-
+        
         if($result[$xaxis] === '')
             fputcsv($fp, array('Undifined', $result['count'], $colors[$color_index]));
         else 
             fputcsv($fp, array($result[$xaxis], $result['count'], $colors[$color_index]));
         
         $color_index = ($color_index + 1) % 4;
+        $counter++;
+
+        if($counter == 30) break;
     }
 }
 
@@ -145,12 +149,16 @@ function create_by_mean($xaxis, $yaxis){
 
     $results = $GLOBALS['event_model']->mean_column_group_by_other_column($yaxis, $xaxis, 'events');
     
+    $counter = 0;
     foreach($results as $result){
         if($result[$xaxis] === '')
             fputcsv($fp, array('Undifined', $result['mean'], $colors[$color_index]));
         else 
             fputcsv($fp, array($result[$xaxis], $result['mean'], $colors[$color_index]));
         $color_index = ($color_index + 1) % 4;
+        $counter++;
+
+        if($counter == 30) break;
     }
 }
 

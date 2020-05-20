@@ -26,11 +26,6 @@
         --event-container-footer-color: white;
         --event-container-button-color: var(--pallete-color-1);
         --event-container-button-color-hover: var(--pallete-light-color-1);
-        
-        /* Ranking */
-        --ranking-table-header: var(--pallete-color-1);
-        --ranking-table-row-color-1: var(--pallete-light-color-1);
-        --ranking-table-row-color-2: white;
 
         /* Filter menu */
         --search-bar-eyeglass-background-color : var(--pallete-color-1);
@@ -59,6 +54,11 @@ main{
     display: block;
     margin-left: 14%;
     margin-right: 14%;
+}
+
+footer{
+    margin-top: 10%;
+    text-align: center;
 }
 
 .underline{

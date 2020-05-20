@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/stats_filter_menu_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/check_box_style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/components_style/input_date_style.css">
+    
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -163,32 +164,34 @@
         <div class="underline"></div>
     </div>
 
-    <div class="charts-container">
-        <?php 
-            load_chart_container();
-        ?>
-    </div>
-
+    <?php 
+        load_chart_container();
+    ?>
+   
 
 </main>
 
+<footer>
+    <p> <b>Project doc <a href="../View/project_doc.html">here</a></b></p>
+    <p> <b>API doc <a href="../View/API_doc.html">here</a></b></p>
+    <p> <b>Credentials: D3 Library released under BSD license. Copyright 2019 Mike Bostock.</b></p>
+</footer>
     
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
-    <script type="text/javascript" src=http://code.jquery.com/jquery-latest.js></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src=http://code.jquery.com/jquery-latest.js></script>
 
-    <script type="text/javascript" src="../JS/saveSvgAsPng.js"></script>
-    <script type="text/javascript" src = "../JS/pieChartScript.js"></script>
-    <script type="text/javascript" src = "../JS/barPlotScript.js"></script>
-    <script type="text/javascript" src = "../JS/lollipopChartScript.js"></script>
-    <script type="text/javascript" src = "../JS/chartsScript.js"></script>
+    <script src="../JS/saveSvgAsPng.js"></script>
+    <script src = "../JS/pieChartScript.js"></script>
+    <script src = "../JS/barPlotScript.js"></script>
+    <script src = "../JS/lollipopChartScript.js"></script>
+    <script src = "../JS/chartsScript.js"></script>
 
-    <script type="text/javascript" src = "../JS/validateChartsForm.js"></script>
-    
-    <script type="text/javascript" src = "../JS/addRemoveMenuScript.js"> </script>
-    <script type="text/javascript" src = "../JS/changeCheckBoxValueScript.js"></script>
+    <script src = "../JS/validateChartsForm.js"></script>
+    <script src = "../JS/addRemoveMenuScript.js"> </script>
+    <script src = "../JS/changeCheckBoxValueScript.js"></script>
 
 </body>
 

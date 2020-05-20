@@ -1,14 +1,5 @@
 <form action = <?php echo get_self()?> method = "get" class = "filter-menu">
     <div class="header-filters">
-<!--        <div class="search-container">-->
-<!--            <form action="">-->
-<!--                <button type="submit"><i class="fa fa-search"></i></button>-->
-<!--                <label>-->
-<!--                    <input type="text" placeholder="Search.." name="search">-->
-<!--                </label>-->
-<!--            </form>-->
-<!--        </div>-->
-
         <div class="title">
             <p>Filters</p>
             <div class="underline"></div>

@@ -4,9 +4,17 @@ html {
   
 body{
     background-color: ghostwhite;
+}
+
+main{
     padding-left: 16%; 
     padding-right: 16%; 
     text-align: justify;
+}
+
+footer{
+    text-align: center;
+    margin-top: 5%;
 }
 
 .section-title{
