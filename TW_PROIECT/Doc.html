@@ -3,79 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="RESOURCES/CSS/project_doc.css">
 </head>
-<body style="padding-left: 20%;padding-right: 20%;text-align: justify">
-    <div role="contentinfo">
-        <ol>
-            <li>
-                <a href="#introduction">
-                    Introduction
-                </a>
-            </li>
 
-            <li>
-                <a href="#architectural_pattern">
-                    Architectural pattern
-                </a>
-            </li>
 
-            <li>
-                <a href="#structure">
-                    Structure
-                </a>
-            </li>
+<body>
 
-            <li>
-                <a href="#used_technologies">
-                    Used technologies
-                </a>
-            </li>
+    <h2 class="first-level">Summary</h2>
+    <div class="underline"></div>
 
-            <li>
-                <a href="#database">
-                    Database
-                </a>
-            </li>
+    <div role="contentinfo" class="summary">
+        <ul>
+            <li><a href="#introduction">1. Introduction</a></li>
+            <li><a href="#architectural_pattern">2. Architectural pattern</a></li>
+            <li><a href="#structure">3. Structure</a></li>
+                <ul>
+                    <li><a href="#microservices">3.1. Microservices</a></li>
+                        <ul>
+                            <li><a href="#data_filter">3.1.1. Data filter</a></li>
+                            <li><a href="#data_viewer">3.1.2. Data viewer</a></li>
+                            <li><a href="#public_api">3.1.3. Public API</a></li>
+                            <li><a href="#data_administration">3.1.4. Data Administration</a></li>
+                        </ul>
 
-            <li>
-                <a href="#references">
-                    References
-                </a>
-            </li>
-        </ol>
+
+                    <li><a href="#user_interface">3.2. User interface</a></li>    
+                        <ul>
+                            <li><a href="#interface_components">3.2.1. Interface components</a></li>
+                                <ul>
+                                    <li><a href="#home_page">3.2.1.1. Home page</a></li>
+                                    <li><a href="#see_all_page">3.2.1.2. See all page</a></li>
+                                    <li><a href="#statistics_page">3.2.1.3. Statistics page</a></li>
+                                </ul>
+
+                            <li><a href="#interface_evolution">3.2.2. Interface evolution</a></li>
+                        </ul>
+                    
+                </ul>
+
+
+            <li><a href="#used_technologies">4. Used technologies</a></li>
+            <li><a href="#database">5. Database</a></li>
+            <li><a href="#references">6. References</a></li>
+        <ul>
     </div>
 
-    <section id="introduction">
-        <h2><span>1. </span>Introduction</h2>
+    <section id="introduction" class="section-title">
+        <h2 class="first-level"><span>1. </span>Introduction</h2>
+        <div class="underline"></div>
+
         <p>
-            To do...
+            Reducing traffic accidents is an important public safety challenge. However, the majority of studies on traffic accident analysis and prediction have used small-scale datasets with limited coverage, which limits their impact and applicability; and existing large-scale datasets are either private, old, or do not include important contextual information such as environmental stimuli (weather, points-of-interest, etc.). In order to help the research community address these shortcomings we have - through a comprehensive process of data collection, integration, and augmentation - created a large-scale publicly available database of accident information named US-Accidents.
+        </p>
+        <p>
+            US-Accidents currently contains data about 2.25 million instances of traffic accidents that took place within the contiguous United States, and over the last three years. Each accident record consists of a variety of intrinsic and contextual attributes such as location, time, natural language description, weather, period-of-day, and points-of-interest.
         </p>
     </section>
 
-    <section id="architectural_pattern">
-        <h2><span>2. </span>Architectural pattern</h2>
+    <section id="architectural_pattern" class="section-title">
+        <h2 class="first-level"><span>2. </span>Architectural pattern</h2>
+        <div class="underline"></div>
+
         <p> This application uses the <b>MCV architectural style</b>. It was chosen because the application
             contains both interaction with the database and with users. This way, it's easy to
             split the view components from the rest of the application. The application's functionalities different than
             working with the data base. As a result all these components
             can be implemented individually by different people.</p>
-        <p> The entire application is split in 4 components, which work individually as <b>microservices</b>.
+        
+        <p> The entire application is split in 4 components, which work individually as <b>microservices</b> </p>.
+    
         <p> <b>Microservices</b> allow the parallel development of all these components. Obscures the operations
             that are happening in the back-end, offering only the result. To use a microservices you don't need to
             know how it is implemented.</p>
+        
         <p> The communication between these microservices respects the REST architecture using the
             operations: GET and POST. All data returned by them are in JSON format. This format was
             chosen because nowadays it is becoming more and more popular in the detriment of XML.</p>
     </section>
 
-    <section id="structure">
-        
-        <h2><span>3. </span>Structure</h2>
+    <section id="structure" class="section-title">
+        <h2 class="first-level"><span>3. </span>Structure</h2>
+        <div class="underline"></div>
 
         <section id = "microservices">
-            <h3>Microservices</h3>
+            <h3 class="second-level"><span>3.1. </span>Microservices</h3>
             
-            <p> The application is structured in 4 microservices depending on the functionalities:</p>
+            <p> The application is structured in four microservices depending on the functionalities:</p>
                 <ul>
                     <li>Data filter</li>
                     <li>Data viewer</li>
@@ -84,7 +97,7 @@
                 </ul>
             
             <section id="data_filter">
-                <h4>Data filter</h4>
+                <h4 class="third-level"><span>3.1.1. </span>Data filter</h4>
                 <p> It is the only component which has access to the events table from the database.
                     Because this table can be very large, operations must be optimized as much as possible. This component
                     has the role of extracting accidents according to different filters. This filters are sent as
@@ -92,7 +105,7 @@
             </section>
 
             <section id="data_viewer">
-                <h4>Data viewer</h4>
+                <h4 class="third-level"><span>3.1.2. </span> Data viewer</h4>
                 <p> 
                     Acest microserviciu se ocupa de interfaţa aplicaţiei/sitului Web. <b>Data viewr</b> se foloseste de informatiile extrase
                     de pe partea de back-end cu ajutorul microserviciului <b>data filter</b>, pentru a afisa intr-un mod cat mai clar  
@@ -107,23 +120,23 @@
             </section>
             
             <section id="public_api">
-                <h4>Public API</h4>
+                <h4 class="third-level"><span>3.1.3. </span>Public API</h4>
                 <p> <b>Public API</b> component is handling of requests from external applications and provides
                     access to the data in the database by returning it in a structured way in the form of JSON.</p>
             </section>
 
             <section id="data_administration">
-                <h4>Data Administration</h4>
+                <h4 class="third-level"><span>3.1.4. </span>Data Administration</h4>
                 <p> <b>Data Administration</b> component allows authorized users to add events to the database.</p>
             </section>
 
         </section>
 
         <section id="user_interface">
-        <h3> User interface </h3>
+        <h3 class="second-level"><span>3.2. </span> User interface </h3>
             
             <section id="interface_components">
-                <h4>Interface components</h4>
+                <h4 class="third-level"><span>3.2.1. </span>Interface components</h4>
                 <p>
                     Interfata site-ului este impartita in trei pagini principale: 
                 </p>
@@ -134,7 +147,7 @@
                     </ul>
                 
                 <section id="home_page">
-                    <h5>Home page</h5>
+                    <h5 class="fourth-level"> <span>3.2.1.1.</span>Home page</h5>
                     <p>
                         Pe pagina principala, utilizatorul poate vedea o reprezentare cartografica a evenimentelor,
                         fiecare stat este colorat in functie de numarul de accidente, acest numar este extras din baza de date
@@ -151,8 +164,8 @@
 
                 </section>
 
-                <section id="See_all_page">
-                    <h5>See all page</h5>
+                <section id="see_all_page">
+                    <h5 class="fourth-level"><span>3.2.1.2.</span>See all page</h5>
                     <p>
                         Aceasta pagina ofera informatii legate de accidentele ce au avut loc si se regasesc in baza de date. Containerele cu 
                         informatii pot fi sortate crescator sau descrescator dupa numele statelor sau dupa data si pot fi filtrate in functie de stat
@@ -161,9 +174,8 @@
                     </p>
                 </section>
 
-
-                <section id="Statistics_page">
-                    <h5>Statistics page</h5>
+                <section id="statistics_page">
+                    <h5 class="fourth-level"><span>3.2.1.3.</span>Statistics page</h5>
                     <p>
                         Pagina statisticilor este imparatita in doua compponente principale: prima componenta cuprinde
                         meniul de filtrare, in timp ce a doua apare in momentul in care sunt completate toate datel si
@@ -228,7 +240,7 @@
             </section>
             
             <section id="interface_evolution">
-                <h4>Interface evolution</h4>
+                <h4 class="third-level"><span>3.2.2.Interface evolution</h4>
                 <p>
                     In primele saptamani de dupa ce am ales tema proiectului, ne-am intalnit pentru a incerac sa desenam o schema a aplicatiei noastre:
                     cam de ce anume o sa avem nevoie, cam cum o sa arate paginile si cel mai important cum o sa decurga interactiunea cu utilizatorul. La 
@@ -246,12 +258,15 @@
                 <p>
                     Acestea sunt niste schite ale aplicatiei dupa prima intalnire:
                 </p>
-                    <img src="RESOURCES/IMAGES/0.png">
-                    <img src="RESOURCES/IMAGES/1.png">
-                    <img src="RESOURCES/IMAGES/2.png">
-                    <img src="RESOURCES/IMAGES/3.png">
-                    <img src="RESOURCES/IMAGES/4.png">
-                
+
+                <div class="pictures-container">
+                    <img src="RESOURCES/IMAGES/0.png" class="center">
+                    <img src="RESOURCES/IMAGES/1.png" class="center">
+                    <img src="RESOURCES/IMAGES/2.png" class="center">
+                    <img src="RESOURCES/IMAGES/3.png" class="center">
+                    <img src="RESOURCES/IMAGES/4.png" class="center">
+                </div>
+
                 <p>
                     Dupa am mai avut o intalnire in care am stabilit cum sa arate meniul de filtrari de pe pagina de statistici,
                     la inceput meniul era simplist si avea foarte putine filtre, dupa ne-a venit ideea ca ar trebui sa il structuram 
@@ -260,8 +275,10 @@
                 <p>
                     Mai jos este o imagine cu felul in care arata meniul de filtrare:  
                 </p>
-                    <img src="RESOURCES/IMAGES/5.png">
-                
+
+                <div class="picture-container">
+                    <img src="RESOURCES/IMAGES/5.png" class="center2">
+                </div>
 
                 <p>
                     Pe parte de back-end, ca si structura, la inceput sitelul era format doar din cateva fisiere html, css si js, dupa am facut
@@ -276,8 +293,10 @@
 
     </section>
 
-    <section id="used_technologies">
-        <h2> <span>4. </span>Used technologies</h2>
+    <section id="used_technologies" class="section-title">
+        <h2 class="first-level"><span>4. </span>Used technologies</h2>
+        <div class="underline"></div>
+
         <p>
             In realizarea proiectului am folosit urmatoarele tehnologii:<br>
             Pe partea de back-end am folosit php, MySQL, in timp ce pe partea de front-end am folosit html, css si js
@@ -325,8 +344,10 @@
         </section>
     </section>
 
-    <section id="database">
-        <h2><span>5. </span> Database </h2>
+    <section id="database" class="section-title">
+        <h2 class="first-level"><span>5. </span>Database</h2>
+        <div class="underline"></div>
+
         <p> 
             To store data was used MySQL, relational database management system, because it is suitable for
             large data and it is easy to do filtered queries according to many criteria.
@@ -340,8 +361,10 @@
         </p>
     </section>
 
-    <section id="references">
-        <h2><span>6. </span> References </h2>
+    <section id="references" class="section-title">
+        <h2 class="first-level"><span>6. </span>References</h2>
+        <div class="underline"></div>
+
         <p>
             In realizarea proiectului am folosit urmatoarele de resurse: 
         </p>
