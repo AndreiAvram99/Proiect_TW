@@ -11,6 +11,8 @@ class Events
      * @return false|mixed|string
      */
     static function get_statistics(){
+        header('Content-Type: application/json');
+
         if (!isset($_REQUEST['type'])){
             $answer['success'] = false;
             $answer['error'] = "Type attribute is necessary.";
@@ -90,6 +92,8 @@ class Events
      * Return filtered events according to certain parameters as JSON.
      */
     static function get_events(){
+        header('Content-Type: application/json');
+
         $accepted_types = ["JSON"];
         if (isset($_REQUEST['type']) && in_array(strtoupper($_REQUEST['type']), $accepted_types))
             $type = strtoupper($_REQUEST['type']);
@@ -118,6 +122,8 @@ class Events
      * @return false|string
      */
     static function get_column($parameters){
+        header('Content-Type: application/json');
+
         $event_model = new EventModel();
         $column = $parameters[0];
         $columns = $event_model->get_columns_list();
@@ -139,6 +145,8 @@ class Events
      * @return false|string
      */
     static function get_columns_list(){
+        header('Content-Type: application/json');
+
         $event_model = new EventModel();
         $answer['success'] = true;
         $answer['data'] = $event_model->get_columns_list();

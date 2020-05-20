@@ -5,6 +5,8 @@ include("./../Model/event_model.php");
 class AccountManager
 {
     public static function login(){
+        header('Content-Type: application/json');
+
         if (!isset($_POST["username"])){
             return self::error_handle("Username is required!");
         }
@@ -33,6 +35,8 @@ class AccountManager
     }
 
     public static function register(){
+        header('Content-Type: application/json');
+
         if (!isset($_POST["username"])){
             return self::error_handle("Username is required!");
         }
@@ -73,6 +77,8 @@ class AccountManager
     }
 
     public static function create_event(){
+        header('Content-Type: application/json');
+
         $token = JWT::get_token_from_header();
         $validate_answer = JWT::validate($token);
         if ($validate_answer != "OK") {

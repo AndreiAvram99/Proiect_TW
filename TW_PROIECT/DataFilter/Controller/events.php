@@ -5,6 +5,8 @@ include("./../Model/event_model.php");
 class Events
 {
     static function get_events(){
+        header('Content-Type: application/json');
+
         $event_model = new EventModel();
 
         if (isset($_REQUEST['columns']))
@@ -175,12 +177,16 @@ class Events
     }
 
     static function get_column_values($parameters){
+        header('Content-Type: application/json');
+
         $column = $parameters[0];
         $event_model = new EventModel();
         return json_encode($event_model->get_column_list($column, "events"));
     }
 
     static function get_mean_values(){
+        header('Content-Type: application/json');
+
         $mean_column = $_REQUEST["mean_column"];
         $group_column = $_REQUEST["group_column"];
         $event_model = new EventModel();
@@ -188,18 +194,24 @@ class Events
     }
 
     static function get_count_values(){
+        header('Content-Type: application/json');
+
         $column = $_REQUEST["column"];
         $event_model = new EventModel();
         return json_encode($event_model->count_events_group_by_column($column));
     }
 
     static function get_columns(){
+        header('Content-Type: application/json');
+
         $event_model = new EventModel();
         $columns['columns'] = $event_model->get_columns_list();
         return json_encode($columns);
     }
 
     static function create_event(){
+        header('Content-Type: application/json');
+
         $data = (array) json_decode(file_get_contents('php://input'));
 
         $event_model = new EventModel();
