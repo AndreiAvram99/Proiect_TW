@@ -15,7 +15,7 @@ class JWT
      * @return string
      */
     public static function encode($data){
-        $DEFAULT_LIVE_TIME = 120;
+        $DEFAULT_LIVE_TIME = 600;
 
         if (!isset($data["live_time"])){
             $data["live_time"] = $DEFAULT_LIVE_TIME;
