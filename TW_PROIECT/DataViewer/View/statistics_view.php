@@ -34,14 +34,14 @@
                     <input type = "button" 
                             id = "custom_container_button"
                             class = "show-menu" 
-                            value = "Show menu"
+                            value = "Hide menu"
                             onclick = "addRemoveMenu('custom_container', id)">
                     </input>
                     
                     <div class="underline"></div>    
                 </div>
                 
-                <div class = "data-filters-container" id = "custom_container">
+                <div class = "data-filters-container open" id = "custom_container">
                     <?php
                         load_custom_containers();
                     ?>
