@@ -27,7 +27,8 @@ class Router{
             return true;
         if (empty($name))
             return false;
-        if (!preg_match($legal_characters, $name))
+        preg_match($legal_characters, $name, $match);
+        if ($match[0] !== $name)
             return false;
         return true;
     }
