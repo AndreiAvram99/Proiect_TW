@@ -4,16 +4,13 @@ include("event_controller.php");
 include("../Model/event_model.php");
 
 $event_model = new EventModel();
-$events = $event_model->get_events();
+$results = $event_model->count_events_group_by_column('state', 'events');
 
 function get_nb_of_accidents($state){
-    
-    $nb_of_accidents = 0;
-    foreach($GLOBALS['events'] as $event){
-        if($event['state'] == $state)
-        $nb_of_accidents++;
+    foreach($GLOBALS['results'] as $result){   
+        if($result['state'] === $state)
+            return $result['count'];
     }
-    return $nb_of_accidents;
 }
 
 function create_map_data(){
